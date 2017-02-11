@@ -18,5 +18,12 @@ public:
     ~Label();
 
     void Render() override;
+
+public:
+    std::wstring GetText() const { return m_Text; }
+    void SetText(std::wstring text) { m_Text = text; }
+
+    D3DCOLOR GetColor() const { return m_Color; }
+    void SetColor(D3DCOLOR color) { m_Color = color; }
 };
 

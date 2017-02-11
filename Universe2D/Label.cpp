@@ -11,8 +11,8 @@ Label::Label(std::wstring text, std::wstring fontFace, int fontSize) : m_Font(nu
     m_FontSize = fontSize;
 
     HRESULT hr = D3DXCreateFont(Application::GetInstance()->GetRenderer()->GetDevice(),
-        fontSize, 0, 400, D3DX_DEFAULT, false, DEFAULT_CHARSET, OUT_TT_PRECIS,
-        CLEARTYPE_QUALITY, NULL, fontFace.c_str(), &m_Font);
+        fontSize, 0, FW_NORMAL, D3DX_DEFAULT, false, DEFAULT_CHARSET, OUT_TT_PRECIS,
+        ANTIALIASED_QUALITY, NULL, fontFace.c_str(), &m_Font);
 
     if FAILED(hr)
     {
@@ -31,6 +31,8 @@ Label::~Label()
 
 void Label::Render()
 {
+    Object::Render();
+
     RECT rect;
     SetRectEmpty(&rect);
 
