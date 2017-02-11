@@ -28,6 +28,9 @@
     <Filter Include="Framework\Resource\ResourceManager">
       <UniqueIdentifier>{e718fddd-6cc3-4cf0-bd47-f952feaba2ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Input">
+      <UniqueIdentifier>{8b727944-d704-4afe-8425-455546add55e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -51,6 +54,9 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Framework\Resource\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Framework\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -70,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Framework\Resource\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Framework\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
