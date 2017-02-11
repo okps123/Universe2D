@@ -31,6 +31,9 @@
     <Filter Include="Framework\Input">
       <UniqueIdentifier>{8b727944-d704-4afe-8425-455546add55e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Console">
+      <UniqueIdentifier>{fcaae2ae-5331-4fbc-b19f-41f82a1db5b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -56,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Framework\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Framework\Console</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

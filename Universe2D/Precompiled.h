@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
+#include <stdio.h>
 
 #include <string>
 #include <vector>
