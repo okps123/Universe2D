@@ -7,13 +7,12 @@ private:
     Object* m_Parent;
     ObjectList m_ChildList;
 
-private:
+protected:
     D3DXVECTOR2 m_Position;
     D3DXVECTOR2 m_Center;
     D3DXVECTOR2 m_Scale;
     float m_Rotation;
     bool m_Visible;
-
 
     D3DXMATRIX m_Matrix;
 
@@ -31,6 +30,7 @@ public:
 
     D3DXMATRIX GetMatrix() { return m_Matrix; }
 
+public:
     void AddChild(Object* obj);
     void RemoveChild(Object* obj);
 };
