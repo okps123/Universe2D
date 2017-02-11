@@ -18,6 +18,7 @@ Texture::Texture(std::wstring fileName)
     if FAILED(hr)
     {
         // 오류 처리
+        printf("[Texture] 텍스쳐 생성 실패 (%s)\n", fileName);
     }
 }
 Texture::~Texture()

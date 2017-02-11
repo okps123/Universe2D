@@ -23,6 +23,7 @@
     <ClInclude Include="Console.h" />
     <ClInclude Include="Director.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -33,6 +34,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Director.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Precompiled.h</PrecompiledHeaderFile>

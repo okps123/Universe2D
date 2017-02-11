@@ -34,6 +34,9 @@
     <Filter Include="Framework\Console">
       <UniqueIdentifier>{fcaae2ae-5331-4fbc-b19f-41f82a1db5b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node">
+      <UniqueIdentifier>{c37082b0-58a0-4bbd-8cf7-6ecf20820298}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -63,6 +66,9 @@
     <ClInclude Include="Console.h">
       <Filter>Framework\Console</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Framework\Node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -85,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Framework\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Framework\Node</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
