@@ -1,6 +1,9 @@
 #include "Precompiled.h"
 #include "Application.h"
 
+#include "Renderer.h"
+#include "Director.h"
+
 Application::Application()
 {
 }
@@ -16,12 +19,19 @@ bool Application::Initialize(wchar_t * title, int width, int height, bool fullSc
 
     _CreateWindow(title, width, height, fullScreen);
 
+    m_Renderer = new Renderer();
+    m_Renderer->Initialize(width, height, fullScreen);
+
+    m_Director = Director::GetInstance();
+    m_Director->Initialize();
+
     return true;
 }
 
 bool Application::Release()
 {
-    // 자원 해제
+    m_Director->Release();
+    m_Renderer->Release();
 
     return true;
 }
@@ -56,10 +66,11 @@ LRESULT Application::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
         break;
     }
     }
+
     return DefWindowProc(hWnd, Msg, wParam, lParam);
 }
 
-bool Application::_CreateWindow(wchar_t * title, int width, int height, bool fullScreen)
+bool Application::_CreateWindow(wchar_t* title, int width, int height, bool fullScreen)
 {
     WNDCLASS wc = {};
     wc.lpszClassName = L"U2DWindow";

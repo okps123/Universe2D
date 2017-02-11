@@ -1,10 +1,19 @@
 #pragma once
+
+class Renderer;
+class Director;
+
 class Application : public Singleton<Application>
 {
 private:
     HWND m_hWnd;
     HINSTANCE m_hInstance;
 
+private:
+    Renderer* m_Renderer;
+    Director* m_Director;
+
+private:
     wchar_t* m_Title;
 
     int m_Width;
@@ -25,6 +34,8 @@ public:
     inline int GetHeight() { return m_Height; }
 
     inline HWND GetHWND() { return m_hWnd; }
+
+    inline Renderer* GetRenderer() { return m_Renderer; }
 
 private:
     bool _CreateWindow(wchar_t* title, int width, int height, bool fullScreen);

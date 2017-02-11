@@ -7,6 +7,15 @@ private:
     static T* instance;
 
 public:
+    Singleton()
+    {
+    }
+    virtual ~Singleton()
+    {
+        if (instance)
+            delete instance;
+    }
+
     static T* GetInstance()
     {
         if (instance == nullptr)
