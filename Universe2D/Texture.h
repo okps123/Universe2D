@@ -8,8 +8,9 @@ private:
 
     LPDIRECT3DTEXTURE9 m_Texture;
 
-public:
     Texture(std::wstring fileName);
+public:
+    static Texture* Create(std::wstring fileName);
     ~Texture();
 
 public:

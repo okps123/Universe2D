@@ -4,7 +4,8 @@
 #include "Application.h"
 #include "Renderer.h"
 
-Texture::Texture(std::wstring fileName)
+Texture::Texture(std::wstring fileName) :
+    m_Texture(nullptr), m_Width(0), m_Height(0)
 {
     HRESULT hr;
     hr = D3DXCreateTextureFromFileEx(
@@ -18,7 +19,7 @@ Texture::Texture(std::wstring fileName)
     if FAILED(hr)
     {
         // 오류 처리
-        printf("[Texture] 텍스쳐 생성 실패 (%s)\n", fileName);
+        printf("[Texture] 텍스쳐 생성 실패 (%s)\n", fileName.c_str());
         return;
     }
 
@@ -27,6 +28,17 @@ Texture::Texture(std::wstring fileName)
 
     m_Width = desc.Width;
     m_Height = desc.Height;
+    
+    m_FileName = fileName;
+}
+Texture* Texture::Create(std::wstring fileName)
+{
+    auto instance = new Texture(fileName);
+    
+    if (instance->GetWidth() == 0 && instance->GetHeight() == 0)
+        return nullptr;
+
+    return instance;
 }
 Texture::~Texture()
 {

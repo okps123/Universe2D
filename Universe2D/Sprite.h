@@ -6,6 +6,9 @@ class Texture;
 
 class Sprite : public Object
 {
+public:
+    bool IsLoaded;
+
 protected:
     float m_ImageWidth;
     float m_ImageHeight;

@@ -14,7 +14,13 @@ Texture* ResourceManager::LoadTextureFromFile(std::wstring fileName)
 {
     if (!m_TextureMap[fileName])
     {
-        m_TextureMap[fileName] = new Texture(fileName);
+        auto texture = Texture::Create(fileName);
+     
+        // 텍스쳐 생성에 실패했다면 nullptr 반환
+        if (!texture)
+            return nullptr;
+
+        m_TextureMap[fileName] = texture;
     }
 
     return m_TextureMap[fileName];
