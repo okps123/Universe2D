@@ -46,6 +46,12 @@
     <Filter Include="Framework\Node\Scene">
       <UniqueIdentifier>{e9650b04-d004-4d7c-bf27-94e9af9f3f84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node\UI">
+      <UniqueIdentifier>{d374da4c-cf85-4c8d-83a6-d671d4b7d9db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\UI\Label">
+      <UniqueIdentifier>{3bd8ccf1-3a2a-4971-8882-9c721df418a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -84,6 +90,9 @@
     <ClInclude Include="Scene.h">
       <Filter>Framework\Node\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Framework\Node\UI\Label</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -115,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Framework\Node\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Framework\Node\UI\Label</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

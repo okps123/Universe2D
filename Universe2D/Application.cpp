@@ -68,7 +68,7 @@ bool Application::Run()
 
             m_DeltaTime = (static_cast<float>(m_NowTime - m_PrevTime));
             m_ElapsedTime += m_DeltaTime;
- 
+
             if (m_ElapsedTime > 1000)
             {
                 m_Fps = m_FrameCount;
@@ -80,7 +80,7 @@ bool Application::Run()
 
             // 업데이트
             Input::GetInstance()->Update();
-            m_Director->UpdateScene((m_DeltaTime/1000.f));
+            m_Director->UpdateScene((m_DeltaTime / 1000.f));
             // 렌더
             m_Renderer->Begin();
             m_Director->RenderScene();
@@ -142,7 +142,7 @@ bool Application::_CreateWindow(wchar_t* title, int width, int height, bool full
 
     m_hWnd = CreateWindow(L"U2DWindow", title, style, x, y,
         width, height, NULL, NULL, wc.hInstance, NULL);
-    
+
     ShowWindow(m_hWnd, SW_SHOWDEFAULT);
 
     return true;
