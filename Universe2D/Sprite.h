@@ -10,8 +10,7 @@ protected:
     float m_ImageWidth;
     float m_ImageHeight;
     
-    unsigned char m_ColorR, m_ColorG, m_ColorB;
-    unsigned char m_Opacity;
+    byte m_ColorA, m_ColorR, m_ColorG, m_ColorB;
 
     LPD3DXSPRITE m_D3DSprite;
 
@@ -19,9 +18,14 @@ private:
     Texture* m_Texture;
     Renderer* m_Renderer;
 
-public:
     Sprite(std::wstring fileName);
+public:
+    static Sprite* Create(std::wstring fileName);
     ~Sprite();
+
+public:
+    inline byte GetOpacity() const { return m_ColorA; }
+    void SetOpacity(byte opacity) { m_ColorA = opacity; }
 
 public:
     void Render() override;

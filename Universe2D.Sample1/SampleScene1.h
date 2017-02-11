@@ -4,6 +4,7 @@ class SampleScene1 : public Scene
 {
 private:
     Sprite* sprite1;
+    Sprite* sprite2;
 
 public:
     SampleScene1();
