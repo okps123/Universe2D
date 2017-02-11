@@ -4,5 +4,30 @@
     <Filter Include="Framework">
       <UniqueIdentifier>{11351350-f530-4507-86b0-31610ed8be96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Application">
+      <UniqueIdentifier>{c0b6c557-c0f2-489b-be57-c5d4285dec71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Header">
+      <UniqueIdentifier>{22d8b7f5-5083-4d74-a627-76f0fa19e185}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h">
+      <Filter>Framework\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Framework\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Precompiled.h">
+      <Filter>Framework\Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Application.cpp">
+      <Filter>Framework\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Precompiled.cpp">
+      <Filter>Framework\Header</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
