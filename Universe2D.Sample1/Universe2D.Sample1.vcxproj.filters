@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Precompiled.cpp">
+      <Filter>Game\Header</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{7d29f837-bfeb-4a18-b6c1-84d21fb1244c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Header">
+      <UniqueIdentifier>{4a0fe4e0-8b62-456a-bb13-a65ba8fb41c7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Precompiled.h">
+      <Filter>Game\Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -42,7 +42,7 @@ void Sprite::Render()
     m_D3DSprite->SetTransform(&m_Matrix);
     m_D3DSprite->Draw(
         m_Texture->GetD3DTexture(),
-        NULL, NULL, NULL,
+        NULL, NULL, &D3DXVECTOR3(-m_ImageWidth / 2, -m_ImageHeight / 2, .0f),
         D3DCOLOR_ARGB(a, r, g, b));
     m_D3DSprite->End();
 }

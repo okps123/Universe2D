@@ -81,9 +81,9 @@ bool Application::_CreateWindow(wchar_t* title, int width, int height, bool full
     if (RegisterClass(&wc) == NULL)
         return false;
 
-    DWORD style = WS_OVERLAPPED;
+    DWORD style = WS_OVERLAPPEDWINDOW;
 
-    m_hWnd = CreateWindow(L"U2DApp", title, style, CW_USEDEFAULT, CW_USEDEFAULT,
+    m_hWnd = CreateWindow(L"U2DWindow", title, style, CW_USEDEFAULT, CW_USEDEFAULT,
         width, height, NULL, NULL, wc.hInstance, NULL);
 
     if (fullScreen)

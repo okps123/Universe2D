@@ -43,6 +43,9 @@
     <Filter Include="Framework\Node\Sprite">
       <UniqueIdentifier>{ba2f4226-1a4c-4a82-bd7e-e38916f26b9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node\Scene">
+      <UniqueIdentifier>{e9650b04-d004-4d7c-bf27-94e9af9f3f84}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -78,6 +81,9 @@
     <ClInclude Include="Sprite.h">
       <Filter>Framework\Node\Sprite</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Framework\Node\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -106,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
       <Filter>Framework\Node\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Framework\Node\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
