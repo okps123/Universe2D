@@ -16,6 +16,18 @@
     <Filter Include="Framework\Director">
       <UniqueIdentifier>{89520f1f-6a0f-4a91-94fa-1ce2cc9025ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Resource">
+      <UniqueIdentifier>{9a2c4540-df16-4097-b74d-b9052b3d69e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Resource\Sound">
+      <UniqueIdentifier>{1bac221a-c0c0-445d-96f2-1b3a23163117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Resource\Texture">
+      <UniqueIdentifier>{dd1e29ea-2dcd-4fc0-b645-cd8d00cd206b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Resource\ResourceManager">
+      <UniqueIdentifier>{e718fddd-6cc3-4cf0-bd47-f952feaba2ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -33,6 +45,12 @@
     <ClInclude Include="Director.h">
       <Filter>Framework\Director</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Framework\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Framework\Resource\ResourceManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -46,6 +64,12 @@
     </ClCompile>
     <ClCompile Include="Director.cpp">
       <Filter>Framework\Director</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Framework\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Framework\Resource\ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ Application::~Application()
 {
 }
 
-bool Application::Initialize(wchar_t * title, int width, int height, bool fullScreen)
+bool Application::Initialize(wchar_t* title, int width, int height, bool fullScreen)
 {
     m_Title = title;
     m_Width = width;
@@ -30,8 +30,10 @@ bool Application::Initialize(wchar_t * title, int width, int height, bool fullSc
 
 bool Application::Release()
 {
+    // 소멸자에서 자동으로 릴리즈
+    SAFE_DELETE(m_Renderer);
+
     m_Director->Release();
-    m_Renderer->Release();
 
     return true;
 }
