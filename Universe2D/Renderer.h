@@ -11,7 +11,7 @@ public:
     Renderer();
     ~Renderer();
 
-    bool Initialize(int width, int height, bool fullScreen);
+    bool Initialize(HWND hWnd, int width, int height, bool fullScreen);
     bool Release();
 
     void Begin();

@@ -28,6 +28,12 @@ public:
     Object* GetParent() { return m_Parent; }
     void SetParent(Object* obj) { m_Parent = obj; }
 
+    D3DXVECTOR2 GetPosition() { return m_Position; }
+    void SetPosition(D3DXVECTOR2 position) { m_Position = position; }
+
+    D3DXVECTOR2 GetScale() { return m_Scale; }
+    void SetScale(D3DXVECTOR2 scale) { m_Scale = scale; }
+
     D3DXMATRIX GetMatrix() { return m_Matrix; }
 
 public:

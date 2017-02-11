@@ -38,11 +38,14 @@ void Sprite::Render()
     byte g = 255 - m_ColorG;
     byte b = 255 - m_ColorB;
 
+    RECT srcRect;
+    SetRect(&srcRect, 0, 0, m_ImageWidth, m_ImageHeight);
+
     m_D3DSprite->Begin(D3DXSPRITE_ALPHABLEND);
     m_D3DSprite->SetTransform(&m_Matrix);
     m_D3DSprite->Draw(
         m_Texture->GetD3DTexture(),
-        NULL, NULL, &D3DXVECTOR3(-m_ImageWidth / 2, -m_ImageHeight / 2, .0f),
+        &srcRect, NULL, &D3DXVECTOR3(.0f, .0f, .0f), //-m_ImageWidth / 2, -m_ImageHeight / 2
         D3DCOLOR_ARGB(a, r, g, b));
     m_D3DSprite->End();
 }

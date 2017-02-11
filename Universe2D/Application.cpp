@@ -1,8 +1,11 @@
 #include "Precompiled.h"
 #include "Application.h"
 
+#include "Input.h"
 #include "Renderer.h"
 #include "Director.h"
+
+#include "Console.h"
 
 Application::Application()
 {
@@ -13,6 +16,10 @@ Application::~Application()
 
 bool Application::Initialize(wchar_t* title, int width, int height, bool fullScreen)
 {
+#if _DEBUG
+    Console::Initialize();
+#endif
+
     m_Title = title;
     m_Width = width;
     m_Height = height;
@@ -20,7 +27,7 @@ bool Application::Initialize(wchar_t* title, int width, int height, bool fullScr
     _CreateWindow(title, width, height, fullScreen);
 
     m_Renderer = new Renderer();
-    m_Renderer->Initialize(width, height, fullScreen);
+    m_Renderer->Initialize(m_hWnd, width, height, fullScreen);
 
     m_Director = Director::GetInstance();
     m_Director->Initialize();
@@ -34,6 +41,10 @@ bool Application::Release()
     SAFE_DELETE(m_Renderer);
 
     m_Director->Release();
+
+#if _DEBUG
+    Console::Release();
+#endif
 
     return true;
 }
@@ -51,7 +62,12 @@ bool Application::Run()
         else
         {
             // ¾÷µ¥ÀÌÆ®
+            Input::GetInstance()->Update();
+            m_Director->UpdateScene(16.f);
             // ·»´õ
+            m_Renderer->Begin();
+            m_Director->RenderScene();
+            m_Renderer->End();
         }
     }
     return true;
