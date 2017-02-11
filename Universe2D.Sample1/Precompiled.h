@@ -18,3 +18,5 @@
 
 #include "Texture.h"
 #include "Sprite.h"
+
+#include "Input.h"

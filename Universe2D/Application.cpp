@@ -77,6 +77,8 @@ LRESULT Application::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
     switch (Msg)
     {
+    case WM_CREATE:
+        break;
     case WM_DESTROY:
     {
         Application::GetInstance()->Release();
@@ -93,24 +95,37 @@ bool Application::_CreateWindow(wchar_t* title, int width, int height, bool full
     WNDCLASS wc = {};
     wc.lpszClassName = L"U2DWindow";
     wc.lpfnWndProc = WndProc;
+    wc.hCursor = LoadCursor(NULL, IDC_ARROW);
 
     if (RegisterClass(&wc) == NULL)
         return false;
 
     DWORD style = WS_OVERLAPPEDWINDOW;
+    int x = CW_USEDEFAULT;
+    int y = CW_USEDEFAULT;
 
-    m_hWnd = CreateWindow(L"U2DWindow", title, style, CW_USEDEFAULT, CW_USEDEFAULT,
-        width, height, NULL, NULL, wc.hInstance, NULL);
-
+    // 윈도우 모드일경우 윈도우 보더를 계산한 크기로 수정함
     if (fullScreen)
     {
-        SetWindowLong(m_hWnd, GWL_STYLE, 0);
-        ShowWindow(m_hWnd, SW_SHOWMAXIMIZED);
+        style = WS_POPUP | WS_EX_TOPMOST;
+        x = 0;
+        y = 0;
     }
     else
     {
-        ShowWindow(m_hWnd, SW_SHOWDEFAULT);
+        RECT rect;
+        SetRect(&rect, 0, 0, width, height);
+
+        AdjustWindowRect(&rect, style, false);
+
+        width = (rect.right - rect.left);
+        height = (rect.bottom - rect.top);
     }
+
+    m_hWnd = CreateWindow(L"U2DWindow", title, style, x, y,
+        width, height, NULL, NULL, wc.hInstance, NULL);
+    
+    ShowWindow(m_hWnd, SW_SHOWDEFAULT);
 
     return true;
 }

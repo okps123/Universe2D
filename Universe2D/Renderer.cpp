@@ -17,9 +17,10 @@ bool Renderer::Initialize(HWND hWnd, int width, int height, bool fullScreen)
     D3DPRESENT_PARAMETERS pp = {};
     pp.BackBufferWidth = width;
     pp.BackBufferHeight = height;
-    pp.BackBufferFormat = D3DFMT_UNKNOWN;
+    pp.BackBufferFormat = D3DFMT_A8R8G8B8;
     pp.SwapEffect = D3DSWAPEFFECT_DISCARD;
     pp.Windowed = !fullScreen;
+    pp.hDeviceWindow = hWnd;
 
     HRESULT hr;
     hr = lpDirect3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,

@@ -46,6 +46,8 @@ void Sprite::Render()
 
     Object::Render();
 
+    // 하나의 이미지에서 그려질 부분의 영역(Rect)을 설정 할 수 있음
+    // 추후에 파라미터로 제공할 예정
     RECT srcRect;
     SetRect(&srcRect, 0, 0, m_ImageWidth, m_ImageHeight);
 
