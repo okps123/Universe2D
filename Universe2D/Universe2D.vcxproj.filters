@@ -10,6 +10,9 @@
     <Filter Include="Framework\Header">
       <UniqueIdentifier>{22d8b7f5-5083-4d74-a627-76f0fa19e185}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Renderer">
+      <UniqueIdentifier>{4fcde10f-6dbc-4114-b7fc-b6ea64e053fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -21,6 +24,9 @@
     <ClInclude Include="Precompiled.h">
       <Filter>Framework\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Framework\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -28,6 +34,9 @@
     </ClCompile>
     <ClCompile Include="Precompiled.cpp">
       <Filter>Framework\Header</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Framework\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

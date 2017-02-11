@@ -20,6 +20,12 @@ public:
 
     bool Run();
 
+public:
+    inline int GetWidth() { return m_Width; }
+    inline int GetHeight() { return m_Height; }
+
+    inline HWND GetHWND() { return m_hWnd; }
+
 private:
     bool _CreateWindow(wchar_t* title, int width, int height, bool fullScreen);
 
