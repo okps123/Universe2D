@@ -19,7 +19,14 @@ Texture::Texture(std::wstring fileName)
     {
         // 오류 처리
         printf("[Texture] 텍스쳐 생성 실패 (%s)\n", fileName);
+        return;
     }
+
+    D3DSURFACE_DESC desc;
+    m_Texture->GetLevelDesc(0, &desc);
+
+    m_Width = desc.Width;
+    m_Height = desc.Height;
 }
 Texture::~Texture()
 {
