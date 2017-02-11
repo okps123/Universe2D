@@ -19,6 +19,15 @@ private:
     int m_Width;
     int m_Height;
 
+private:
+    int m_Fps = 0;
+    int m_ElapsedTime = 0;
+    int m_PrevTime;
+    int m_NowTime;
+    int m_FrameCount;
+
+    float m_DeltaTime = 0;
+
 public:
     Application();
     ~Application();

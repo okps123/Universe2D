@@ -61,9 +61,26 @@ bool Application::Run()
         }
         else
         {
+            m_FrameCount++;
+            m_NowTime = GetTickCount();
+
+            if (m_PrevTime == 0.f) m_PrevTime = m_NowTime;
+
+            m_DeltaTime = (static_cast<float>(m_NowTime - m_PrevTime));
+            m_ElapsedTime += m_DeltaTime;
+ 
+            if (m_ElapsedTime > 1000)
+            {
+                m_Fps = m_FrameCount;
+                m_ElapsedTime = 0.f;
+                m_FrameCount = 0;
+            }
+
+            m_PrevTime = m_NowTime;
+
             // 업데이트
             Input::GetInstance()->Update();
-            m_Director->UpdateScene(16.f);
+            m_Director->UpdateScene((m_DeltaTime/1000.f));
             // 렌더
             m_Renderer->Begin();
             m_Director->RenderScene();
@@ -101,22 +118,23 @@ bool Application::_CreateWindow(wchar_t* title, int width, int height, bool full
         return false;
 
     DWORD style = WS_OVERLAPPEDWINDOW;
-    int x = CW_USEDEFAULT;
-    int y = CW_USEDEFAULT;
+    int x = 0;
+    int y = 0;
 
-    // 윈도우 모드일경우 윈도우 보더를 계산한 크기로 수정함
     if (fullScreen)
     {
+        // 전체화면 모드일경우 스타일 수정
         style = WS_POPUP | WS_EX_TOPMOST;
-        x = 0;
-        y = 0;
     }
     else
     {
+        // 윈도우 모드일경우 윈도우 보더를 계산한 크기로 수정함
         RECT rect;
         SetRect(&rect, 0, 0, width, height);
 
         AdjustWindowRect(&rect, style, false);
+
+        x = y = CW_USEDEFAULT;
 
         width = (rect.right - rect.left);
         height = (rect.bottom - rect.top);
