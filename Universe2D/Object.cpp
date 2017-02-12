@@ -47,11 +47,14 @@ void Object::AddChild(Object* obj)
     obj->SetParent(this);
     m_ChildList.push_back(obj);
 }
-void Object::RemoveChild(Object* obj)
+void Object::RemoveChild(Object* obj, bool deleteMemory)
 {
     auto iterator = std::find(m_ChildList.begin(), m_ChildList.end(), obj);
     if (iterator != m_ChildList.end())
     {
+        if (deleteMemory)
+            SAFE_DELETE(*iterator);
+
         m_ChildList.erase(iterator);
     }
 }

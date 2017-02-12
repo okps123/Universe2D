@@ -39,5 +39,5 @@ public:
 
 public:
     void AddChild(Object* obj);
-    void RemoveChild(Object* obj);
+    void RemoveChild(Object* obj, bool deleteMemory);
 };
