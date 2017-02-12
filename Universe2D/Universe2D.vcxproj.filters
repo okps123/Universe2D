@@ -55,9 +55,6 @@
     <Filter Include="Framework\Node\Frame">
       <UniqueIdentifier>{61e22435-b7d8-4e53-967c-6d654921cc22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\Camera">
-      <UniqueIdentifier>{22b40c03-7e9a-4b06-befe-50eefba01351}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">

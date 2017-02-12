@@ -42,6 +42,12 @@ void Object::Render()
     }
 }
 
+void Object::Transform(float x, float y)
+{
+    m_Position.x += x;
+    m_Position.y += y;
+}
+
 void Object::AddChild(Object* obj)
 {
     obj->SetParent(this);

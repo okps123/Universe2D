@@ -3,8 +3,8 @@
 class SampleScene1 : public Scene
 {
 private:
-    Sprite* sprite1;
-    Sprite* sprite2;
+    Sprite* m_Sprite1;
+    Sprite* m_Sprite2;
 
 public:
     SampleScene1();

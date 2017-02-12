@@ -20,6 +20,7 @@ public:
 
     void SetSize(float width, float height) { m_Width = width; m_Height = height; }
 
+public:
     virtual void Update(float deltaTime) {};
     virtual void Render() { Object::Render(); }
 };

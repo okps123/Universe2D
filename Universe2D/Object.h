@@ -1,7 +1,7 @@
 #pragma once
 class Object
 {
-private:
+protected:
     typedef std::vector<Object*> ObjectList;
 
     Object* m_Parent;
@@ -36,6 +36,8 @@ public:
     void SetScale(D3DXVECTOR2 scale) { m_Scale = scale; }
 
     D3DXMATRIX GetMatrix() { return m_Matrix; }
+
+    void Transform(float x, float y);
 
 public:
     void AddChild(Object* obj);

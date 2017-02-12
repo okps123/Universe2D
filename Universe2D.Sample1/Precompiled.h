@@ -16,6 +16,9 @@
 #include "Scene.h"
 #include "Director.h"
 
+#include "Frame.h"
+#include "Camera.h"
+
 #include "Texture.h"
 #include "Sprite.h"
 

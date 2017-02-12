@@ -8,7 +8,7 @@ public:
     virtual ~Scene() {};
 
 public:
-    void Render() override { Object::Render(); }
+    void Render() override;
     void Update(float deltaTime) override {}
 };
 
