@@ -19,6 +19,8 @@ private:
     int m_Width;
     int m_Height;
 
+    bool m_Actived;
+
 private:
     int m_Fps;
     int m_ElapsedTime;
@@ -39,6 +41,8 @@ public:
     bool Run();
 
 public:
+    inline bool GetActived() { return m_Actived; }
+
     inline int GetWidth() { return m_Width; }
     inline int GetHeight() { return m_Height; }
 

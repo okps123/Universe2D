@@ -94,6 +94,19 @@ LRESULT Application::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
     switch (Msg)
     {
+    case WM_ACTIVATE:
+        switch (LOWORD(wParam))
+        {
+        case WA_ACTIVE:
+        case WA_CLICKACTIVE:
+            Application::GetInstance()->m_Actived = true;
+            break;
+        case WA_INACTIVE:
+            Application::GetInstance()->m_Actived = false;
+            break;
+        }
+
+        break;
     case WM_DESTROY:
     {
         Application::GetInstance()->Release();

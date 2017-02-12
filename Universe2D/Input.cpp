@@ -14,8 +14,12 @@ Input::~Input()
 
 void Input::UpdateState()
 {
-    UpdateKeyState();
-    UpdateMouseState();
+    // 윈도우가 활성화되있을때만 업데이트
+    if (Application::GetInstance()->GetActived())
+    {
+        UpdateKeyState();
+        UpdateMouseState();
+    }
 }
 
 KeyState Input::GetKeyState(int key)
