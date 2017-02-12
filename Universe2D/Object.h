@@ -35,6 +35,9 @@ public:
     D3DXVECTOR2 GetScale() { return m_Scale; }
     void SetScale(D3DXVECTOR2 scale) { m_Scale = scale; }
 
+    float GetRotation() { return m_Rotation; }
+    void SetRotation(float rotation) { m_Rotation = rotation; }
+
     D3DXMATRIX GetMatrix() { return m_Matrix; }
 
     void Transform(float x, float y);
