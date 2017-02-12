@@ -40,6 +40,14 @@ Sprite::~Sprite()
     m_Renderer = nullptr;
 }
 
+void Sprite::Resize(float width, float height)
+{
+    m_Scale = {
+        width/ m_ImageWidth,
+        height / m_ImageHeight
+    };
+}
+
 void Sprite::Render()
 {
     if (!m_Visible || !IsLoaded) return;

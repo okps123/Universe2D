@@ -29,6 +29,9 @@ bool Renderer::Initialize(HWND hWnd, int width, int height, bool fullScreen)
     if FAILED(hr)
         return false;
 
+    lpDevice->SetRenderState(D3DRS_MULTISAMPLEANTIALIAS, TRUE);
+    lpDevice->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, TRUE);
+
     return true;
 }
 bool Renderer::Release()
