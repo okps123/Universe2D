@@ -1,6 +1,8 @@
 #include "Precompiled.h"
 #include "Director.h"
 
+#include "Application.h"
+#include "Renderer.h"
 #include "Scene.h"
 
 Director::Director() : m_CurrentScene(nullptr)

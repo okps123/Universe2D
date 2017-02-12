@@ -65,8 +65,6 @@ bool Application::Run()
             m_FrameCount++;
             m_NowTime = GetTickCount();
 
-            if (m_PrevTime == 0.f) m_PrevTime = m_NowTime;
-
             m_DeltaTime = (static_cast<float>(m_NowTime - m_PrevTime));
             m_ElapsedTime += m_DeltaTime;
 
@@ -77,16 +75,16 @@ bool Application::Run()
                 m_FrameCount = 0;
             }
 
-            m_PrevTime = m_NowTime;
+            // Update
+            Input::GetInstance()->UpdateState();
+            Director::GetInstance()->UpdateScene(m_DeltaTime / 1000.0f);
 
-            Input::GetInstance()->Update();
-
-            m_Director->UpdateScene((m_DeltaTime / 1000.f));
+            // Render
             m_Renderer->Begin();
-
             m_Director->RenderScene();
-
             m_Renderer->End();
+
+            m_PrevTime = m_NowTime;
         }
     }
     return true;
@@ -96,8 +94,6 @@ LRESULT Application::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
     switch (Msg)
     {
-    case WM_CREATE:
-        break;
     case WM_DESTROY:
     {
         Application::GetInstance()->Release();

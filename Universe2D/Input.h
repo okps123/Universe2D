@@ -18,7 +18,7 @@ public:
     Input();
     ~Input();
 
-    void Update();
+    void UpdateState();
 
 public:
     KeyState GetKeyState(int key);

@@ -10,7 +10,7 @@ Input::~Input()
 {
 }
 
-void Input::Update()
+void Input::UpdateState()
 {
     UpdateKeyState();
     UpdateMouseState();
