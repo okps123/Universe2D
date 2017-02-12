@@ -30,6 +30,9 @@ public:
     inline byte GetOpacity() const { return m_ColorA; }
     void SetOpacity(byte opacity) { m_ColorA = opacity; }
 
+    inline int GetWidth() const { return m_ImageWidth; }
+    inline int GetHeight() const { return m_ImageHeight; }
+
     // 특정 크기에 맞게 Scale을 수정함
     void Resize(float width, float height);
 
