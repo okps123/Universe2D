@@ -22,6 +22,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Director.h" />
+    <ClInclude Include="Frame.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Object.h" />
@@ -36,6 +37,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Director.cpp" />
+    <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Object.cpp" />
