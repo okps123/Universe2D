@@ -38,6 +38,9 @@ public:
     float GetRotation() { return m_Rotation; }
     void SetRotation(float rotation) { m_Rotation = rotation; }
 
+    bool GetVisible() { return m_Visible; }
+    void SetVisible(bool visible) { m_Visible = visible; }
+
     D3DXMATRIX GetMatrix() { return m_Matrix; }
 
     void Transform(float x, float y);
