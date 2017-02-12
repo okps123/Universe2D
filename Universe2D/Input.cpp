@@ -1,6 +1,8 @@
 #include "Precompiled.h"
 #include "Input.h"
 
+#include "Application.h"
+
 Input::Input()
 {
     ZeroMemory(m_PrevKeyState, sizeof(m_PrevKeyState));
@@ -47,4 +49,15 @@ void Input::UpdateKeyState()
 }
 void Input::UpdateMouseState()
 {
+    // 마우스의 위치를 가져옴
+    POINT position;
+    GetCursorPos(&position);
+
+    // 윈도우 위치로 변환
+    ScreenToClient(Application::GetInstance()->GetHWND(), &position);
+
+    m_MousePosition = {
+        static_cast<float>(position.x),
+        static_cast<float>(position.y)
+    };
 }

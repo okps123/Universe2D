@@ -14,6 +14,8 @@ private:
     bool m_PrevKeyState[256];
     bool m_NowKeyState[256];
 
+    D3DXVECTOR2 m_MousePosition;
+
 public:
     Input();
     ~Input();
