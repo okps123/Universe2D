@@ -5,7 +5,7 @@
 INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)
 {
     Application* app = Application::GetInstance();
-    app->Initialize(L"Universe2D.Sample1", 800, 600, false);
+    app->Initialize(L"Universe2D.Sample1", 1280, 720, false);
 
     Director::GetInstance()->SetScene(new SampleScene1());
 

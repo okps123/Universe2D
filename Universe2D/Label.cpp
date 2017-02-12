@@ -4,7 +4,7 @@
 #include "Application.h"
 #include "Renderer.h"
 
-Label::Label(std::wstring text, std::wstring fontFace, int fontSize) : m_Font(nullptr)
+Label::Label(std::wstring text, std::wstring fontFace, int fontSize) : m_Font(nullptr), m_Color(D3DCOLOR_XRGB(0,0,0))
 {
     m_Text = text;
     m_FontFace = fontFace;
@@ -16,14 +16,23 @@ Label::Label(std::wstring text, std::wstring fontFace, int fontSize) : m_Font(nu
 
     if FAILED(hr)
     {
-        printf("폰트 생성 실패\n");
+        printf("[Label] 폰트 생성 실패\n");
     }
 }
-Label* Label::Create(std::wstring string, std::wstring fontFace, int fontSize)
+Label* Label::Create(std::wstring text, std::wstring fontFace, int fontSize)
 {
-    auto instance = new Label(string, fontFace, fontSize);
+    auto instance = new Label(text, fontFace, fontSize);
     return instance;
 }
+
+Label * Label::Create(std::wstring text, std::wstring fontFace, int fontSize, D3DCOLOR color)
+{
+    auto instance = new Label(text, fontFace, fontSize);
+    instance->SetColor(color);
+
+    return instance;
+}
+
 Label::~Label()
 {
     SAFE_RELEASE(m_Font);

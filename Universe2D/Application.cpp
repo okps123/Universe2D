@@ -52,9 +52,6 @@ bool Application::Release()
 
 bool Application::Run()
 {
-    Label* frameLabel = Label::Create(L"", L"NanumSquare", 23);
-    frameLabel->SetColor(D3DCOLOR_XRGB(0, 0, 0));
-
     MSG msg = {};
     while (msg.message != WM_QUIT)
     {
@@ -82,17 +79,12 @@ bool Application::Run()
 
             m_PrevTime = m_NowTime;
 
-            frameLabel->SetText(L"¾È³çÇÏ¼¼¿ä°¡³®¶ó¸¶¹Ùµú´ä¤¸´ä¤¸´ä¤¸´äÀŞ¤²ÀÚ´ä¤§º­¤Á·á8713621783¤º6183dawdwa\nwadiuwavyriuryqiuvwrqwrvuqwi\ndjviawruiwq");
-
             Input::GetInstance()->Update();
 
             m_Director->UpdateScene((m_DeltaTime / 1000.f));
-            frameLabel->Update(0.f);
-
             m_Renderer->Begin();
 
             m_Director->RenderScene();
-            frameLabel->Render();
 
             m_Renderer->End();
         }

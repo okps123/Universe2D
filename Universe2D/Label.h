@@ -15,6 +15,8 @@ private:
     Label(std::wstring text, std::wstring fontFace, int fontSize);
 public:
     static Label* Create(std::wstring text, std::wstring fontFace, int fontSize);
+    static Label* Create(std::wstring text, std::wstring fontFace, int fontSize, D3DCOLOR color);
+
     ~Label();
 
     void Render() override;
