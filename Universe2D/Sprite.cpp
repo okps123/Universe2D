@@ -25,6 +25,11 @@ Sprite::Sprite(std::wstring fileName)
     m_ImageWidth = m_Texture->GetWidth();
     m_ImageHeight = m_Texture->GetHeight();
 
+	m_Center = {
+		m_ImageWidth / 2,
+		m_ImageHeight / 2
+	};
+
     D3DXCreateSprite(m_Renderer->GetDevice(), &m_D3DSprite);
 }
 Sprite* Sprite::Create(std::wstring fileName)

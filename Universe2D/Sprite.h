@@ -34,6 +34,8 @@ public:
 
     inline float GetHeight() const { return m_ImageHeight; }
 
+	inline D3DXVECTOR2 GetCenter() const { return m_Center; }
+
     // 특정 크기에 맞게 Scale을 수정함
     void Resize(float width, float height);
 
