@@ -63,7 +63,7 @@ void Sprite::Render()
     m_D3DSprite->SetTransform(&m_Matrix);
     m_D3DSprite->Draw(
         m_Texture->GetD3DTexture(),
-        &srcRect, NULL, &D3DXVECTOR3(.0f, .0f, .0f), //-m_ImageWidth / 2, -m_ImageHeight / 2
+        &srcRect, NULL, &D3DXVECTOR3(-m_ImageWidth / 2, -m_ImageHeight / 2, .0f), //-m_ImageWidth / 2, -m_ImageHeight / 2
         D3DCOLOR_ARGB(255 - m_ColorA, 255 - m_ColorR, 255 - m_ColorG, 255 - m_ColorB));
     m_D3DSprite->End();
 }
