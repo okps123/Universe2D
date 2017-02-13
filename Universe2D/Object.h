@@ -29,6 +29,7 @@ public:
 	void RemoveChild(Object* obj, bool deleteMemory);
 
 	void Transform(float x, float y);
+	void Transform(D3DXVECTOR2 vector);
 
 public:
     Object* GetParent() { return m_Parent; }

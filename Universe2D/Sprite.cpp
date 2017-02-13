@@ -30,6 +30,9 @@ Sprite::Sprite(std::wstring fileName)
 		m_ImageHeight / 2
 	};
 
+	// 초기 위치는 왼쪽 상단
+	m_Position = m_Center;
+
     D3DXCreateSprite(m_Renderer->GetDevice(), &m_D3DSprite);
 }
 Sprite* Sprite::Create(std::wstring fileName)
