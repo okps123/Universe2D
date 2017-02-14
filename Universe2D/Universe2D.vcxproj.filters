@@ -55,6 +55,9 @@
     <Filter Include="Framework\Node\Frame">
       <UniqueIdentifier>{61e22435-b7d8-4e53-967c-6d654921cc22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node\AnimationSprite">
+      <UniqueIdentifier>{eb0f2fc8-673f-4537-986c-6649ffd3f77c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -99,6 +102,9 @@
     <ClInclude Include="Frame.h">
       <Filter>Framework\Node\Frame</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationSprite.h">
+      <Filter>Framework\Node\AnimationSprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -136,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="Frame.cpp">
       <Filter>Framework\Node\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSprite.cpp">
+      <Filter>Framework\Node\AnimationSprite</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

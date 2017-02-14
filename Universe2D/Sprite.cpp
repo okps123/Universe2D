@@ -51,9 +51,14 @@ Sprite::~Sprite()
 void Sprite::Resize(float width, float height)
 {
     m_Scale = {
-        width/ m_ImageWidth,
+        width / m_ImageWidth,
         height / m_ImageHeight
     };
+
+	m_Center = {
+		m_ImageWidth / width / 2,
+		m_ImageHeight / height / 2
+	};
 }
 
 void Sprite::Render()
