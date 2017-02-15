@@ -3,12 +3,12 @@
 
 SampleScene1::SampleScene1()
 {
-    m_Sprite1 = Sprite::Create(L"C:\\Users\\Raye\\Pictures\\인체\\60791751_p0.jpg");
+    m_Sprite1 = Sprite::Create(L"C:\\Users\\Raye\\Pictures\\인체\\앞으로 숙임.jpg");
 
     m_Sprite2 = Sprite::Create(L"C:\\Users\\Raye\\Pictures\\인체\\앞으로 숙임.jpg");
     m_Sprite2->Resize(100, 100);
 
-    //AddChild(m_Sprite1);
+    AddChild(m_Sprite1);
     AddChild(m_Sprite2);
 }
 SampleScene1::~SampleScene1()

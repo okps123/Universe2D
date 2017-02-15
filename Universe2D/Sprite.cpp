@@ -25,12 +25,6 @@ Sprite::Sprite(std::wstring fileName)
     m_ImageWidth = m_Texture->GetWidth();
     m_ImageHeight = m_Texture->GetHeight();
 
-	m_Center = {
-		m_ImageWidth / 2,
-		m_ImageHeight / 2
-	};
-
-	// 초기 위치는 왼쪽 상단
 	m_Position = m_Center;
 
     D3DXCreateSprite(m_Renderer->GetDevice(), &m_D3DSprite);
@@ -51,9 +45,11 @@ Sprite::~Sprite()
 void Sprite::Resize(float width, float height)
 {
     m_Scale = {
-        width/ m_ImageWidth,
+        width / m_ImageWidth,
         height / m_ImageHeight
     };
+
+	m_Center = m_Scale / 2;
 }
 
 void Sprite::Render()
