@@ -3,20 +3,20 @@
 
 SampleScene2::SampleScene2()
 {
-	Background = Sprite::Create(L"C:\\Users\\ASIS\\Desktop\\165309-w.jpg");
-	Background->Resize(1280, 720);
-	Background->SetPosition(D3DXVECTOR2(640, 360));
+	//Background = Sprite::Create(L"C:\\Users\\ASIS\\Desktop\\165309-w.jpg");
+	//Background->Resize(1280, 720);
+	//Background->SetPosition(D3DXVECTOR2(640, 360));
 
-	AnimationSprite* Player = new AnimationSprite(5, 4);
-	Player->AddFrame(0, L"C:\\Users\\ASIS\\Downloads\\Pixel-master\\Pixel\\Resources\\Sprite\\Player\\Run\\5.png");
-	Player->AddFrame(1, L"C:\\Users\\ASIS\\Downloads\\Pixel-master\\Pixel\\Resources\\Sprite\\Player\\Run\\6.png");
-	Player->AddFrame(2, L"C:\\Users\\ASIS\\Downloads\\Pixel-master\\Pixel\\Resources\\Sprite\\Player\\Run\\7.png");
-	Player->AddFrame(3, L"C:\\Users\\ASIS\\Downloads\\Pixel-master\\Pixel\\Resources\\Sprite\\Player\\Run\\8.png");
-	Player->AddFrame(4, L"C:\\Users\\ASIS\\Downloads\\Pixel-master\\Pixel\\Resources\\Sprite\\Player\\Run\\9.png");
-	Player->SetUpdate(true);
+	//AnimationSprite* Player = new AnimationSprite(5, 4);
+	//Player->AddFrame(0, L"C:\\Users\\ASIS\\Downloads\\Pixel-master\\Pixel\\Resources\\Sprite\\Player\\Run\\5.png");
+	//Player->AddFrame(1, L"C:\\Users\\ASIS\\Downloads\\Pixel-master\\Pixel\\Resources\\Sprite\\Player\\Run\\6.png");
+	//Player->AddFrame(2, L"C:\\Users\\ASIS\\Downloads\\Pixel-master\\Pixel\\Resources\\Sprite\\Player\\Run\\7.png");
+	//Player->AddFrame(3, L"C:\\Users\\ASIS\\Downloads\\Pixel-master\\Pixel\\Resources\\Sprite\\Player\\Run\\8.png");
+	//Player->AddFrame(4, L"C:\\Users\\ASIS\\Downloads\\Pixel-master\\Pixel\\Resources\\Sprite\\Player\\Run\\9.png");
+	//Player->SetUpdate(true);
 
-	AddChild(Background);
-	AddChild(Player);
+	//AddChild(Background);
+	//AddChild(Player);
 }
 SampleScene2::~SampleScene2()
 {

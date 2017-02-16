@@ -55,6 +55,8 @@ void Object::Transform(D3DXVECTOR2 vector)
 
 void Object::AddChild(Object* obj)
 {
+	// 오류 처리 어떻게 할지 고민해봐야함
+
     obj->SetParent(this);
     m_ChildList.push_back(obj);
 }

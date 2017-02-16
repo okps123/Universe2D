@@ -3,13 +3,10 @@
 
 SampleScene1::SampleScene1()
 {
-    m_Sprite1 = Sprite::Create(L"C:\\Users\\Raye\\Pictures\\인체\\앞으로 숙임.jpg");
-
-    m_Sprite2 = Sprite::Create(L"C:\\Users\\Raye\\Pictures\\인체\\앞으로 숙임.jpg");
-    m_Sprite2->Resize(100, 100);
-
-    AddChild(m_Sprite1);
-    AddChild(m_Sprite2);
+	auto sprite1 = new AnimationSprite(15);
+	sprite1->AddFrame(L"Resources\\Player_0.png");
+	sprite1->AddFrame(L"Resources\\Player_1.png");
+    AddChild(sprite1);
 }
 SampleScene1::~SampleScene1()
 {
@@ -17,6 +14,8 @@ SampleScene1::~SampleScene1()
 
 void SampleScene1::Update(float deltaTime)
 {
+	Scene::Update(deltaTime);
+
     // 이동
     if (Input::GetInstance()->GetKeyState('A') == KeyState::KEY_PRESSED)
     {
