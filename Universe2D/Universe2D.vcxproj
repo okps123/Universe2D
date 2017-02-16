@@ -21,6 +21,10 @@
   <ItemGroup>
     <ClInclude Include="AnimationSprite.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="CircleCollider.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollisionObject.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Director.h" />
     <ClInclude Include="Frame.h" />
@@ -38,6 +42,10 @@
   <ItemGroup>
     <ClCompile Include="AnimationSprite.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="CircleCollider.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CollisionObject.cpp" />
     <ClCompile Include="Director.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Input.cpp" />

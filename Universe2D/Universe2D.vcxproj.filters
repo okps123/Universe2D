@@ -58,6 +58,18 @@
     <Filter Include="Framework\Node\AnimationSprite">
       <UniqueIdentifier>{eb0f2fc8-673f-4537-986c-6649ffd3f77c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node\CollisionObject">
+      <UniqueIdentifier>{b2641eda-10cd-47fb-9fd1-860bdbd7ce33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\Collider">
+      <UniqueIdentifier>{692422be-46ad-4637-9a06-c7dc0a62f366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\Collider\Box">
+      <UniqueIdentifier>{110c0c20-1070-471f-9afb-a0a272456d40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\Collider\Circle">
+      <UniqueIdentifier>{6b222e54-ffc8-4031-b428-50e77d7a7f8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -105,6 +117,18 @@
     <ClInclude Include="AnimationSprite.h">
       <Filter>Framework\Node\AnimationSprite</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionObject.h">
+      <Filter>Framework\Node\CollisionObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Framework\Node\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Framework\Node\Collider\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleCollider.h">
+      <Filter>Framework\Node\Collider\Circle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -145,6 +169,18 @@
     </ClCompile>
     <ClCompile Include="AnimationSprite.cpp">
       <Filter>Framework\Node\AnimationSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionObject.cpp">
+      <Filter>Framework\Node\CollisionObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Framework\Node\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Framework\Node\Collider\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleCollider.cpp">
+      <Filter>Framework\Node\Collider\Circle</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

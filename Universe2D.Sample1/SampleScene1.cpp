@@ -1,12 +1,25 @@
 #include "Precompiled.h"
 #include "SampleScene1.h"
 
+#include "CircleCollider.h"
+
 SampleScene1::SampleScene1()
 {
 	auto sprite1 = new AnimationSprite(15);
 	sprite1->AddFrame(L"Resources\\Player_0.png");
 	sprite1->AddFrame(L"Resources\\Player_1.png");
-    AddChild(sprite1);
+
+	circle1 = Sprite::Create(L"Resources\\circle_100px.png");
+	collider1 = new CircleCollider(50.f);
+	circle1->AddChild(collider1);
+
+	circle2 = Sprite::Create(L"Resources\\circle_100px.png");
+	collider2 = new CircleCollider(50.f);
+	circle2->AddChild(collider2);
+	circle2->Transform(500, 500);
+
+	AddChild(circle1);
+	AddChild(circle2);
 }
 SampleScene1::~SampleScene1()
 {
@@ -19,19 +32,19 @@ void SampleScene1::Update(float deltaTime)
     // 이동
     if (Input::GetInstance()->GetKeyState('A') == KeyState::KEY_PRESSED)
     {
-        this->Transform(-5, 0);
+		circle1->Transform(-5, 0);
     }
     else if (Input::GetInstance()->GetKeyState('D') == KeyState::KEY_PRESSED)
     {
-		this->Transform(5, 0);
+		circle1->Transform(5, 0);
     }
     if (Input::GetInstance()->GetKeyState('W') == KeyState::KEY_PRESSED)
     {
-		this->Transform(0, -5);
+		circle1->Transform(0, -5);
     }
     else if (Input::GetInstance()->GetKeyState('S') == KeyState::KEY_PRESSED)
     {
-		this->Transform(0, 5);
+		circle1->Transform(0, 5);
     }
 
     // 확대 축소
@@ -53,6 +66,15 @@ void SampleScene1::Update(float deltaTime)
     {
         this->SetRotation(GetRotation() - 0.05f);
     }
+
+	printf("c1 %f %f\n", collider1->GetParent()->GetPosition().x, collider1->GetParent()->GetPosition().y);
+	printf("c2 %f %f\n", collider2->GetParent()->GetPosition().x, collider2->GetParent()->GetPosition().y);
+
+	//// 충돌 처리
+	if(collider1->IsCollideWith(collider2))
+	{
+		printf("충돌\n");
+	}
 }
 void SampleScene1::Render()
 {
