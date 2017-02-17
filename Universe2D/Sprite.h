@@ -27,11 +27,14 @@ public:
     ~Sprite();
 
 public:
-    byte GetOpacity() const { return m_ColorA; }
+    byte GetOpacity() { return m_ColorA; }
     void SetOpacity(byte opacity) { m_ColorA = opacity; }
 
-    float GetWidth() const { return m_ImageWidth; }
-    float GetHeight() const { return m_ImageHeight; }
+    float GetWidth() { return m_ImageWidth; }
+    float GetHeight() { return m_ImageHeight; }
+
+	Texture* GetTexture() { return m_Texture; }
+	void SetTexture(Texture* texture) { m_Texture = texture; }
 
 	D3DXVECTOR2 GetCenter() const { return m_Center; }
 
