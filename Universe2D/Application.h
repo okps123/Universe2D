@@ -28,7 +28,7 @@ private:
     int m_NowTime;
     int m_FrameCount;
 
-    float m_DeltaTime;
+    int m_DeltaTime;
 
 public:
     Application();

@@ -20,7 +20,7 @@ public:
     Input();
     ~Input();
 
-    void UpdateState();
+    void Update();
 
 public:
     KeyState GetKeyState(int key);

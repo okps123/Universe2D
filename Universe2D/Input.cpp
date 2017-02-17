@@ -12,7 +12,7 @@ Input::~Input()
 {
 }
 
-void Input::UpdateState()
+void Input::Update()
 {
     // 윈도우가 활성화되있을때만 업데이트
     if (Application::GetInstance()->GetActived())

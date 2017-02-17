@@ -14,8 +14,8 @@ public:
     bool Initialize();
     bool Release();
 
-    bool UpdateScene(float deltaTime);
-    bool RenderScene();
+    bool Update(float deltaTime);
+    bool Render();
 
 public:
     Scene* GetScene() { return m_CurrentScene; }

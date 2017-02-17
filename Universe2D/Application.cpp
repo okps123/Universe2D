@@ -69,7 +69,7 @@ bool Application::Run()
             m_FrameCount++;
             m_NowTime = GetTickCount();
 
-            m_DeltaTime = (static_cast<float>(m_NowTime - m_PrevTime));
+            m_DeltaTime = m_NowTime - m_PrevTime;
             m_ElapsedTime += m_DeltaTime;
 
             if (m_ElapsedTime > 1000)
@@ -79,15 +79,17 @@ bool Application::Run()
                 m_FrameCount = 0;
             }
 
-            // Update
-            Input::GetInstance()->UpdateState();
+			float deltaTime = static_cast<float>(m_DeltaTime) / 1000.0f;
 
-            Director::GetInstance()->UpdateScene(m_DeltaTime / 1000.0f);
-			CollisionManager::GetInstance()->Update(m_DeltaTime / 1000.0f);
+            // Update
+            Input::GetInstance()->Update();
+
+            Director::GetInstance()->Update(deltaTime);
+			CollisionManager::GetInstance()->Update(deltaTime);
 
             // Render
             m_Renderer->Begin();
-            m_Director->RenderScene();
+            m_Director->Render();
             m_Renderer->End();
 
             m_PrevTime = m_NowTime;

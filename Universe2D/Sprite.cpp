@@ -22,8 +22,8 @@ Sprite::Sprite(std::wstring fileName)
 	if (!IsLoaded)
 		return;
 
-	m_ImageWidth = m_Texture->GetWidth();
-	m_ImageHeight = m_Texture->GetHeight();
+	m_ImageWidth = static_cast<float>(m_Texture->GetWidth());
+	m_ImageHeight = static_cast<float>(m_Texture->GetHeight());
 
 	m_Center = {
 		m_ImageWidth / 2,
@@ -64,9 +64,13 @@ void Sprite::Render()
 	Object::Render();
 
 	// 하나의 이미지에서 그려질 부분의 영역(Rect)을 설정 할 수 있음
-	// 추후에 파라미터로 제공할 예정
+
 	RECT srcRect;
-	SetRect(&srcRect, 0, 0, m_ImageWidth, m_ImageHeight);
+	SetRect(&srcRect,
+		0,
+		0,
+		static_cast<int>(m_ImageWidth),
+		static_cast<int>(m_ImageHeight));
 
 	m_D3DSprite->Begin(D3DXSPRITE_ALPHABLEND);
 	m_D3DSprite->SetTransform(&m_Matrix);
