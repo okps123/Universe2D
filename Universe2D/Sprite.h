@@ -38,13 +38,7 @@ public:
 
 	D3DXVECTOR2 GetCenter() const { return m_Center; }
 
-	// 테스트 코드
-	void OnCollisionEnter(Collider* collider) override
-	{
-		printf("아아아아아아ㅏ앙아ㅏㄱ!!!!\n");
-	}
-
-    // 특정 크기에 맞게 Scale을 수정함
+public:
     void Resize(float width, float height);
 
 public:
