@@ -6,7 +6,9 @@
 #include "Director.h"
 #include "Label.h"
 
+#include "CollisionManager.h"
 #include "Console.h"
+
 
 Application::Application()
 {
@@ -32,6 +34,8 @@ bool Application::Initialize(wchar_t* title, int width, int height, bool fullScr
 
     m_Director = Director::GetInstance();
     m_Director->Initialize();
+
+	CollisionManager::GetInstance()->Initialize();
 
     return true;
 }
@@ -77,7 +81,9 @@ bool Application::Run()
 
             // Update
             Input::GetInstance()->UpdateState();
+
             Director::GetInstance()->UpdateScene(m_DeltaTime / 1000.0f);
+			CollisionManager::GetInstance()->Update(m_DeltaTime / 1000.0f);
 
             // Render
             m_Renderer->Begin();

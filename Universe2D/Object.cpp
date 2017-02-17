@@ -62,6 +62,7 @@ void Object::AddChild(Object* obj)
 }
 void Object::RemoveChild(Object* obj, bool deleteMemory)
 {
+	// 딜리트 메모리하면 에러남 고치자
     auto iterator = std::find(m_ChildList.begin(), m_ChildList.end(), obj);
     if (iterator != m_ChildList.end())
     {

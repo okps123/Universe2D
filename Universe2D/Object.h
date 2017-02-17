@@ -1,4 +1,5 @@
 #pragma once
+class Collider;
 class Object
 {
 protected:
@@ -21,6 +22,8 @@ public:
     virtual ~Object();
 
 public:
+	virtual void OnCollisionEnter(Collider* collider) {};
+
     virtual void Update(float deltaTime);
     virtual void Render();
 

@@ -27,14 +27,19 @@ public:
     ~Sprite();
 
 public:
-    inline byte GetOpacity() const { return m_ColorA; }
+    byte GetOpacity() const { return m_ColorA; }
     void SetOpacity(byte opacity) { m_ColorA = opacity; }
 
-    inline float GetWidth() const { return m_ImageWidth; }
+    float GetWidth() const { return m_ImageWidth; }
+    float GetHeight() const { return m_ImageHeight; }
 
-    inline float GetHeight() const { return m_ImageHeight; }
+	D3DXVECTOR2 GetCenter() const { return m_Center; }
 
-	inline D3DXVECTOR2 GetCenter() const { return m_Center; }
+	// 테스트 코드
+	void OnCollisionEnter(Collider* collider) override
+	{
+		printf("아아아아아아ㅏ앙아ㅏㄱ!!!!\n");
+	}
 
     // 특정 크기에 맞게 Scale을 수정함
     void Resize(float width, float height);

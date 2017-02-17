@@ -10,8 +10,7 @@ SampleScene1::SampleScene1()
 	sprite1->AddFrame(L"Resources\\Player_1.png");
 
 	circle1 = Sprite::Create(L"Resources\\circle_100px.png");
-	collider1 = new CircleCollider(50.f);
-	circle1->AddChild(collider1);
+	circle1->AddChild(new CircleCollider(50.f));
 
 	circle2 = Sprite::Create(L"Resources\\circle_100px.png");
 	collider2 = new CircleCollider(50.f);
@@ -51,6 +50,7 @@ void SampleScene1::Update(float deltaTime)
     if (Input::GetInstance()->GetKeyState('R') == KeyState::KEY_PRESSED)
     {
         this->SetScale(GetScale() + D3DXVECTOR2(0.05f, 0.05f));
+		circle2->RemoveChild(collider2, false);
     }
     else if (Input::GetInstance()->GetKeyState('T') == KeyState::KEY_PRESSED)
     {
@@ -66,15 +66,6 @@ void SampleScene1::Update(float deltaTime)
     {
         this->SetRotation(GetRotation() - 0.05f);
     }
-
-	printf("c1 %f %f\n", collider1->GetParent()->GetPosition().x, collider1->GetParent()->GetPosition().y);
-	printf("c2 %f %f\n", collider2->GetParent()->GetPosition().x, collider2->GetParent()->GetPosition().y);
-
-	//// 面倒 贸府
-	if(collider1->IsCollideWith(collider2))
-	{
-		printf("面倒\n");
-	}
 }
 void SampleScene1::Render()
 {

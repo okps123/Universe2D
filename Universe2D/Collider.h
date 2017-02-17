@@ -6,8 +6,8 @@ class CircleCollider;
 class Collider : public Object
 {
 public:
-	Collider() {};
-	~Collider() {};
+	Collider();
+	~Collider();
 
 public:
 	virtual bool IsCollideWith(Collider* other) = 0;
@@ -17,6 +17,12 @@ public:
 	virtual bool IsCollideWith(CircleCollider* other) = 0;
 
 public:
+	void OnCollisionEnter(Collider* collider) override
+	{
+		// 부모에게 충돌체 전달
+		GetParent()->OnCollisionEnter(collider);
+	};
+
 	void Update(float deltaTime) override
 	{
 		Object::Update(deltaTime);

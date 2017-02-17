@@ -6,8 +6,6 @@ class SampleScene1 : public Scene
 private:
 	Sprite* circle1;
 	Sprite* circle2;
-
-	Collider* collider1;
 	Collider* collider2;
 
 public:
