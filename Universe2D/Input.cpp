@@ -48,7 +48,7 @@ void Input::UpdateKeyState()
     for (int i = 0; i < 256; i++)
     {
         m_PrevKeyState[i] = m_NowKeyState[i];
-        m_NowKeyState[i] = (::GetKeyState(i) & 0x8000);
+        m_NowKeyState[i] = static_cast<bool>(::GetKeyState(i) & 0x8000);
     }
 }
 void Input::UpdateMouseState()

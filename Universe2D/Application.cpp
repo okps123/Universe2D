@@ -75,7 +75,7 @@ bool Application::Run()
             if (m_ElapsedTime > 1000)
             {
                 m_Fps = m_FrameCount;
-                m_ElapsedTime = 0.f;
+                m_ElapsedTime = 0;
                 m_FrameCount = 0;
             }
 
