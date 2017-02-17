@@ -12,6 +12,7 @@ public:
 public:
 	virtual bool IsCollideWith(Collider* other) = 0;
 
+public:
 	virtual bool IsCollideWith(BoxCollider* other) = 0;
 	virtual bool IsCollideWith(CircleCollider* other) = 0;
 

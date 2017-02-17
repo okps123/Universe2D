@@ -58,9 +58,6 @@
     <Filter Include="Framework\Node\AnimationSprite">
       <UniqueIdentifier>{eb0f2fc8-673f-4537-986c-6649ffd3f77c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\CollisionObject">
-      <UniqueIdentifier>{b2641eda-10cd-47fb-9fd1-860bdbd7ce33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Node\Collider">
       <UniqueIdentifier>{692422be-46ad-4637-9a06-c7dc0a62f366}</UniqueIdentifier>
     </Filter>
@@ -69,6 +66,15 @@
     </Filter>
     <Filter Include="Framework\Node\Collider\Circle">
       <UniqueIdentifier>{6b222e54-ffc8-4031-b428-50e77d7a7f8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\Collision">
+      <UniqueIdentifier>{b2641eda-10cd-47fb-9fd1-860bdbd7ce33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\Collision\Object">
+      <UniqueIdentifier>{ebbfe5e0-cf90-4e95-97b7-02e229a76634}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\Collision\Manager">
+      <UniqueIdentifier>{8642df10-4139-4553-a3e7-bbe84c971709}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,9 +123,6 @@
     <ClInclude Include="AnimationSprite.h">
       <Filter>Framework\Node\AnimationSprite</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionObject.h">
-      <Filter>Framework\Node\CollisionObject</Filter>
-    </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Framework\Node\Collider</Filter>
     </ClInclude>
@@ -128,6 +131,12 @@
     </ClInclude>
     <ClInclude Include="CircleCollider.h">
       <Filter>Framework\Node\Collider\Circle</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionObject.h">
+      <Filter>Framework\Node\Collision\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Framework\Node\Collision\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +179,6 @@
     <ClCompile Include="AnimationSprite.cpp">
       <Filter>Framework\Node\AnimationSprite</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionObject.cpp">
-      <Filter>Framework\Node\CollisionObject</Filter>
-    </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Framework\Node\Collider</Filter>
     </ClCompile>
@@ -181,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="CircleCollider.cpp">
       <Filter>Framework\Node\Collider\Circle</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionObject.cpp">
+      <Filter>Framework\Node\Collision\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Framework\Node\Collision\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
