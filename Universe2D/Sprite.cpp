@@ -49,8 +49,8 @@ void Sprite::Resize(float width, float height)
 	});
 
 	SetCenter({
-		m_Size.x * m_Scale.x / 2,
-		m_Size.y * m_Scale.y / 2
+		m_Scale.x / 2,
+		m_Scale.y / 2
 	});
 }
 

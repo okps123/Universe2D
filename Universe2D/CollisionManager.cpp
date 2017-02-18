@@ -39,9 +39,16 @@ void CollisionManager::RemoveCollider(Collider* collider)
 void CollisionManager::Update(float deltaTime)
 {
 	for (auto colliderA : m_ColliderList)
+	{
+		if (!colliderA->GetParent()->GetVisible())
+			continue;
+
 		for (auto colliderB : m_ColliderList)
 		{
 			if (colliderA == colliderB)
+				continue;
+
+			if (!colliderB->GetParent()->GetVisible())
 				continue;
 
 			if (colliderA->IsCollideWith(colliderB) == true)
@@ -50,4 +57,5 @@ void CollisionManager::Update(float deltaTime)
 				colliderB->OnCollisionEnter(colliderA);
 			}
 		}
+	}
 }
