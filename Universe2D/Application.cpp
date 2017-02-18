@@ -80,6 +80,7 @@ bool Application::Run()
             }
 
 			float deltaTime = static_cast<float>(m_DeltaTime) / 1000.0f;
+			deltaTime = deltaTime > 1 ? 0 : deltaTime;
 
             // Update
             Input::GetInstance()->Update();

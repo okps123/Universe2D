@@ -15,6 +15,7 @@ protected:
 
     D3DXMATRIX m_Matrix;
 
+	D3DXVECTOR2 m_Size;
     bool m_Visible;
 
 public:
@@ -40,6 +41,9 @@ public:
 
 	D3DXVECTOR2 GetPosition() { return m_Position; }
 	void SetPosition(D3DXVECTOR2 position) { m_Position = position; }
+
+	D3DXVECTOR2 GetSize() { return m_Size; }
+	void SetSize(D3DXVECTOR2 size) { m_Size = size; }
 
 	D3DXVECTOR2 GetScale() { return m_Scale; }
 	void SetScale(D3DXVECTOR2 scale) { m_Scale = scale; }
