@@ -21,12 +21,10 @@ Sprite::Sprite(std::wstring fileName)
 	if (!IsLoaded)
 		return;
 
-	m_Size = {
+	SetSize({
 		static_cast<float>(m_Texture->GetWidth()),
-		static_cast<float>(m_Texture->GetHeight()) 
-	};
-
-	m_Center = m_Size / 2;
+		static_cast<float>(m_Texture->GetHeight())
+	});
 
 	D3DXCreateSprite(m_Renderer->GetDevice(), &m_D3DSprite);
 }
@@ -45,12 +43,15 @@ Sprite::~Sprite()
 
 void Sprite::Resize(float width, float height)
 {
-	m_Scale = {
+	SetScale({
 		width / m_Size.x,
 		height / m_Size.y
-	};
+	});
 
-	m_Center = m_Scale / 2;
+	SetCenter({
+		m_Size.x * m_Scale.x / 2,
+		m_Size.y * m_Scale.y / 2
+	});
 }
 
 void Sprite::Render()
@@ -60,7 +61,6 @@ void Sprite::Render()
 	Object::Render();
 
 	// 하나의 이미지에서 그려질 부분의 영역(Rect)을 설정 할 수 있음
-
 	RECT srcRect;
 	SetRect(&srcRect,
 		0,

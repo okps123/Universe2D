@@ -30,8 +30,6 @@ public:
 	Texture* GetTexture() { return m_Texture; }
 	void SetTexture(Texture* texture) { m_Texture = texture; }
 
-	D3DXVECTOR2 GetCenter() const { return m_Center; }
-
 public:
     void Resize(float width, float height);
 

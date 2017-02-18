@@ -47,7 +47,6 @@ void Object::Transform(float x, float y)
     m_Position.x += x;
     m_Position.y += y;
 }
-
 void Object::Transform(D3DXVECTOR2 vector)
 {
 	m_Position += vector;

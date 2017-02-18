@@ -43,10 +43,17 @@ public:
 	void SetPosition(D3DXVECTOR2 position) { m_Position = position; }
 
 	D3DXVECTOR2 GetSize() { return m_Size; }
-	void SetSize(D3DXVECTOR2 size) { m_Size = size; }
+	void SetSize(D3DXVECTOR2 size) 
+	{ 
+		m_Size = size; 
+		m_Center = m_Size / 2; 
+	}
 
 	D3DXVECTOR2 GetScale() { return m_Scale; }
 	void SetScale(D3DXVECTOR2 scale) { m_Scale = scale; }
+
+	D3DXVECTOR2 GetCenter() const { return m_Center; }
+	void SetCenter(D3DXVECTOR2 center) { m_Center = center; }
 
 	float GetRotation() { return m_Rotation; }
 	void SetRotation(float rotation) { m_Rotation = rotation; }

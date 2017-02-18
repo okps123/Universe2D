@@ -4,7 +4,7 @@
 class Scene : public virtual Object
 {
 public:
-    Scene() {};
+	Scene();
     virtual ~Scene() {};
 
 public:
