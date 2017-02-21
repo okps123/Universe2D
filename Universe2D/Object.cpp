@@ -64,7 +64,7 @@ void Object::AddChild(Object* obj)
 }
 void Object::RemoveChild(Object* obj, bool deleteMemory)
 {
-	auto iterator = std::find(m_ChildList.begin(), m_ChildList.end(), obj);
+	auto iterator = std::find(std::begin(m_ChildList), std::end(m_ChildList), obj);
 	if (iterator != m_ChildList.end())
 	{
 		if (deleteMemory)

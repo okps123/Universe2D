@@ -50,6 +50,7 @@ public:
 	void SetSize(D3DXVECTOR2 size) 
 	{ 
 		m_Size = size; 
+		m_Center = size / 2;
 	}
 
 	D3DXVECTOR2 GetScale() { return m_Scale; }
