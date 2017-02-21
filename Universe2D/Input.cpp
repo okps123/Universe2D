@@ -60,8 +60,6 @@ void Input::UpdateMouseState()
     // 윈도우 위치로 변환
     ScreenToClient(Application::GetInstance()->GetHWND(), &position);
 
-    m_MousePosition = {
-        static_cast<float>(position.x),
-        static_cast<float>(position.y)
-    };
+	m_MousePosition.x = static_cast<float>(position.x);
+	m_MousePosition.y = static_cast<float>(position.y);
 }
