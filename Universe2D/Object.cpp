@@ -2,72 +2,76 @@
 #include "Object.h"
 
 Object::Object()
-    : m_Parent(nullptr),
-    m_Position(.0f, .0f), m_Center(.0f, .0f),
-    m_Scale(1.f, 1.f), m_Rotation(0.f), m_Visible(true)
+	: m_Parent(nullptr),
+	m_Position(.0f, .0f), m_Center(.0f, .0f),
+	m_Scale(1.f, 1.f), m_Rotation(0.f), m_Visible(true)
 {
 }
 Object::~Object()
 {
-    for (auto childObject : m_ChildList)
-    {
-        SAFE_DELETE(childObject);
-    }
-    m_ChildList.clear();
+	for (auto childObject : m_ChildList)
+	{
+		SAFE_DELETE(childObject);
+	}
+	m_ChildList.clear();
 }
 
 void Object::Update(float deltaTime)
 {
-    if (!m_Visible) return;
+	if (!m_Visible) return;
 
-    for (const auto& childObject : m_ChildList)
-    {
-        childObject->Update(deltaTime);
-    }
+	for (const auto& childObject : m_ChildList)
+	{
+		childObject->Update(deltaTime);
+	}
 }
 void Object::Render()
 {
-    if (!m_Visible) return;
+	if (!m_Visible) return;
 
-    D3DXMatrixTransformation2D(&m_Matrix, &m_Center, .0f, &m_Scale, &m_Center, m_Rotation, &m_Position);
+	D3DXMatrixTransformation2D(&m_Matrix, &m_Center, .0f, &m_Scale, &m_Center, m_Rotation, &m_Position);
 
-    if (m_Parent)
-    {
-        m_Matrix *= m_Parent->GetMatrix();
-    }
+	if (m_Parent)
+	{
+		m_Matrix *= m_Parent->GetMatrix();
+	}
 
-    for (const auto& childObject : m_ChildList)
-    {
-        childObject->Render();
-    }
+	for (const auto& childObject : m_ChildList)
+	{
+		childObject->Render();
+	}
 }
 
 void Object::Transform(float x, float y)
 {
-    m_Position.x += x;
-    m_Position.y += y;
+	m_Position.x += x;
+	m_Position.y += y;
 }
 void Object::Transform(D3DXVECTOR2 vector)
 {
 	m_Position += vector;
 }
 
+void Object::Destroy()
+{
+	m_IsDestroyed = true;
+}
+
 void Object::AddChild(Object* obj)
 {
-	// 오류 처리 어떻게 할지 고민해봐야함
-
-    obj->SetParent(this);
-    m_ChildList.push_back(obj);
+	obj->SetParent(this);
+	m_ChildList.push_back(obj);
 }
 void Object::RemoveChild(Object* obj, bool deleteMemory)
 {
-	// 딜리트 메모리하면 에러남 고치자
-    auto iterator = std::find(m_ChildList.begin(), m_ChildList.end(), obj);
-    if (iterator != m_ChildList.end())
-    {
-        if (deleteMemory)
-            SAFE_DELETE(*iterator);
-
-        m_ChildList.erase(iterator);
-    }
+	auto iterator = std::find(m_ChildList.begin(), m_ChildList.end(), obj);
+	if (iterator != m_ChildList.end())
+	{
+		if (deleteMemory)
+		{
+			SAFE_DELETE(obj);
+		}
+		
+		m_ChildList.erase(iterator);
+	}
 }

@@ -53,8 +53,8 @@ void CollisionManager::Update(float deltaTime)
 
 			if (colliderA->IsCollideWith(colliderB) == true)
 			{
-				colliderA->OnCollisionEnter(colliderB);
-				colliderB->OnCollisionEnter(colliderA);
+				colliderB->OnCollision(colliderA);
+				colliderA->OnCollision(colliderB);
 			}
 		}
 	}

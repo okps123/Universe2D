@@ -17,10 +17,10 @@ public:
 	virtual bool IsCollideWith(CircleCollider* other) = 0;
 
 public:
-	void OnCollisionEnter(Collider* collider) override
+	void OnCollision(Collider* collider) override
 	{
 		// 부모에게 충돌체 전달
-		GetParent()->OnCollisionEnter(collider);
+		GetParent()->OnCollision(collider);
 	};
 
 	void Update(float deltaTime) override

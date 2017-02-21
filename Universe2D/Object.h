@@ -16,14 +16,16 @@ protected:
     D3DXMATRIX m_Matrix;
 
 	D3DXVECTOR2 m_Size;
-    bool m_Visible;
+    
+	bool m_Visible;
+	bool m_IsDestroyed;
 
 public:
     Object();
     virtual ~Object();
 
 public:
-	virtual void OnCollisionEnter(Collider* collider) {};
+	virtual void OnCollision(Collider* collider) {};
 
     virtual void Update(float deltaTime);
     virtual void Render();
@@ -34,6 +36,8 @@ public:
 
 	void Transform(float x, float y);
 	void Transform(D3DXVECTOR2 vector);
+
+	void Destroy();
 
 public:
     Object* GetParent() { return m_Parent; }
@@ -46,7 +50,6 @@ public:
 	void SetSize(D3DXVECTOR2 size) 
 	{ 
 		m_Size = size; 
-		m_Center = m_Size / 2; 
 	}
 
 	D3DXVECTOR2 GetScale() { return m_Scale; }
@@ -62,4 +65,6 @@ public:
 	void SetVisible(bool visible) { m_Visible = visible; }
 
 	D3DXMATRIX GetMatrix() { return m_Matrix; }
+
+	bool IsDestoryed() { return m_IsDestroyed; }
 };
