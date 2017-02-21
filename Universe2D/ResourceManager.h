@@ -1,6 +1,7 @@
 #pragma once
 
 class Texture;
+class Sound;
 class ResourceManager : public Singleton<ResourceManager>
 {
 private:
@@ -11,5 +12,6 @@ public:
     ~ResourceManager();
 
     Texture* LoadTextureFromFile(std::wstring fileName);
+	Sound* LoadSoundFromFile(std::wstring fileName);
 };
 

@@ -25,3 +25,8 @@ Texture* ResourceManager::LoadTextureFromFile(std::wstring fileName)
 
     return m_TextureMap[fileName];
 }
+
+Sound * ResourceManager::LoadSoundFromFile(std::wstring fileName)
+{
+	return nullptr;
+}
