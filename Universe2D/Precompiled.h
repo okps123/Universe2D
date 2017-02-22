@@ -9,8 +9,10 @@
 
 #include <string>
 #include <vector>
+#include <queue>
 #include <unordered_map>
 
+#include "TypeDefine.h"
 #include "Singleton.h"
 
 #define SAFE_DELETE(x) { if(x) { delete x; x = NULL; } }

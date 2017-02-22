@@ -1,25 +1,26 @@
 #pragma once
+
 class Collider;
 class Object
 {
 protected:
     typedef std::vector<Object*> ObjectList;
 
+	bool m_Visible;
+
     Object* m_Parent;
     ObjectList m_ChildList;
 
-    D3DXVECTOR2 m_Position;
-    D3DXVECTOR2 m_Center;
-    D3DXVECTOR2 m_Scale;
+public:
+    Vector2 m_Position;
+	Vector2 m_Center;
+	Vector2 m_Scale;
     float m_Rotation;
 
-    D3DXMATRIX m_Matrix;
+    Matrix m_Matrix;
 
-	D3DXVECTOR2 m_Size;
-    
-	bool m_Visible;
-	bool m_IsDestroyed;
-
+	Vector2 m_Size;
+   
 public:
     Object();
     virtual ~Object();
@@ -34,30 +35,28 @@ public:
 	void AddChild(Object* obj);
 	void RemoveChild(Object* obj, bool deleteMemory);
 
-	void Transform(float x, float y);
-	void Transform(D3DXVECTOR2 vector);
-
-	void Destroy();
+	void Translate(float x, float y);
+	void Translate(Vector2 vector);
 
 public:
     Object* GetParent() { return m_Parent; }
 	void SetParent(Object* obj) { m_Parent = obj; }
 
-	D3DXVECTOR2 GetPosition() { return m_Position; }
-	void SetPosition(D3DXVECTOR2 position) { m_Position = position; }
+	Vector2 GetPosition() { return m_Position; }
+	void SetPosition(Vector2 position) { m_Position = position; }
 
-	D3DXVECTOR2 GetSize() { return m_Size; }
-	void SetSize(D3DXVECTOR2 size) 
+	Vector2 GetSize() { return m_Size; }
+	void SetSize(Vector2 size) 
 	{ 
 		m_Size = size; 
 		m_Center = size / 2;
 	}
 
-	D3DXVECTOR2 GetScale() { return m_Scale; }
-	void SetScale(D3DXVECTOR2 scale) { m_Scale = scale; }
+	Vector2 GetScale() { return m_Scale; }
+	void SetScale(Vector2 scale) { m_Scale = scale; }
 
-	D3DXVECTOR2 GetCenter() const { return m_Center; }
-	void SetCenter(D3DXVECTOR2 center) { m_Center = center; }
+	Vector2 GetCenter() const { return m_Center; }
+	void SetCenter(Vector2 center) { m_Center = center; }
 
 	float GetRotation() { return m_Rotation; }
 	void SetRotation(float rotation) { m_Rotation = rotation; }
@@ -66,6 +65,4 @@ public:
 	void SetVisible(bool visible) { m_Visible = visible; }
 
 	D3DXMATRIX GetMatrix() { return m_Matrix; }
-
-	bool IsDestoryed() { return m_IsDestroyed; }
 };

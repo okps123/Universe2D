@@ -132,6 +132,9 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>Framework\Node\Collision\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="TypeDefine.h">
+      <Filter>Framework\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -184,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Framework\Node\Collision\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeDefine.cpp">
+      <Filter>Framework\Header</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
