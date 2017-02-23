@@ -21,7 +21,8 @@ Object* Object::Create()
 
 Object::Object()
 	: m_Parent(nullptr), m_Position(.0f, .0f), m_Center(.0f, .0f),
-	m_Scale(1.f, 1.f), m_Rotation(0.f), m_Visible(true), m_Managed(false), m_ReferenceCount(1)
+	m_Scale(1.f, 1.f), m_Rotation(0.f), m_Visible(true),
+	m_Managed(false), m_ReferenceCount(1)
 {
 }
 Object::~Object()
