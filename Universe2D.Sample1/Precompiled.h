@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "Singleton.h"
+#include "TypeDefine.h"
 
 #include "Application.h"
 #include "Scene.h"

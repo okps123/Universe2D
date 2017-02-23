@@ -26,19 +26,29 @@ Sprite::Sprite(std::wstring fileName)
 		static_cast<float>(m_Texture->GetHeight())
 	});
 
+	SetCenter(GetSize() / 2);
+
 	D3DXCreateSprite(m_Renderer->GetDevice(), &m_D3DSprite);
 }
 Sprite* Sprite::Create(std::wstring fileName)
 {
-	auto instance = new Sprite(fileName);
-	return instance;
+	auto sprite = new (std::nothrow) Sprite(fileName);
+	if (sprite && sprite->Initialize())
+	{
+		printf("Sprite ¾ÈÀüÇÏ°Ô »ý¼ºµÊ\n");
+
+		sprite->AutoRelease();
+		return sprite;
+	}
+
+	SAFE_DELETE(sprite);
+
+	return nullptr;
 }
 Sprite::~Sprite()
 {
+	printf("Sprite ¼Ò¸ê\n");
 	SAFE_RELEASE(m_D3DSprite);
-
-	m_Texture = nullptr;
-	m_Renderer = nullptr;
 }
 
 void Sprite::Resize(float width, float height)
@@ -72,7 +82,7 @@ void Sprite::Render()
 	m_D3DSprite->SetTransform(&m_Matrix);
 	m_D3DSprite->Draw(
 		m_Texture->GetD3DTexture(),
-		&srcRect, NULL, &D3DXVECTOR3(-m_Size.x / 2, -m_Size.y / 2, .0f), //-m_ImageWidth / 2, -m_ImageHeight / 2
+		&srcRect, NULL, &D3DXVECTOR3(-m_Size.x / 2, -m_Size.y / 2, .0f),
 		D3DCOLOR_ARGB(255 - m_ColorA, 255 - m_ColorR, 255 - m_ColorG, 255 - m_ColorB));
 	m_D3DSprite->End();
 }

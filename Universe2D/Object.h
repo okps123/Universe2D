@@ -8,22 +8,36 @@ protected:
 
 	bool m_Visible;
 
-    Object* m_Parent;
-    ObjectList m_ChildList;
+	bool m_Managed;
+	uint m_ReferenceCount;
 
-public:
-    Vector2 m_Position;
+    Object* m_Parent;
+    ObjectList m_Children;
+
+	Vector2 m_Size;
 	Vector2 m_Center;
+    Vector2 m_Position;
 	Vector2 m_Scale;
     float m_Rotation;
 
     Matrix m_Matrix;
 
-	Vector2 m_Size;
-   
 public:
+	static Object* Create();
+
     Object();
     virtual ~Object();
+
+public:
+	virtual bool Initialize();
+
+	// 참조 카운트 증가
+	void Retain();
+	// 참조 카운트 감소
+	void Release();
+
+	// AutoReleasePool 등록
+	void AutoRelease();
 
 public:
 	virtual void OnCollision(Collider* collider) {};
@@ -33,7 +47,7 @@ public:
 
 public:
 	void AddChild(Object* obj);
-	void RemoveChild(Object* obj, bool deleteMemory);
+	void RemoveChild(Object* obj);
 
 	void Translate(float x, float y);
 	void Translate(Vector2 vector);
@@ -49,7 +63,6 @@ public:
 	void SetSize(Vector2 size) 
 	{ 
 		m_Size = size; 
-		m_Center = size / 2;
 	}
 
 	Vector2 GetScale() { return m_Scale; }

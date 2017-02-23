@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="AnimationSprite.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="AutoReleasePool.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
@@ -43,6 +44,7 @@
   <ItemGroup>
     <ClCompile Include="AnimationSprite.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="AutoReleasePool.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="Collider.cpp" />

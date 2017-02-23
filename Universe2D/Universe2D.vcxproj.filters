@@ -73,6 +73,9 @@
     <Filter Include="Framework\Node\Collision\Manager">
       <UniqueIdentifier>{8642df10-4139-4553-a3e7-bbe84c971709}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node\Pool">
+      <UniqueIdentifier>{ddbef3ee-1e01-4216-b4a1-bb9f6d4d1540}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -135,6 +138,9 @@
     <ClInclude Include="TypeDefine.h">
       <Filter>Framework\Header</Filter>
     </ClInclude>
+    <ClInclude Include="AutoReleasePool.h">
+      <Filter>Framework\Node\Pool</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -190,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="TypeDefine.cpp">
       <Filter>Framework\Header</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoReleasePool.cpp">
+      <Filter>Framework\Node\Pool</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

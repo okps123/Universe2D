@@ -1,5 +1,5 @@
 #pragma once
-class Renderer
+class Renderer 
 {
 private:
     LPDIRECT3D9 lpDirect3D;

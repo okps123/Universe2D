@@ -1,17 +1,62 @@
 #include "Precompiled.h"
 #include "Object.h"
 
+#include "AutoReleasePool.h"
+
+Object* Object::Create()
+{
+	auto obj = new (std::nothrow) Object();
+	if (obj && obj->Initialize())
+	{
+		obj->AutoRelease();
+	}
+	else
+	{
+		SAFE_DELETE(obj);
+	}
+
+	return obj;
+
+}
+
 Object::Object()
 	: m_Parent(nullptr), m_Position(.0f, .0f), m_Center(.0f, .0f),
-	m_Scale(1.f, 1.f), m_Rotation(0.f), m_Visible(true)
+	m_Scale(1.f, 1.f), m_Rotation(0.f), m_Visible(true), m_Managed(false), m_ReferenceCount(1)
 {
 }
 Object::~Object()
 {
-	for (auto childObject : m_ChildList)
-		SAFE_DELETE(childObject);
+	for (auto child : m_Children)
+		child->SetParent(nullptr);
+}
 
-	m_ChildList.clear();
+bool Object::Initialize()
+{
+	return true;
+}
+
+void Object::Retain()
+{
+	++m_ReferenceCount;
+
+	printf("[Object] Called Retain() RefCount: %d\n", m_ReferenceCount);
+}
+void Object::Release()
+{
+	--m_ReferenceCount;
+
+	if (m_ReferenceCount == 0)
+	{
+		delete this;
+	}
+
+	printf("[Object] Called Release() RefCount: %d\n", m_ReferenceCount);
+}
+
+void Object::AutoRelease()
+{
+	AutoReleasePool::GetInstance()->AddObject(this);
+	m_Managed = true;
 }
 
 void Object::Update(float deltaTime)
@@ -19,8 +64,8 @@ void Object::Update(float deltaTime)
 	if (!m_Visible)
 		return;
 
-	for (const auto& childObject : m_ChildList)
-		childObject->Update(deltaTime);
+	for (const auto& child : m_Children)
+		child->Update(deltaTime);
 }
 void Object::Render()
 {
@@ -32,8 +77,8 @@ void Object::Render()
 	if (m_Parent)
 		m_Matrix *= m_Parent->GetMatrix();
 
-	for (const auto& childObject : m_ChildList)
-		childObject->Render();
+	for (const auto& child : m_Children)
+		child->Render();
 }
 
 void Object::Translate(float x, float y)
@@ -46,24 +91,26 @@ void Object::Translate(Vector2 vector)
 	m_Position += vector;
 }
 
-void Object::AddChild(Object* obj)
+void Object::AddChild(Object* child)
 {
-	if (obj)
+	if (child)
 	{
-		obj->SetParent(this);
-		m_ChildList.push_back(obj);
+		child->SetParent(this);
+		child->Retain();
+
+		m_Children.push_back(child);
 	}
 }
-void Object::RemoveChild(Object* obj, bool deleteMemory)
+void Object::RemoveChild(Object* child)
 {
-	auto iterator = std::find(std::begin(m_ChildList), std::end(m_ChildList), obj);
-	if (iterator != m_ChildList.end())
-	{
-		if (deleteMemory)
-		{
-			SAFE_DELETE(obj);
-		}
+	if (m_Children.empty())
+		return;
 
-		m_ChildList.erase(iterator);
+	auto iterator = std::find(std::begin(m_Children), std::end(m_Children), child);
+	if (iterator != m_Children.end())
+	{
+		child->SetParent(nullptr);
+
+		m_Children.erase(iterator);
 	}
 }
