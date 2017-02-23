@@ -77,6 +77,8 @@ void Object::Render()
 	if (!m_Visible)
 		return;
 
+	auto center = 
+
 	D3DXMatrixTransformation2D(&m_Matrix, &m_Center, .0f, &m_Scale, &m_Center, m_Rotation, &m_Position);
 
 	if (m_Parent)
@@ -91,13 +93,32 @@ void Object::Translate(float x, float y)
 	m_Position.x += x;
 	m_Position.y += y;
 }
-void Object::Translate(Vector2 vector)
+void Object::Translate(Vector2 v)
 {
-	m_Position += vector;
+	Translate(v.x, v.y);
 }
+
+void Object::TranslateScale(Vector2 sv)
+{
+	TranslateScale(sv.x, sv.y);
+}
+void Object::TranslateScale(float sx, float sy)
+{
+	m_Scale.x = sx;
+	m_Scale.y = sy;
+}
+
+void Object::TranslateRotate(float r)
+{
+	m_Rotation += r;
+}
+
 
 void Object::AddChild(Object* child)
 {
+	if (!child)
+		return;
+
 	child->SetParent(this);
 	child->Retain();
 
