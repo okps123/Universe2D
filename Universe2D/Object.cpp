@@ -20,9 +20,15 @@ Object* Object::Create()
 }
 
 Object::Object()
-	: m_Parent(nullptr), m_Position(.0f, .0f), m_Center(.0f, .0f),
-	m_Scale(1.f, 1.f), m_Rotation(0.f), m_Visible(true),
-	m_Managed(false), m_ReferenceCount(1)
+	: m_Parent(nullptr)
+	, m_Position(.0f, .0f)
+	, m_AnchorPoint(.0f, .0f)
+	, m_AnchorPointInPoints(.0f, .0f)
+	, m_Scale(1.f, 1.f)
+	, m_Rotation(0.f)
+	, m_Visible(true)
+	, m_Managed(false)
+	, m_ReferenceCount(1)
 {
 }
 Object::~Object()
@@ -77,9 +83,7 @@ void Object::Render()
 	if (!m_Visible)
 		return;
 
-	auto center = 
-
-	D3DXMatrixTransformation2D(&m_Matrix, &m_Center, .0f, &m_Scale, &m_Center, m_Rotation, &m_Position);
+	D3DXMatrixTransformation2D(&m_Matrix, NULL, .0f, &m_Scale, NULL, m_Rotation, &m_Position);
 
 	if (m_Parent)
 		m_Matrix *= m_Parent->GetMatrix();

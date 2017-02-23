@@ -15,7 +15,6 @@ protected:
 	ObjectList m_Children;
 
 	Vector2 m_Size;
-	Vector2 m_Center;
 	Vector2 m_Position;
 	Vector2 m_Scale;
 	float m_Rotation;
@@ -98,22 +97,23 @@ public:
 		m_Scale = scale;
 	}
 
-	virtual const Vector2& GetCenter() const
-	{
-		return m_Center;
-	}
-	virtual void SetCenter(const Vector2& center)
-	{
-		m_Center = center;
-	}
-
 	virtual const Vector2& GetAnchorPoint() const
 	{
 		return m_AnchorPoint;
 	}
 	virtual void SetAnchorPoint(const Vector2& anchorPoint)
 	{
+		if (m_AnchorPoint == anchorPoint)
+			return;
+
 		m_AnchorPoint = anchorPoint;
+
+		m_AnchorPointInPoints.x = m_Size.x * m_AnchorPoint.x;
+		m_AnchorPointInPoints.y = m_Size.y * m_AnchorPoint.y;
+	}
+	virtual void SetAnchorPoint(float ax, float ay)
+	{
+		SetAnchorPoint(D3DXVECTOR2(ax, ay));
 	}
 
 	virtual float GetRotation() const
@@ -134,5 +134,8 @@ public:
 		m_Visible = visible; 
 	}
 
-	virtual D3DXMATRIX GetMatrix() { return m_Matrix; }
+	virtual D3DXMATRIX GetMatrix() 
+	{
+		return m_Matrix; 
+	}
 };

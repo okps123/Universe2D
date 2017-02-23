@@ -26,7 +26,7 @@ Sprite::Sprite(std::wstring fileName)
 		static_cast<float>(m_Texture->GetHeight())
 	});
 
-	SetCenter(GetSize() / 2);
+	SetAnchorPoint({ 0.5f, 0.5f });
 
 	D3DXCreateSprite(m_Renderer->GetDevice(), &m_D3DSprite);
 }
@@ -59,11 +59,6 @@ void Sprite::Resize(float width, float height)
 		width / m_Size.x,
 		height / m_Size.y
 	});
-
-	SetCenter({
-		m_Scale.x / 2,
-		m_Scale.y / 2
-	});
 }
 
 void Sprite::Render()
@@ -80,11 +75,13 @@ void Sprite::Render()
 		static_cast<int>(m_Size.x),
 		static_cast<int>(m_Size.y));
 
+	auto centerPosition = &D3DXVECTOR3(m_AnchorPointInPoints.x, m_AnchorPointInPoints.y, 0.f);
+
 	m_D3DSprite->Begin(D3DXSPRITE_ALPHABLEND);
 	m_D3DSprite->SetTransform(&m_Matrix);
 	m_D3DSprite->Draw(
 		m_Texture->GetD3DTexture(),
-		&srcRect, NULL, &D3DXVECTOR3(-m_Size.x / 2, -m_Size.y / 2, .0f),
+		&srcRect, centerPosition, NULL,
 		D3DCOLOR_ARGB(255 - m_ColorA, 255 - m_ColorR, 255 - m_ColorG, 255 - m_ColorB));
 	m_D3DSprite->End();
 }

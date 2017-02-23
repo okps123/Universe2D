@@ -5,8 +5,8 @@
 
 SampleScene1::SampleScene1()
 {
-	circle1 = Sprite::Create(L"Resources\\test.jpg");
-	//circle1->SetCenter({ 0,0 });
+	circle1 = Sprite::Create(L"Resources\\test.png");
+	circle1->SetAnchorPoint({ 0.f , 0.f });
 
 	// 중심점으로 사용(회전, 확대)되는 중심점과 이미지의 중심을 구분해야할듯함
 	// 구분이 되있지않아 회전에 중간점에서 이미지 중심크기만큼 더한 위치(오른쪽 하단)에서 처리가 이루어짐
