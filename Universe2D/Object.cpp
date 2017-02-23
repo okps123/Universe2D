@@ -41,20 +41,20 @@ bool Object::Initialize()
 
 void Object::Retain()
 {
-	++m_ReferenceCount;
-
 	printf("[Object] Called Retain() RefCount: %d\n", m_ReferenceCount);
+
+	++m_ReferenceCount;
 }
 void Object::Release()
 {
+	printf("[Object] Called Release() RefCount: %d\n", m_ReferenceCount);
+
 	--m_ReferenceCount;
 
 	if (m_ReferenceCount == 0)
 	{
 		delete this;
 	}
-
-	printf("[Object] Called Release() RefCount: %d\n", m_ReferenceCount);
 }
 
 void Object::AutoRelease()
@@ -68,7 +68,7 @@ void Object::Update(float deltaTime)
 	if (!m_Visible)
 		return;
 
-	for (const auto& child : m_Children)
+	for each (const auto& child in m_Children)
 		child->Update(deltaTime);
 }
 void Object::Render()
@@ -81,7 +81,7 @@ void Object::Render()
 	if (m_Parent)
 		m_Matrix *= m_Parent->GetMatrix();
 
-	for (const auto& child : m_Children)
+	for each(const auto& child in m_Children)
 		child->Render();
 }
 
@@ -97,13 +97,10 @@ void Object::Translate(Vector2 vector)
 
 void Object::AddChild(Object* child)
 {
-	if (child)
-	{
-		child->SetParent(this);
-		child->Retain();
+	child->SetParent(this);
+	child->Retain();
 
-		m_Children.push_back(child);
-	}
+	m_Children.push_back(child);
 }
 void Object::RemoveChild(Object* child)
 {
