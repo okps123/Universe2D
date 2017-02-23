@@ -32,10 +32,11 @@ Sprite::Sprite(std::wstring fileName)
 }
 Sprite* Sprite::Create(std::wstring fileName)
 {
+	printf("[Sprite] Called Static Create()\n");
+
 	auto sprite = new (std::nothrow) Sprite(fileName);
 	if (sprite && sprite->Initialize())
 	{
-		printf("Sprite ¾ÈÀüÇÏ°Ô »ý¼ºµÊ\n");
 
 		sprite->AutoRelease();
 		return sprite;
@@ -47,7 +48,8 @@ Sprite* Sprite::Create(std::wstring fileName)
 }
 Sprite::~Sprite()
 {
-	printf("Sprite ¼Ò¸ê\n");
+	printf("[Sprite] Sprite Called Destructor\n");
+
 	SAFE_RELEASE(m_D3DSprite);
 }
 

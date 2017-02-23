@@ -26,8 +26,12 @@ Object::Object()
 }
 Object::~Object()
 {
-	for (auto child : m_Children)
+	for each (const auto& child in m_Children)
+	{
 		child->SetParent(nullptr);
+		child->Release();
+	}
+	m_Children.clear();
 }
 
 bool Object::Initialize()
@@ -110,6 +114,7 @@ void Object::RemoveChild(Object* child)
 	if (iterator != m_Children.end())
 	{
 		child->SetParent(nullptr);
+		child->Release();
 
 		m_Children.erase(iterator);
 	}
