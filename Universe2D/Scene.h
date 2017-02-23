@@ -5,15 +5,13 @@ class Scene : public virtual Object
 {
 public:
 	Scene();
-    virtual ~Scene() {};
+    virtual ~Scene();
+
+	static Scene* Create();
 
 public:
-	virtual void Update(float deltaTime) override
-	{
-		Object::Update(deltaTime);
-	};
-	virtual void Render() override
-	{
-		Object::Render();
-	};
+	virtual bool Initialize() override;
+
+	virtual void Update(float deltaTime) override;
+	virtual void Render() override;
 };

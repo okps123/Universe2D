@@ -53,3 +53,10 @@ bool Director::SetScene(Scene* scene)
 
     return true;
 }
+
+Vector2 Director::GetWindowSize()
+{
+	return Vector2(
+		static_cast<float>(Application::GetInstance()->GetWidth()),
+		static_cast<float>(Application::GetInstance()->GetHeight()));
+}

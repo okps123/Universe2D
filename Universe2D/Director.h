@@ -20,5 +20,7 @@ public:
 public:
     Scene* GetScene() { return m_CurrentScene; }
     bool SetScene(Scene* scene);
+
+	Vector2 GetWindowSize();
 };
 
