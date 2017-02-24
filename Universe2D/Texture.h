@@ -1,5 +1,7 @@
 #pragma once
-class Texture
+#include "Reference.h"
+
+class Texture : public Reference
 {
 private:
     std::wstring m_FileName;
@@ -7,12 +9,14 @@ private:
 
     LPDIRECT3DTEXTURE9 m_D3DTexture;
 
-    Texture(std::wstring fileName);
 public:
-    static Texture* Create(std::wstring& fileName);
+	Texture();
     ~Texture();
 
-	bool InitializeWithFile(std::wstring fileName);
+    static Texture* Create(const std::wstring& fileName);
+
+private:
+	bool InitializeWithFile(const std::wstring& fileName);
 
 public:
 	const std::wstring& GetFileName() const;

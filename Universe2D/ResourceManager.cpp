@@ -10,23 +10,26 @@ ResourceManager::~ResourceManager()
 {
 }
 
-Texture* ResourceManager::LoadTextureFromFile(std::wstring fileName)
+Texture* ResourceManager::LoadTextureFromFile(const std::wstring& fileName)
 {
-    if (!m_TextureMap[fileName])
+	// 캐시맵에 텍스쳐가 없으면 새로 생성해서 캐시로 등록합니다
+    if (!m_TextureCacheMap.count(fileName))
     {
         auto texture = Texture::Create(fileName);
-     
+
         // 텍스쳐 생성에 실패했다면 nullptr 반환
-        if (!texture)
+        if (texture == nullptr)
             return nullptr;
 
-        m_TextureMap[fileName] = texture;
+		// CacheMap에 등록하고 참조 카운터를 증가시킵니다
+		m_TextureCacheMap[fileName] = texture;
+		texture->Retain();
     }
 
-    return m_TextureMap[fileName];
+    return m_TextureCacheMap[fileName];
 }
 
-Sound * ResourceManager::LoadSoundFromFile(std::wstring fileName)
+Sound* ResourceManager::LoadSoundFromFile(const std::wstring& fileName)
 {
 	return nullptr;
 }

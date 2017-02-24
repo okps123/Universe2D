@@ -3,8 +3,10 @@
 
 #include "Sprite.h"
 
-AnimationSprite::AnimationSprite(int frameDelay) : 
-	m_CurrentFrame(0), m_FrameDelay(0), m_FrameCounter(0)
+AnimationSprite::AnimationSprite(int frameDelay) 
+	: m_CurrentFrame(0)
+	, m_FrameDelay(0)
+	, m_FrameCounter(0)
 {
 	m_FrameDelay = frameDelay;
 }
@@ -48,7 +50,8 @@ void AnimationSprite::Render()
 {
 	Object::Render();
 
-	if (!m_Visible) return;
+	if (!m_Visible)
+		return;
 
 	m_SpriteList.at(m_CurrentFrame)->Render();
 }

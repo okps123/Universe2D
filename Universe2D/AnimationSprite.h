@@ -7,9 +7,9 @@ class AnimationSprite : public Object
 private:
 	typedef std::vector<Sprite*> SpriteList;
 
-	int m_CurrentFrame;
-	int m_FrameDelay;
-	int m_FrameCounter;
+	uint m_CurrentFrame;
+	uint m_FrameDelay;
+	uint m_FrameCounter;
 
 	SpriteList m_SpriteList;
 

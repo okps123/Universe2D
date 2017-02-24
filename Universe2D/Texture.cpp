@@ -4,22 +4,23 @@
 #include "Application.h"
 #include "Renderer.h"
 
-Texture::Texture(std::wstring fileName)
-	: m_D3DTexture(nullptr)
-	, m_Size(0.f, 0.f)
+Texture* Texture::Create(const std::wstring& fileName)
 {
-}
-Texture* Texture::Create(std::wstring& fileName)
-{
-    auto texture = new (std::nothrow) Texture(fileName);
+	auto texture = new (std::nothrow) Texture();
 	if (texture && texture->InitializeWithFile(fileName))
 	{
-		// 릴리즈 풀에 등록
+		texture->AutoRelease();
 		return texture;
 	}
 
 	SAFE_DELETE(texture);
-    return nullptr;
+	return nullptr;
+}
+
+Texture::Texture()
+	: m_D3DTexture(nullptr)
+	, m_Size(0.f, 0.f)
+{
 }
 Texture::~Texture()
 {
@@ -27,7 +28,7 @@ Texture::~Texture()
 		SAFE_RELEASE(m_D3DTexture);
 }
 
-bool Texture::InitializeWithFile(std::wstring fileName)
+bool Texture::InitializeWithFile(const std::wstring& fileName)
 {
 	// Application에 강한 의존성을 가지고 있음
 	auto renderer = Application::GetInstance()->GetRenderer();
