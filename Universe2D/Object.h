@@ -30,6 +30,8 @@ protected:
 
 	Matrix m_Matrix;
 
+	std::string m_Name;
+
 public:
 	static Object* Create();
 
@@ -170,6 +172,15 @@ public:
 		m_Visible = visible; 
 
 		m_TransformUpdated = false;
+	}
+	
+	virtual const std::string& GetName() const
+	{
+		return m_Name;
+	}
+	virtual void SetName(const std::string& name)
+	{
+		m_Name = name;
 	}
 
 	virtual D3DXMATRIX GetMatrix() 

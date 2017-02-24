@@ -27,6 +27,7 @@ Object::Object()
 	, m_Rotation(0.f)
 	, m_Visible(true)
 	, m_TransformUpdated(false)
+	, m_Name("")
 {
 }
 Object::~Object()
