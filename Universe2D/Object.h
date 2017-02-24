@@ -50,6 +50,10 @@ public:
 
 	void TranslateRotate(float r);
 
+private:
+	// 실제 AnchorPoint의 위치를 계산하는 함수입니다
+	void CalculateAnchorPointInPoint();
+
 public:
 	Object* GetParent() 
 	{
@@ -68,6 +72,11 @@ public:
 	{
 		m_Position = position;
 	}
+	virtual void SetPosition(float x, float y)
+	{
+		m_Position.x = x;
+		m_Position.y = y;
+	}
 
 	virtual const Vector2& GetSize() const
 	{
@@ -76,6 +85,11 @@ public:
 	virtual void SetSize(const Vector2& size)
 	{
 		m_Size = size;
+	}
+	virtual void SetSize(float sx, float sy)
+	{
+		m_Size.x = sx;
+		m_Size.y = sy;
 	}
 
 	virtual const Vector2& GetScale() const 
@@ -86,6 +100,11 @@ public:
 	{
 		m_Scale = scale;
 	}
+	virtual void SetScale(float sx, float sy)
+	{
+		m_Scale.x = sx;
+		m_Scale.y = sy;
+	}
 
 	virtual const Vector2& GetAnchorPoint() const
 	{
@@ -93,17 +112,18 @@ public:
 	}
 	virtual void SetAnchorPoint(const Vector2& anchorPoint)
 	{
-		if (m_AnchorPoint == anchorPoint)
-			return;
-
 		m_AnchorPoint = anchorPoint;
-
-		m_AnchorPointInPoints.x = m_Size.x * m_AnchorPoint.x;
-		m_AnchorPointInPoints.y = m_Size.y * m_AnchorPoint.y;
+		
+		// 실제 위치를 계산하는 함수를 호출합니다
+		CalculateAnchorPointInPoint();
 	}
 	virtual void SetAnchorPoint(float ax, float ay)
 	{
-		SetAnchorPoint(D3DXVECTOR2(ax, ay));
+		m_AnchorPoint.x = ax;
+		m_AnchorPoint.y = ay;
+
+		// 실제 위치를 계산하는 함수를 호출합니다
+		CalculateAnchorPointInPoint();
 	}
 
 	virtual float GetRotation() const

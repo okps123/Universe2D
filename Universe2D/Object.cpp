@@ -16,7 +16,6 @@ Object* Object::Create()
 	}
 
 	return obj;
-
 }
 
 Object::Object()
@@ -82,8 +81,8 @@ void Object::TranslateScale(Vector2 sv)
 }
 void Object::TranslateScale(float sx, float sy)
 {
-	m_Scale.x = sx;
-	m_Scale.y = sy;
+	m_Scale.x += sx;
+	m_Scale.y += sy;
 }
 
 void Object::TranslateRotate(float r)
@@ -91,6 +90,11 @@ void Object::TranslateRotate(float r)
 	m_Rotation += r;
 }
 
+void Object::CalculateAnchorPointInPoint()
+{
+	m_AnchorPointInPoints.x = m_Size.x * m_AnchorPoint.x;
+	m_AnchorPointInPoints.y = m_Size.y * m_AnchorPoint.y;
+}
 
 void Object::AddChild(Object* child)
 {

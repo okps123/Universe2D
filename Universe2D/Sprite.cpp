@@ -6,7 +6,7 @@
 #include "Renderer.h"
 #include "Texture.h"
 
-Sprite::Sprite(std::wstring fileName)
+Sprite::Sprite()
 	: m_ColorA(0)
 	, m_ColorR(0)
 	, m_ColorG(0)
@@ -14,6 +14,30 @@ Sprite::Sprite(std::wstring fileName)
 	, m_Texture(nullptr)
 {
 }
+Sprite::~Sprite()
+{
+	printf("[Sprite] Sprite Called Destructor\n");
+
+	if (m_D3DSprite)
+		SAFE_RELEASE(m_D3DSprite);
+}
+
+Sprite* Sprite::Create(std::wstring fileName)
+{
+	printf("[Sprite] Called Static Create()\n");
+
+	auto sprite = new (std::nothrow) Sprite();
+	if (sprite && sprite->InitializeWithFile(fileName))
+	{
+		sprite->AutoRelease();
+		return sprite;
+	}
+
+	SAFE_DELETE(sprite);
+
+	return nullptr;
+}
+
 bool Sprite::InitializeWithFile(const std::wstring & fileName)
 {
 	m_Texture = ResourceManager::GetInstance()->LoadTextureFromFile(fileName);
@@ -30,28 +54,6 @@ bool Sprite::InitializeWithFile(const std::wstring & fileName)
 	SetAnchorPoint({ 0.5f, 0.5f });
 
 	return true;
-}
-Sprite* Sprite::Create(std::wstring fileName)
-{
-	printf("[Sprite] Called Static Create()\n");
-
-	auto sprite = new (std::nothrow) Sprite(fileName);
-	if (sprite && sprite->InitializeWithFile(fileName))
-	{
-		sprite->AutoRelease();
-		return sprite;
-	}
-
-	SAFE_DELETE(sprite);
-
-	return nullptr;
-}
-Sprite::~Sprite()
-{
-	printf("[Sprite] Sprite Called Destructor\n");
-
-	if(m_D3DSprite)
-		SAFE_RELEASE(m_D3DSprite);
 }
 
 void Sprite::Resize(float width, float height)

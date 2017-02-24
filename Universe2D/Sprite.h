@@ -13,14 +13,14 @@ protected:
 
 	LPD3DXSPRITE m_D3DSprite;
 
-private:
-    Sprite(std::wstring fileName);
+public:
+	Sprite();
+    ~Sprite();
 
-	bool InitializeWithFile(const std::wstring& fileName);
+    static Sprite* Create(std::wstring fileName);
 
 public:
-    static Sprite* Create(std::wstring fileName);
-    ~Sprite();
+	bool InitializeWithFile(const std::wstring& fileName);
 
 public:
     byte GetOpacity() { return m_ColorA; }

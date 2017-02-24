@@ -6,10 +6,6 @@
 SampleScene1::SampleScene1()
 {
 	circle1 = Sprite::Create(L"Resources\\test.png");
-	circle1->SetAnchorPoint({ 0.f , 0.f });
-
-	// 중심점으로 사용(회전, 확대)되는 중심점과 이미지의 중심을 구분해야할듯함
-	// 구분이 되있지않아 회전에 중간점에서 이미지 중심크기만큼 더한 위치(오른쪽 하단)에서 처리가 이루어짐
 
 	AddChild(circle1);
 }
@@ -47,21 +43,21 @@ void SampleScene1::Update(float deltaTime)
     // 확대 축소
     if (Input::GetInstance()->GetKeyState('R') == KeyState::KEY_PRESSED)
     {
-		circle1->SetScale(circle1->GetScale() + D3DXVECTOR2(0.01f, 0.01f));
+		circle1->TranslateScale(0.01f, 0.01f);
     }
     else if (Input::GetInstance()->GetKeyState('T') == KeyState::KEY_PRESSED)
     {
-		circle1->SetScale(circle1->GetScale() - D3DXVECTOR2(0.01f, 0.01f));
+		circle1->TranslateScale(-0.01f, -0.01f);
     }
 
     // 회전
     if (Input::GetInstance()->GetKeyState('Q') == KeyState::KEY_PRESSED)
     {
-		circle1->SetRotation(circle1->GetRotation() + 0.05f);
+		circle1->TranslateRotate(0.05f);
     }
     else if (Input::GetInstance()->GetKeyState('E') == KeyState::KEY_PRESSED)
     {
-		circle1->SetRotation(circle1->GetRotation() - 0.05f);
+		circle1->TranslateRotate(-0.05f);
     }
 }
 void SampleScene1::Render()
