@@ -9,11 +9,14 @@ private:
 
     Texture(std::wstring fileName);
 public:
-    static Texture* Create(std::wstring fileName);
+    static Texture* Create(std::wstring& fileName);
     ~Texture();
 
+	bool InitializeWithFile(std::wstring fileName);
+
 public:
+	const std::wstring& GetFileName() const;
 	const Vector2& GetSize() const;
 
-	LPDIRECT3DTEXTURE9 GetD3DTexture();
+	const LPDIRECT3DTEXTURE9 GetD3DTexture() const;
 };

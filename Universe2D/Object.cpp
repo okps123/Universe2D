@@ -27,8 +27,6 @@ Object::Object()
 	, m_Scale(1.f, 1.f)
 	, m_Rotation(0.f)
 	, m_Visible(true)
-	, m_Managed(false)
-	, m_ReferenceCount(1)
 {
 }
 Object::~Object()
@@ -44,30 +42,6 @@ Object::~Object()
 bool Object::Initialize()
 {
 	return true;
-}
-
-void Object::Retain()
-{
-	printf("[Object] Called Retain() RefCount: %d\n", m_ReferenceCount);
-
-	++m_ReferenceCount;
-}
-void Object::Release()
-{
-	printf("[Object] Called Release() RefCount: %d\n", m_ReferenceCount);
-
-	--m_ReferenceCount;
-
-	if (m_ReferenceCount == 0)
-	{
-		delete this;
-	}
-}
-
-void Object::AutoRelease()
-{
-	AutoReleasePool::GetInstance()->AddObject(this);
-	m_Managed = true;
 }
 
 void Object::Update(float deltaTime)

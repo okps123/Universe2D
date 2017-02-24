@@ -1,6 +1,7 @@
 #include "Precompiled.h"
 #include "AutoReleasePool.h"
-#include "Object.h"
+
+#include "Reference.h"
 
 AutoReleasePool::AutoReleasePool()
 {
@@ -11,7 +12,7 @@ AutoReleasePool::~AutoReleasePool()
 	Clear();
 }
 
-void AutoReleasePool::AddObject(Object* object)
+void AutoReleasePool::AddObject(Reference* object)
 {
 	m_ManagedObjectList.push_back(object);
 }
@@ -19,16 +20,17 @@ void AutoReleasePool::AddObject(Object* object)
 void AutoReleasePool::Clear()
 {
 	// 새로운 리스트 생성후 지역 변수와 교환
-	std::vector<Object*> managedObjectList;
-	managedObjectList.swap(m_ManagedObjectList);
+	std::vector<Reference*> releaseObjectList;
 
-	for (const auto& obj : managedObjectList)
+	releaseObjectList.swap(m_ManagedObjectList);
+
+	for (const auto& obj : releaseObjectList)
 	{
 		obj->Release();
 	}
 }
 
-bool AutoReleasePool::Contains(Object* object)
+bool AutoReleasePool::Contains(Reference* object)
 {
 	auto iterator = std::find(std::begin(m_ManagedObjectList), std::end(m_ManagedObjectList), object);
 	if (iterator == std::end(m_ManagedObjectList))

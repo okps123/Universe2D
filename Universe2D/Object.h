@@ -1,15 +1,13 @@
 #pragma once
+#include "Reference.h"
 
 class Collider;
-class Object
+class Object : public Reference
 {
 protected:
 	typedef std::vector<Object*> ObjectList;
 
 	bool m_Visible;
-
-	bool m_Managed;
-	uint m_ReferenceCount;
 
 	Object* m_Parent;
 	ObjectList m_Children;
@@ -31,15 +29,7 @@ public:
 	virtual ~Object();
 
 public:
-	virtual bool Initialize();
-
-	// 참조 카운트 증가
-	void Retain();
-	// 참조 카운트 감소
-	void Release();
-
-	// AutoReleasePool 등록
-	void AutoRelease();
+	virtual bool Initialize() override;
 
 public:
 	virtual void OnCollision(Collider* collider) {};

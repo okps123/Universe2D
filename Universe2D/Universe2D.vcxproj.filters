@@ -111,11 +111,14 @@
     <ClInclude Include="Singleton.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="AutoReleasePool.h">
-      <Filter>Framework\Node</Filter>
-    </ClInclude>
     <ClInclude Include="Universe2D.h">
       <Filter>Framework\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoReleasePool.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Reference.h">
+      <Filter>Framework\Node</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +177,9 @@
       <Filter>Framework\Resource</Filter>
     </ClCompile>
     <ClCompile Include="AutoReleasePool.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Reference.cpp">
       <Filter>Framework\Node</Filter>
     </ClCompile>
   </ItemGroup>

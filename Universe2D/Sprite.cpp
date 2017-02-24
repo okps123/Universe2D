@@ -50,7 +50,8 @@ Sprite::~Sprite()
 {
 	printf("[Sprite] Sprite Called Destructor\n");
 
-	SAFE_RELEASE(m_D3DSprite);
+	if(m_D3DSprite)
+		SAFE_RELEASE(m_D3DSprite);
 }
 
 void Sprite::Resize(float width, float height)
