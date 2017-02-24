@@ -4,38 +4,51 @@
 #include "Application.h"
 #include "Renderer.h"
 
-Label::Label(std::wstring text, std::wstring fontFace, int fontSize) : m_Font(nullptr), m_Color(D3DCOLOR_XRGB(0,0,0))
+Label* Label::Create(const std::wstring& fontFace, int fontSize)
 {
-    m_Text = text;
-    m_FontFace = fontFace;
-    m_FontSize = fontSize;
-
-    HRESULT hr = D3DXCreateFont(Application::GetInstance()->GetRenderer()->GetDevice(),
-        fontSize, 0, FW_NORMAL, D3DX_DEFAULT, false, DEFAULT_CHARSET, OUT_TT_PRECIS,
-        ANTIALIASED_QUALITY, NULL, fontFace.c_str(), &m_Font);
-
-    if FAILED(hr)
-    {
-        printf("[Label] 폰트 생성 실패\n");
-    }
+	return Label::Create(fontFace, fontSize, D3DCOLOR_XRGB(0, 0, 0));
 }
-Label* Label::Create(std::wstring text, std::wstring fontFace, int fontSize)
+Label* Label::Create(const std::wstring& fontFace, int fontSize, D3DCOLOR color)
 {
-    auto instance = new Label(text, fontFace, fontSize);
-    return instance;
+	auto label = new (std::nothrow) Label();
+	if (label && label->InitializeWithFont(fontFace, fontSize, color))
+	{
+		label->AutoRelease();
+		return label;
+	}
+
+	SAFE_DELETE(label);
+	return nullptr;
 }
 
-Label * Label::Create(std::wstring text, std::wstring fontFace, int fontSize, D3DCOLOR color)
+Label::Label()
+	: m_Font(nullptr)
+	, m_Color(D3DCOLOR_XRGB(0,0,0))
+	, m_Text(nullptr)
+	, m_FontFace(nullptr)
+	, m_FontSize(0)
 {
-    auto instance = new Label(text, fontFace, fontSize);
-    instance->SetColor(color);
-
-    return instance;
 }
 
 Label::~Label()
 {
     SAFE_RELEASE(m_Font);
+}
+
+bool Label::InitializeWithFont(const std::wstring& fontFace, int fontSize, D3DCOLOR fontColor)
+{
+	m_FontFace = fontFace;
+	m_FontSize = fontSize;
+
+	auto renderer = Application::GetInstance()->GetRenderer();
+	HRESULT hr = D3DXCreateFont(renderer->GetDevice(),
+		fontSize, 0, FW_NORMAL, D3DX_DEFAULT, false, DEFAULT_CHARSET, OUT_TT_PRECIS,
+		ANTIALIASED_QUALITY, NULL, fontFace.c_str(), &m_Font);
+
+	if FAILED(hr)
+		return false;
+
+	return true;
 }
 
 void Label::Render()
@@ -47,11 +60,14 @@ void Label::Render()
 
     m_Font->DrawTextW(NULL, m_Text.c_str(), m_Text.size(), &rect, DT_CALCRECT, m_Color);
 
-    float x = m_Position.x;
-    float y = m_Position.y;
+	Vector2 position = GetPosition();
 
     RECT wrapRect;
-    SetRect(&wrapRect, x, y, x + rect.right, y + rect.bottom);
+    SetRect(&wrapRect,
+		position.x,
+		position.y,
+		position.x + rect.right,
+		position.y + rect.bottom);
 
     m_Font->DrawTextW(NULL, m_Text.c_str(), m_Text.size(), &wrapRect, DT_NOCLIP, m_Color);
 }

@@ -19,7 +19,7 @@ public:
 
     static Sprite* Create(std::wstring fileName);
 
-public:
+private:
 	bool InitializeWithFile(const std::wstring& fileName);
 
 public:

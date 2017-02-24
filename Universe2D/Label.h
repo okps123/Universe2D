@@ -4,28 +4,37 @@
 class Label : public Object
 {
 private:
-    LPD3DXFONT m_Font;
-    D3DCOLOR m_Color;
+	LPD3DXFONT m_Font;
+	D3DCOLOR m_Color;
 
-    std::wstring m_Text;
-    std::wstring m_FontFace;
-    int m_FontSize;
+	std::wstring m_Text;
+	std::wstring m_FontFace;
+	int m_FontSize;
+
+public:
+	static Label* Create(const std::wstring& fontFace, int fontSize);
+	static Label* Create(const std::wstring& fontFace, int fontSize, D3DCOLOR color);
+
+	Label();
+	~Label();
 
 private:
-    Label(std::wstring text, std::wstring fontFace, int fontSize);
-public:
-    static Label* Create(std::wstring text, std::wstring fontFace, int fontSize);
-    static Label* Create(std::wstring text, std::wstring fontFace, int fontSize, D3DCOLOR color);
-
-    ~Label();
-
-    void Render() override;
+	bool InitializeWithFont(const std::wstring& fontFace, int fontSize, D3DCOLOR fontColor);
 
 public:
-    std::wstring GetText() const { return m_Text; }
-    void SetText(std::wstring text) { m_Text = text; }
+	const std::wstring& GetText() const
+	{
+		return m_Text; 
+	}
+	void SetText(const std::wstring& text) 
+	{
+		m_Text = text; 
+	}
 
-    D3DCOLOR GetColor() const { return m_Color; }
-    void SetColor(D3DCOLOR color) { m_Color = color; }
+	D3DCOLOR GetColor() const { return m_Color; }
+	void SetColor(D3DCOLOR color) { m_Color = color; }
+
+public:
+	void Render() override;
 };
 

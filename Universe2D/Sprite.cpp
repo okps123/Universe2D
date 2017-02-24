@@ -58,10 +58,11 @@ bool Sprite::InitializeWithFile(const std::wstring & fileName)
 
 void Sprite::Resize(float width, float height)
 {
-	SetScale({
-		width / m_Size.x,
-		height / m_Size.y
-	});
+	// width, height를 통해 scale을 계산합니다
+	float scaleX = width / m_Size.x;
+	float scaleY = height / m_Size.y;
+
+	SetScale(scaleX, scaleY);
 }
 
 void Sprite::Render()
@@ -71,7 +72,7 @@ void Sprite::Render()
 
 	Object::Render();
 
-	// 하나의 이미지에서 그려질 부분의 영역(Rect)을 설정 할 수 있음
+	// 텍스쳐에서 그려질 부분의 영역을 설정 할 수 있음
 	RECT srcRect;
 	SetRect(&srcRect,
 		0,
@@ -79,7 +80,7 @@ void Sprite::Render()
 		static_cast<int>(m_Size.x),
 		static_cast<int>(m_Size.y));
 
-	auto center = D3DXVECTOR3(m_AnchorPointInPoints.x, m_AnchorPointInPoints.y, 0.f);
+	D3DXVECTOR3 center(m_AnchorPointInPoints.x, m_AnchorPointInPoints.y, 0.f);
 
 	m_D3DSprite->Begin(D3DXSPRITE_ALPHABLEND);
 	m_D3DSprite->SetTransform(&m_Matrix);
