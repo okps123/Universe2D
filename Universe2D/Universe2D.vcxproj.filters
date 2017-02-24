@@ -4,35 +4,11 @@
     <Filter Include="Framework">
       <UniqueIdentifier>{11351350-f530-4507-86b0-31610ed8be96}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Application">
-      <UniqueIdentifier>{c0b6c557-c0f2-489b-be57-c5d4285dec71}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Header">
       <UniqueIdentifier>{22d8b7f5-5083-4d74-a627-76f0fa19e185}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Renderer">
-      <UniqueIdentifier>{4fcde10f-6dbc-4114-b7fc-b6ea64e053fa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Director">
-      <UniqueIdentifier>{89520f1f-6a0f-4a91-94fa-1ce2cc9025ce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Resource">
       <UniqueIdentifier>{9a2c4540-df16-4097-b74d-b9052b3d69e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Resource\Sound">
-      <UniqueIdentifier>{1bac221a-c0c0-445d-96f2-1b3a23163117}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Resource\Texture">
-      <UniqueIdentifier>{dd1e29ea-2dcd-4fc0-b645-cd8d00cd206b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Resource\ResourceManager">
-      <UniqueIdentifier>{e718fddd-6cc3-4cf0-bd47-f952feaba2ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Input">
-      <UniqueIdentifier>{8b727944-d704-4afe-8425-455546add55e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Console">
-      <UniqueIdentifier>{fcaae2ae-5331-4fbc-b19f-41f82a1db5b9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\Node">
       <UniqueIdentifier>{c37082b0-58a0-4bbd-8cf7-6ecf20820298}</UniqueIdentifier>
@@ -73,37 +49,10 @@
     <Filter Include="Framework\Node\Collision\Manager">
       <UniqueIdentifier>{8642df10-4139-4553-a3e7-bbe84c971709}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\Pool">
-      <UniqueIdentifier>{ddbef3ee-1e01-4216-b4a1-bb9f6d4d1540}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h">
-      <Filter>Framework\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Framework\Header</Filter>
-    </ClInclude>
     <ClInclude Include="Precompiled.h">
       <Filter>Framework\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Framework\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Director.h">
-      <Filter>Framework\Director</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Framework\Resource\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Framework\Resource\ResourceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Framework\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Console.h">
-      <Filter>Framework\Console</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Framework\Node\Object</Filter>
@@ -138,31 +87,40 @@
     <ClInclude Include="TypeDefine.h">
       <Filter>Framework\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Director.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Framework\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Framework\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
     <ClInclude Include="AutoReleasePool.h">
-      <Filter>Framework\Node\Pool</Filter>
+      <Filter>Framework\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Universe2D.h">
+      <Filter>Framework\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Application.cpp">
-      <Filter>Framework\Application</Filter>
-    </ClCompile>
     <ClCompile Include="Precompiled.cpp">
       <Filter>Framework\Header</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Framework\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Director.cpp">
-      <Filter>Framework\Director</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Framework\Resource\Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Framework\Resource\ResourceManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Framework\Input</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Framework\Node\Object</Filter>
@@ -197,8 +155,26 @@
     <ClCompile Include="TypeDefine.cpp">
       <Filter>Framework\Header</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Director.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Framework\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Framework\Resource</Filter>
+    </ClCompile>
     <ClCompile Include="AutoReleasePool.cpp">
-      <Filter>Framework\Node\Pool</Filter>
+      <Filter>Framework\Node</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

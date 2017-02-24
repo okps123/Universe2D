@@ -40,6 +40,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TypeDefine.h" />
+    <ClInclude Include="Universe2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationSprite.cpp" />

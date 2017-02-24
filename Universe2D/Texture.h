@@ -3,10 +3,9 @@ class Texture
 {
 private:
     std::wstring m_FileName;
-    int m_Width;
-    int m_Height;
+	Vector2 m_Size;
 
-    LPDIRECT3DTEXTURE9 m_Texture;
+    LPDIRECT3DTEXTURE9 m_D3DTexture;
 
     Texture(std::wstring fileName);
 public:
@@ -14,9 +13,7 @@ public:
     ~Texture();
 
 public:
-    int GetWidth() { return m_Width; }
-    int GetHeight() { return m_Height; }
+	const Vector2& GetSize() const;
 
-public:
-    inline LPDIRECT3DTEXTURE9 GetD3DTexture() { return m_Texture; };
+	LPDIRECT3DTEXTURE9 GetD3DTexture();
 };

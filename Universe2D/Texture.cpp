@@ -4,8 +4,9 @@
 #include "Application.h"
 #include "Renderer.h"
 
-Texture::Texture(std::wstring fileName) :
-    m_Texture(nullptr), m_Width(0), m_Height(0)
+Texture::Texture(std::wstring fileName)
+	: m_D3DTexture(nullptr)
+	, m_Size(0.f, 0.f)
 {
     HRESULT hr;
     hr = D3DXCreateTextureFromFileEx(
@@ -14,7 +15,7 @@ Texture::Texture(std::wstring fileName) :
         D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2,
         1, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED,
         D3DX_DEFAULT, D3DX_DEFAULT, NULL, NULL, NULL,
-        &m_Texture);
+        &m_D3DTexture);
 
     if FAILED(hr)
     {
@@ -24,23 +25,31 @@ Texture::Texture(std::wstring fileName) :
     }
 
     D3DSURFACE_DESC desc;
-    m_Texture->GetLevelDesc(0, &desc);
+    m_D3DTexture->GetLevelDesc(0, &desc);
 
-    m_Width = desc.Width;
-    m_Height = desc.Height;
+	m_Size.x = static_cast<float>(desc.Width);
+	m_Size.y = static_cast<float>(desc.Height);
     
     m_FileName = fileName;
 }
 Texture* Texture::Create(std::wstring fileName)
 {
-    auto instance = new Texture(fileName);
-    
-    if (instance->GetWidth() == 0 && instance->GetHeight() == 0)
-        return nullptr;
+    auto texture = new (std::nothrow) Texture(fileName);
+	
 
-    return instance;
+    return nullptr;
 }
 Texture::~Texture()
 {
-    SAFE_RELEASE(m_Texture);
+    SAFE_RELEASE(m_D3DTexture);
+}
+
+const Vector2& Texture::GetSize() const
+{
+	return m_Size;
+}
+
+LPDIRECT3DTEXTURE9 Texture::GetD3DTexture()
+{
+	return m_D3DTexture;
 }

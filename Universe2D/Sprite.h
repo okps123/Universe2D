@@ -6,19 +6,18 @@ class Texture;
 
 class Sprite : public Object
 {
-public:
-    bool IsLoaded;
-
 protected:
-    byte m_ColorA, m_ColorR, m_ColorG, m_ColorB;
+    Texture* m_Texture;
 
-    LPD3DXSPRITE m_D3DSprite;
+	byte m_ColorA, m_ColorR, m_ColorG, m_ColorB;
+
+	LPD3DXSPRITE m_D3DSprite;
 
 private:
-    Texture* m_Texture;
-    Renderer* m_Renderer;
-
     Sprite(std::wstring fileName);
+
+	bool InitializeWithFile(const std::wstring& fileName);
+
 public:
     static Sprite* Create(std::wstring fileName);
     ~Sprite();
