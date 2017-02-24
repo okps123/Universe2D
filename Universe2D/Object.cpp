@@ -26,6 +26,7 @@ Object::Object()
 	, m_Scale(1.f, 1.f)
 	, m_Rotation(0.f)
 	, m_Visible(true)
+	, m_TransformUpdated(false)
 {
 }
 Object::~Object()
@@ -56,7 +57,12 @@ void Object::Render()
 	if (!m_Visible)
 		return;
 
-	D3DXMatrixTransformation2D(&m_Matrix, NULL, .0f, &m_Scale, NULL, m_Rotation, &m_Position);
+	// Transform이 수정됬다면 업데이트
+	if (m_TransformUpdated == false)
+	{
+		D3DXMatrixTransformation2D(&m_Matrix, NULL, .0f, &m_Scale, NULL, m_Rotation, &m_Position);
+		m_TransformUpdated = true;
+	}
 
 	if (m_Parent)
 		m_Matrix *= m_Parent->GetMatrix();
@@ -69,25 +75,31 @@ void Object::Translate(float x, float y)
 {
 	m_Position.x += x;
 	m_Position.y += y;
+
+	m_TransformUpdated = false;
 }
 void Object::Translate(Vector2 v)
 {
 	Translate(v.x, v.y);
 }
 
-void Object::TranslateScale(Vector2 sv)
-{
-	TranslateScale(sv.x, sv.y);
-}
 void Object::TranslateScale(float sx, float sy)
 {
 	m_Scale.x += sx;
 	m_Scale.y += sy;
+
+	m_TransformUpdated = false;
+}
+void Object::TranslateScale(Vector2 sv)
+{
+	TranslateScale(sv.x, sv.y);
 }
 
 void Object::TranslateRotate(float r)
 {
 	m_Rotation += r;
+
+	m_TransformUpdated = false;
 }
 
 void Object::CalculateAnchorPointInPoint()

@@ -1,6 +1,13 @@
 #pragma once
 #include "Reference.h"
 
+/* 
+모든 오브젝트의 부모가 되는 클래스입니다
+
+간결하게 사용하기 위해 Transform 속성과 합쳐져 있습니다.
+추후에 분리할 예정입니다
+*/
+
 class Collider;
 class Object : public Reference
 {
@@ -8,6 +15,7 @@ protected:
 	typedef std::vector<Object*> ObjectList;
 
 	bool m_Visible;
+	bool m_TransformUpdated;
 
 	Object* m_Parent;
 	ObjectList m_Children;
@@ -71,11 +79,15 @@ public:
 	virtual void SetPosition(const Vector2& position) 
 	{
 		m_Position = position;
+
+		m_TransformUpdated = false;
 	}
 	virtual void SetPosition(float x, float y)
 	{
 		m_Position.x = x;
 		m_Position.y = y;
+
+		m_TransformUpdated = false;
 	}
 
 	virtual const Vector2& GetSize() const
@@ -85,11 +97,15 @@ public:
 	virtual void SetSize(const Vector2& size)
 	{
 		m_Size = size;
+
+		m_TransformUpdated = false;
 	}
 	virtual void SetSize(float sx, float sy)
 	{
 		m_Size.x = sx;
 		m_Size.y = sy;
+
+		m_TransformUpdated = false;
 	}
 
 	virtual const Vector2& GetScale() const 
@@ -99,11 +115,15 @@ public:
 	virtual void SetScale(const Vector2& scale)
 	{
 		m_Scale = scale;
+
+		m_TransformUpdated = false;
 	}
 	virtual void SetScale(float sx, float sy)
 	{
 		m_Scale.x = sx;
 		m_Scale.y = sy;
+
+		m_TransformUpdated = false;
 	}
 
 	virtual const Vector2& GetAnchorPoint() const
@@ -116,6 +136,8 @@ public:
 		
 		// 실제 위치를 계산하는 함수를 호출합니다
 		CalculateAnchorPointInPoint();
+
+		m_TransformUpdated = false;
 	}
 	virtual void SetAnchorPoint(float ax, float ay)
 	{
@@ -124,6 +146,8 @@ public:
 
 		// 실제 위치를 계산하는 함수를 호출합니다
 		CalculateAnchorPointInPoint();
+
+		m_TransformUpdated = false;
 	}
 
 	virtual float GetRotation() const
@@ -133,6 +157,8 @@ public:
 	virtual void SetRotation(float rotation) 
 	{
 		m_Rotation = rotation; 
+
+		m_TransformUpdated = false;
 	}
 
 	virtual bool GetVisible() const 
@@ -142,6 +168,8 @@ public:
 	virtual void SetVisible(bool visible)
 	{
 		m_Visible = visible; 
+
+		m_TransformUpdated = false;
 	}
 
 	virtual D3DXMATRIX GetMatrix() 
