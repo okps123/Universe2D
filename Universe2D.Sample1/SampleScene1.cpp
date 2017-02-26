@@ -6,6 +6,7 @@
 SampleScene1::SampleScene1()
 {
 	circle1 = Sprite::Create(L"Resources\\test.png");
+	circle1->SetOpacity(100);
 
 	AddChild(circle1);
 }

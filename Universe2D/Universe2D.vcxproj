@@ -25,7 +25,6 @@
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
-    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Director.h" />
     <ClInclude Include="Frame.h" />
@@ -50,7 +49,6 @@
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="Collider.cpp" />
-    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Director.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Input.cpp" />

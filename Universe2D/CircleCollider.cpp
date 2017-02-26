@@ -2,12 +2,31 @@
 #include "CircleCollider.h"
 #include "Object.h"
 
-CircleCollider::CircleCollider(float radius) : m_Radius(0.f)
+CircleCollider::CircleCollider() : m_Radius(0.f)
 {
-	m_Radius = radius;
 }
 CircleCollider::~CircleCollider()
 {
+}
+
+CircleCollider* CircleCollider::Create(float radius, const Vector2& offset)
+{
+	auto collider = new (std::nothrow) CircleCollider();
+	if (collider && collider->InitializeWithCircle(radius, offset))
+	{
+		collider->AutoRelease();
+		return collider;
+	}
+
+	SAFE_DELETE(collider);
+	return nullptr;
+}
+
+bool CircleCollider::InitializeWithCircle(float radius, const Vector2& offset)
+{
+	m_Radius = radius;
+
+	return true;
 }
 
 bool CircleCollider::IsCollideWith(Collider* other)
@@ -17,10 +36,8 @@ bool CircleCollider::IsCollideWith(Collider* other)
 
 bool CircleCollider::IsCollideWith(CircleCollider* other)
 {
-	auto delta = GetParent()->GetPosition() - other->GetParent()->GetPosition();
-	auto distance = sqrt(pow(delta.x, 2) + pow(delta.y, 2));
-
-	printf("°Å¸® %f\n", distance);
+	auto deltaPosition = GetParent()->GetPosition() - other->GetParent()->GetPosition();
+	auto distance = sqrt(pow(deltaPosition.x, 2) + pow(deltaPosition.y, 2));
 
 	if (distance > (GetRadius() + other->GetRadius()))
 		return false;

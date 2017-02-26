@@ -6,7 +6,7 @@
 #include "Director.h"
 #include "Label.h"
 
-#include "CollisionManager.h"
+//#include "CollisionManager.h"
 #include "Console.h"
 
 #include "AutoReleasePool.h"
@@ -36,7 +36,7 @@ bool Application::Initialize(wchar_t* title, int width, int height, bool fullScr
     m_Director = Director::GetInstance();
     m_Director->Initialize();
 
-	CollisionManager::GetInstance()->Initialize();
+	//CollisionManager::GetInstance()->Initialize();
 
     return true;
 }
@@ -87,7 +87,7 @@ bool Application::Run()
             Input::GetInstance()->Update();
 
             Director::GetInstance()->Update(deltaTime);
-			CollisionManager::GetInstance()->Update(deltaTime);
+			//CollisionManager::GetInstance()->Update(deltaTime);
 
             // Render
             m_Renderer->Begin();
@@ -111,10 +111,11 @@ LRESULT Application::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
         {
         case WA_ACTIVE:
         case WA_CLICKACTIVE:
-            Application::GetInstance()->m_Actived = true;
+			Application::GetInstance()->SetActive(true);
             break;
         case WA_INACTIVE:
-            Application::GetInstance()->m_Actived = false;
+			Input::GetInstance()->Clear();
+			Application::GetInstance()->SetActive(false);
             break;
         }
 

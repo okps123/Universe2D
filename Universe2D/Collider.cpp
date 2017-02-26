@@ -1,14 +1,31 @@
 #include "Precompiled.h"
 #include "Collider.h"
 
-#include "CollisionManager.h"
+#include "CircleCollider.h"
+#include "BoxCollider.h"
 
 Collider::Collider()
 {
-	CollisionManager::GetInstance()->AddCollider(this);
 }
-
 Collider::~Collider()
 {
-	CollisionManager::GetInstance()->RemoveCollider(this);
 }
+
+bool Collider::Initialize()
+{
+	//CollisionManager::GetInstance()->AddChild(this);
+
+	return true;
+}
+
+Collider* Collider::CreateCircle(float radius, const Vector2& offset)
+{
+	auto collider = CircleCollider::Create(radius, offset);
+	if (collider)
+	{
+		return collider;
+	}
+
+	return nullptr;
+}
+

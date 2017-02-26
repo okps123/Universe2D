@@ -25,29 +25,11 @@
     <Filter Include="Framework\Node\UI">
       <UniqueIdentifier>{d374da4c-cf85-4c8d-83a6-d671d4b7d9db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\UI\Label">
-      <UniqueIdentifier>{3bd8ccf1-3a2a-4971-8882-9c721df418a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Node\Frame">
       <UniqueIdentifier>{61e22435-b7d8-4e53-967c-6d654921cc22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\AnimationSprite">
-      <UniqueIdentifier>{eb0f2fc8-673f-4537-986c-6649ffd3f77c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Collider">
-      <UniqueIdentifier>{692422be-46ad-4637-9a06-c7dc0a62f366}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Collider\Box">
-      <UniqueIdentifier>{110c0c20-1070-471f-9afb-a0a272456d40}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Collider\Circle">
-      <UniqueIdentifier>{6b222e54-ffc8-4031-b428-50e77d7a7f8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Collision">
-      <UniqueIdentifier>{b2641eda-10cd-47fb-9fd1-860bdbd7ce33}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Collision\Manager">
-      <UniqueIdentifier>{8642df10-4139-4553-a3e7-bbe84c971709}</UniqueIdentifier>
+    <Filter Include="Framework\Physics">
+      <UniqueIdentifier>{28802472-fbce-46e5-9ed7-889e03f147d6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,26 +45,8 @@
     <ClInclude Include="Scene.h">
       <Filter>Framework\Node\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Label.h">
-      <Filter>Framework\Node\UI\Label</Filter>
-    </ClInclude>
     <ClInclude Include="Frame.h">
       <Filter>Framework\Node\Frame</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationSprite.h">
-      <Filter>Framework\Node\AnimationSprite</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>Framework\Node\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxCollider.h">
-      <Filter>Framework\Node\Collider\Box</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleCollider.h">
-      <Filter>Framework\Node\Collider\Circle</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionManager.h">
-      <Filter>Framework\Node\Collision\Manager</Filter>
     </ClInclude>
     <ClInclude Include="TypeDefine.h">
       <Filter>Framework\Header</Filter>
@@ -120,6 +84,21 @@
     <ClInclude Include="Reference.h">
       <Filter>Framework\Node</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Framework\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleCollider.h">
+      <Filter>Framework\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Framework\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSprite.h">
+      <Filter>Framework\Node\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Framework\Node\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -134,26 +113,8 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Framework\Node\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Label.cpp">
-      <Filter>Framework\Node\UI\Label</Filter>
-    </ClCompile>
     <ClCompile Include="Frame.cpp">
       <Filter>Framework\Node\Frame</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationSprite.cpp">
-      <Filter>Framework\Node\AnimationSprite</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Framework\Node\Collider</Filter>
-    </ClCompile>
-    <ClCompile Include="BoxCollider.cpp">
-      <Filter>Framework\Node\Collider\Box</Filter>
-    </ClCompile>
-    <ClCompile Include="CircleCollider.cpp">
-      <Filter>Framework\Node\Collider\Circle</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionManager.cpp">
-      <Filter>Framework\Node\Collision\Manager</Filter>
     </ClCompile>
     <ClCompile Include="TypeDefine.cpp">
       <Filter>Framework\Header</Filter>
@@ -181,6 +142,21 @@
     </ClCompile>
     <ClCompile Include="Reference.cpp">
       <Filter>Framework\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Framework\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleCollider.cpp">
+      <Filter>Framework\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Framework\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSprite.cpp">
+      <Filter>Framework\Node\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Framework\Node\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

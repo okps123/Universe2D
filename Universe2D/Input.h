@@ -22,6 +22,8 @@ public:
 
     void Update();
 
+	void Clear();
+
 public:
     KeyState GetKeyState(int key);
 

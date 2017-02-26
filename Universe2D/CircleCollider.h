@@ -8,8 +8,13 @@ private:
 	float m_Radius;
 
 public:
-	CircleCollider(float radius);
+	CircleCollider();
 	~CircleCollider();
+
+	static CircleCollider* Create(float radius, const Vector2& offset);
+
+public:
+	bool InitializeWithCircle(float radius, const Vector2& offset);
 
 public:
 	float GetRadius() { return m_Radius; }

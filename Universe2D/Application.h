@@ -19,7 +19,7 @@ private:
     int m_Width;
     int m_Height;
 
-    bool m_Actived;
+    bool m_Active;
 
 private:
     int m_Fps;
@@ -41,14 +41,15 @@ public:
     bool Run();
 
 public:
-    inline bool GetActived() { return m_Actived; }
+    bool GetActive() { return m_Active; }
+	void SetActive(bool value) { m_Active = value; }
 
-    inline int GetWidth() { return m_Width; }
-    inline int GetHeight() { return m_Height; }
+    int GetWidth() { return m_Width; }
+    int GetHeight() { return m_Height; }
 
-    inline HWND GetHWND() { return m_hWnd; }
+    HWND GetHWND() { return m_hWnd; }
 
-    inline Renderer* GetRenderer() { return m_Renderer; }
+    Renderer* GetRenderer() { return m_Renderer; }
 
 private:
     bool _CreateWindow(wchar_t* title, int width, int height, bool fullScreen);
