@@ -1,12 +1,9 @@
-#pragma once
+ #pragma once
 
-class Collider;
 class SampleScene1 : public Scene
 {
 private:
 	Sprite* circle1;
-	Sprite* circle2;
-	Collider* collider2;
 
 public:
     SampleScene1();
