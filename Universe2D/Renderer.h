@@ -2,10 +2,10 @@
 class Renderer 
 {
 private:
-    LPDIRECT3D9 lpDirect3D;
-    LPDIRECT3DDEVICE9 lpDevice;
+    LPDIRECT3D9 m_lpDirect3D;
+    LPDIRECT3DDEVICE9 m_lpDevice;
     
-    LPD3DXSPRITE lpSprite;
+    LPD3DXSPRITE m_lpSprite;
 
 public:
     Renderer();
@@ -18,9 +18,9 @@ public:
     void End();
 
 public:
-    LPDIRECT3D9 GetDirect3D() const { return lpDirect3D; }
-    LPDIRECT3DDEVICE9 GetDevice() const { return lpDevice; }
+    LPDIRECT3D9 GetDirect3D() const { return m_lpDirect3D; }
+    LPDIRECT3DDEVICE9 GetDevice() const { return m_lpDevice; }
 
-    LPD3DXSPRITE GetSprite() const { return lpSprite; }
+    LPD3DXSPRITE GetSprite() const { return m_lpSprite; }
 };
 

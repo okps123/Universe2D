@@ -3,7 +3,7 @@
 class SampleScene1 : public Scene
 {
 private:
-	Sprite* circle1;
+	Sprite* m_Circle1;
 
 public:
     SampleScene1();

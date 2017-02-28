@@ -11,6 +11,7 @@ public:
 	CircleCollider();
 	~CircleCollider();
 
+	static CircleCollider* Create(float radius);
 	static CircleCollider* Create(float radius, const Vector2& offset);
 
 public:

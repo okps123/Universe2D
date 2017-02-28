@@ -10,9 +10,10 @@ protected:
 	Vector2 m_Offset;
 
 public:
-	Collider() {};
-	~Collider() {};
+	Collider();
+	~Collider();
 
+	static Collider* CreateCircle(float radius);
 	static Collider* CreateCircle(float radius, const Vector2& offset);
 	// Box Create 구현해야함
 

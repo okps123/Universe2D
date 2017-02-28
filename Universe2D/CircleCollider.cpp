@@ -10,6 +10,11 @@ CircleCollider::~CircleCollider()
 {
 }
 
+CircleCollider* CircleCollider::Create(float radius)
+{
+	return CircleCollider::Create(radius, Vector2(0.f, 0.f));
+}
+
 CircleCollider* CircleCollider::Create(float radius, const Vector2& offset)
 {
 	auto collider = new (std::nothrow) CircleCollider();

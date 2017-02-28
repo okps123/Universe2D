@@ -24,6 +24,7 @@ Object::Object()
 	, m_AnchorPoint(.0f, .0f)
 	, m_AnchorPointInPoints(.0f, .0f)
 	, m_Scale(1.f, 1.f)
+	, m_Size(0.0f, .0f)
 	, m_Rotation(0.f)
 	, m_Visible(true)
 	, m_TransformUpdated(false)
@@ -61,9 +62,10 @@ void Object::Render()
 	// Transform이 수정됬다면 업데이트
 	if (m_TransformUpdated == false)
 	{
-		D3DXMatrixTransformation2D(&m_Matrix, NULL, .0f, &m_Scale, NULL, m_Rotation, &m_Position);
 		m_TransformUpdated = true;
 	}
+
+	D3DXMatrixTransformation2D(&m_Matrix, NULL, .0f, &m_Scale, NULL, m_Rotation, &m_Position);
 
 	if (m_Parent)
 		m_Matrix *= m_Parent->GetMatrix();

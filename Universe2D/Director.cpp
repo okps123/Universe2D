@@ -19,8 +19,6 @@ bool Director::Initialize()
 }
 bool Director::Release()
 {
-    SAFE_DELETE(m_CurrentScene);
-
     return true;
 }
 
@@ -47,9 +45,10 @@ bool Director::SetScene(Scene* scene)
 {
     if (m_CurrentScene)
     {
-        SAFE_DELETE(scene);
+		m_CurrentScene->Retain();
     }
     m_CurrentScene = scene;
+	m_CurrentScene->Retain();
 
     return true;
 }

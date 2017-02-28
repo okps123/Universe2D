@@ -11,7 +11,7 @@ Renderer::~Renderer()
 
 bool Renderer::Initialize(HWND hWnd, int width, int height, bool fullScreen)
 {
-    if ((lpDirect3D = Direct3DCreate9(D3D_SDK_VERSION)) == NULL)
+    if ((m_lpDirect3D = Direct3DCreate9(D3D_SDK_VERSION)) == NULL)
         return false;
 
     D3DPRESENT_PARAMETERS pp = {};
@@ -23,32 +23,32 @@ bool Renderer::Initialize(HWND hWnd, int width, int height, bool fullScreen)
     pp.hDeviceWindow = hWnd;
 
     HRESULT hr;
-    hr = lpDirect3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
-        D3DCREATE_SOFTWARE_VERTEXPROCESSING, &pp, &lpDevice);
+    hr = m_lpDirect3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
+        D3DCREATE_SOFTWARE_VERTEXPROCESSING, &pp, &m_lpDevice);
 
     if FAILED(hr)
         return false;
 
-    lpDevice->SetRenderState(D3DRS_MULTISAMPLEANTIALIAS, TRUE);
-    lpDevice->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, TRUE);
+    m_lpDevice->SetRenderState(D3DRS_MULTISAMPLEANTIALIAS, TRUE);
+	m_lpDevice->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, TRUE);
 
     return true;
 }
 bool Renderer::Release()
 {
-    SAFE_RELEASE(lpDevice);
-    SAFE_RELEASE(lpDirect3D);
+    SAFE_RELEASE(m_lpDevice);
+    SAFE_RELEASE(m_lpDirect3D);
 
     return true;
 }
 
 void Renderer::Begin()
 {
-    if SUCCEEDED(lpDevice->BeginScene())
-        lpDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(50, 50, 50), 1.0f, 0);
+    if SUCCEEDED(m_lpDevice->BeginScene())
+		m_lpDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(50, 50, 50), 1.0f, 0);
 }
 void Renderer::End()
 {
-    if SUCCEEDED(lpDevice->EndScene())
-        lpDevice->Present(NULL, NULL, NULL, NULL);
+    if SUCCEEDED(m_lpDevice->EndScene())
+		m_lpDevice->Present(NULL, NULL, NULL, NULL);
 }

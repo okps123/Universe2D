@@ -17,16 +17,11 @@ void AnimationSprite::AddFrame(std::wstring fileName)
 	spriteFrame->SetParent(this);
 
 	m_SpriteList.push_back(spriteFrame);
+	spriteFrame->Retain();
 }
 
 AnimationSprite::~AnimationSprite()
 {
-	for (auto frame : m_SpriteList)
-	{
-		SAFE_DELETE(frame);
-	}
-
-	m_SpriteList.clear();
 }
 
 void AnimationSprite::Update(float deltaTime)
