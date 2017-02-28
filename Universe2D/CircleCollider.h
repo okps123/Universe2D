@@ -17,7 +17,8 @@ public:
 	bool InitializeWithCircle(float radius, const Vector2& offset);
 
 public:
-	float GetRadius() { return m_Radius; }
+	float GetRadius() const { return m_Radius; }
+	void SetRadius(float radius) { m_Radius = radius; }
 
 public:
 	bool IsCollideWith(Collider* other);

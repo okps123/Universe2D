@@ -6,7 +6,7 @@ class CircleCollider;
 
 class Collider : public Object
 {
-private:
+protected:
 	Vector2 m_Offset;
 
 public:
@@ -33,9 +33,9 @@ public:
 	}
 
 public:
+	// Collision 함수가 호출되면 부모 오브젝트로 전달합니다
 	virtual void OnCollision(Collider* collider) override
 	{
-		// Collision 함수가 호출되면 부모 오브젝트로 전달합니다
 		this->GetParent()->OnCollision(collider);
 	};
 };

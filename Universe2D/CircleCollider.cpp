@@ -1,5 +1,6 @@
 #include "Precompiled.h"
 #include "CircleCollider.h"
+
 #include "Object.h"
 
 CircleCollider::CircleCollider() : m_Radius(0.f)
@@ -24,7 +25,8 @@ CircleCollider* CircleCollider::Create(float radius, const Vector2& offset)
 
 bool CircleCollider::InitializeWithCircle(float radius, const Vector2& offset)
 {
-	m_Radius = radius;
+	SetRadius(radius);
+	SetOffset(offset);
 
 	return true;
 }
@@ -36,8 +38,8 @@ bool CircleCollider::IsCollideWith(Collider* other)
 
 bool CircleCollider::IsCollideWith(CircleCollider* other)
 {
-	auto deltaPosition = GetParent()->GetPosition() - other->GetParent()->GetPosition();
-	auto distance = sqrt(pow(deltaPosition.x, 2) + pow(deltaPosition.y, 2));
+	auto deltaPos = (GetParent()->GetPosition() + GetOffset()) - other->GetParent()->GetPosition();
+	auto distance = sqrt(pow(deltaPos.x, 2) + pow(deltaPos.y, 2));
 
 	if (distance > (GetRadius() + other->GetRadius()))
 		return false;
