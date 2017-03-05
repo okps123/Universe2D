@@ -1,5 +1,6 @@
 #pragma once
-class Renderer 
+
+class Renderer : public Singleton<Renderer>
 {
 private:
     LPDIRECT3D9 m_lpDirect3D;

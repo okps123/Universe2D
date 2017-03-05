@@ -42,8 +42,7 @@ bool Sprite::InitializeWithFile(const std::wstring & fileName)
 	auto textureSize = m_Texture->GetSize();
 	SetSize(textureSize);
 
-	auto renderer = Application::GetInstance()->GetRenderer();
-	if FAILED(D3DXCreateSprite(renderer->GetDevice(), &m_D3DSprite))
+	if FAILED(D3DXCreateSprite(Renderer::GetInstance()->GetDevice(), &m_D3DSprite))
 		return false;
 
 	SetAnchorPoint({ 0.5f, 0.5f });

@@ -36,16 +36,15 @@ Label::~Label()
 
 bool Label::InitializeWithFont(const std::wstring& fontFace, int fontSize, D3DCOLOR fontColor)
 {
-	m_FontFace = fontFace;
-	m_FontSize = fontSize;
-
-	auto renderer = Application::GetInstance()->GetRenderer();
-	HRESULT hr = D3DXCreateFont(renderer->GetDevice(),
+	HRESULT hr = D3DXCreateFont(Renderer::GetInstance()->GetDevice(),
 		fontSize, 0, FW_NORMAL, D3DX_DEFAULT, false, DEFAULT_CHARSET, OUT_TT_PRECIS,
 		ANTIALIASED_QUALITY, NULL, fontFace.c_str(), &m_Font);
 
 	if FAILED(hr)
 		return false;
+
+	m_FontFace = fontFace;
+	m_FontSize = fontSize;
 
 	return true;
 }

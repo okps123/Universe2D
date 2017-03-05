@@ -28,11 +28,13 @@ bool Application::Initialize(wchar_t* title, int width, int height, bool fullScr
 
     _CreateWindow(title, width, height, fullScreen);
 
-    m_Renderer = new Renderer();
-    m_Renderer->Initialize(m_hWnd, width, height, fullScreen);
+	// 렌더러 초기화
+	if (Renderer::GetInstance()->Initialize(m_hWnd, width, height, fullScreen) == false)
+		return false;
 
-    m_Director = Director::GetInstance();
-    m_Director->Initialize();
+	// 디렉터 초기화
+	if (Director::GetInstance()->Initialize() == false)
+		return false;
 
 	//CollisionManager::GetInstance()->Initialize();
 
@@ -41,14 +43,15 @@ bool Application::Initialize(wchar_t* title, int width, int height, bool fullScr
 
 bool Application::Release()
 {
-    // 소멸자에서 자동으로 릴리즈
-    SAFE_DELETE(m_Renderer);
-
-    m_Director->Release();
-
 #if _DEBUG
     Console::Release();
 #endif
+
+	if (Director::GetInstance()->Release() == false)
+		return false;
+
+	if (Renderer::GetInstance()->Release() == false)
+		return false;
 
     return true;
 }
@@ -88,11 +91,9 @@ bool Application::Run()
 			//CollisionManager::GetInstance()->Update(deltaTime);
 
             // Render
-            m_Renderer->Begin();
-            m_Director->Render();
-            m_Renderer->End();
-
-			
+            Renderer::GetInstance()->Begin();
+            Director::GetInstance()->Render();
+            Renderer::GetInstance()->End();
 
             m_PrevTime = m_NowTime;
         }

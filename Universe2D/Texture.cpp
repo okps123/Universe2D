@@ -1,7 +1,6 @@
 #include "Precompiled.h"
 #include "Texture.h"
 
-#include "Application.h"
 #include "Renderer.h"
 
 Texture* Texture::Create(const std::wstring& fileName)
@@ -29,12 +28,9 @@ Texture::~Texture()
 
 bool Texture::InitializeWithFile(const std::wstring& fileName)
 {
-	// Application에 강한 의존성을 가지고 있음
-	auto renderer = Application::GetInstance()->GetRenderer();
-
 	HRESULT hr;
 	hr = D3DXCreateTextureFromFileEx(
-		renderer->GetDevice(),
+		Renderer::GetInstance()->GetDevice(),
 		fileName.c_str(),
 		D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2,
 		1, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED,
