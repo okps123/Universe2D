@@ -5,7 +5,7 @@ enum KeyState
     KEY_DOWN,
     KEY_PRESSED,
     KEY_UP,
-    KEY_NOTPRESSED,
+    KEY_NOTPRESSED = 0
 };
 
 class Input : public Singleton<Input>
@@ -26,6 +26,15 @@ public:
 
 public:
     KeyState GetKeyState(int key);
+
+	KeyState GetMouseLeftButtonState()
+	{
+		return GetKeyState(VK_LBUTTON);
+	}
+	KeyState GetMouseRightButtonState()
+	{
+		return GetKeyState(VK_RBUTTON);
+	}
 
 private:
     void UpdateKeyState();
