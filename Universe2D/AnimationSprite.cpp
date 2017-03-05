@@ -17,7 +17,6 @@ void AnimationSprite::AddFrame(std::wstring fileName)
 	spriteFrame->SetParent(this);
 
 	m_SpriteList.push_back(spriteFrame);
-	spriteFrame->Retain();
 }
 
 AnimationSprite::~AnimationSprite()

@@ -16,20 +16,15 @@ Sprite::Sprite()
 }
 Sprite::~Sprite()
 {
-	printf("[Sprite] Sprite Called Destructor\n");
-
 	if (m_D3DSprite)
 		SAFE_RELEASE(m_D3DSprite);
 }
 
 Sprite* Sprite::Create(std::wstring fileName)
 {
-	printf("[Sprite] Called Static Create()\n");
-
 	auto sprite = new (std::nothrow) Sprite();
 	if (sprite && sprite->InitializeWithFile(fileName))
 	{
-		sprite->AutoRelease();
 		return sprite;
 	}
 

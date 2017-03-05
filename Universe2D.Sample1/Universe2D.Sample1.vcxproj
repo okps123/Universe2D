@@ -157,11 +157,13 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Precompiled.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="SampleScene1.cpp" />
+    <ClCompile Include="SampleScene2.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="SampleScene1.h" />
+    <ClInclude Include="SampleScene2.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Universe2D\Universe2D.vcxproj">

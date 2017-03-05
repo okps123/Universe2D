@@ -1,7 +1,6 @@
 #pragma once
-#include "Reference.h"
 
-class Texture : public Reference
+class Texture
 {
 private:
     std::wstring m_FileName;

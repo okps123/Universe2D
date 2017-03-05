@@ -1,5 +1,4 @@
 #pragma once
-#include "Reference.h"
 
 /* 
 모든 오브젝트의 부모가 되는 클래스입니다
@@ -9,7 +8,7 @@
 */
 
 class Collider;
-class Object : public Reference
+class Object
 {
 protected:
 	typedef std::vector<Object*> ObjectList;
@@ -39,7 +38,7 @@ public:
 	virtual ~Object();
 
 public:
-	virtual bool Initialize() override;
+	virtual bool Initialize();
 
 public:
 	virtual void OnCollision(Collider* collider) {};

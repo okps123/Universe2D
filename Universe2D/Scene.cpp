@@ -15,7 +15,6 @@ Scene* Scene::Create()
 	auto scene = new (std::nothrow) Scene();
 	if (scene && scene->Initialize())
 	{
-		scene->AutoRelease();
 		return scene;
 	}
 

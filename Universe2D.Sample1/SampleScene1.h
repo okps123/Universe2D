@@ -3,13 +3,17 @@
 class SampleScene1 : public Scene
 {
 private:
-	Sprite* m_Circle1;
 
 public:
     SampleScene1();
     ~SampleScene1();
 
+	static Scene* Create();
+
 public:
-    void Update(float deltaTime);
-    void Render();
+	bool Initialize() override;
+
+public:
+    void Update(float deltaTime) override;
+    void Render() override;
 };

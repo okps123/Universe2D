@@ -20,7 +20,6 @@ CircleCollider* CircleCollider::Create(float radius, const Vector2& offset)
 	auto collider = new (std::nothrow) CircleCollider();
 	if (collider && collider->InitializeWithCircle(radius, offset))
 	{
-		collider->AutoRelease();
 		return collider;
 	}
 

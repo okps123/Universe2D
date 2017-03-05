@@ -13,7 +13,6 @@ Label* Label::Create(const std::wstring& fontFace, int fontSize, D3DCOLOR color)
 	auto label = new (std::nothrow) Label();
 	if (label && label->InitializeWithFont(fontFace, fontSize, color))
 	{
-		label->AutoRelease();
 		return label;
 	}
 

@@ -8,6 +8,9 @@
     <ClCompile Include="SampleScene1.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="SampleScene2.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -25,6 +28,9 @@
       <Filter>Game\Header</Filter>
     </ClInclude>
     <ClInclude Include="SampleScene1.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleScene2.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>

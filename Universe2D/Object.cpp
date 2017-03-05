@@ -1,21 +1,16 @@
 #include "Precompiled.h"
 #include "Object.h"
 
-#include "AutoReleasePool.h"
-
 Object* Object::Create()
 {
 	auto obj = new (std::nothrow) Object();
 	if (obj && obj->Initialize())
 	{
-		obj->AutoRelease();
+		return obj;
 	}
-	else
-	{
-		SAFE_DELETE(obj);
-	}
-
-	return obj;
+	
+	SAFE_DELETE(obj);
+	return nullptr;
 }
 
 Object::Object()
@@ -33,11 +28,9 @@ Object::Object()
 }
 Object::~Object()
 {
-	for each (const auto& child in m_Children)
-	{
-		child->SetParent(nullptr);
-		child->Release();
-	}
+	for each (auto child in m_Children)
+		SAFE_DELETE(child);
+
 	m_Children.clear();
 }
 
@@ -60,10 +53,13 @@ void Object::Render()
 		return;
 
 	// Transform이 수정됬다면 업데이트
-	if (m_TransformUpdated == false)
-	{
-		m_TransformUpdated = true;
-	}
+	// 03.05 Matrix가 연산되지않으면 이전 연산이 계속 반복되는 오류가 있어서 주석처리함
+
+	//if (m_TransformUpdated == false)
+	//{
+	//	m_TransformUpdated = true;
+	//}
+
 
 	D3DXMatrixTransformation2D(&m_Matrix, NULL, .0f, &m_Scale, NULL, m_Rotation, &m_Position);
 
@@ -117,7 +113,6 @@ void Object::AddChild(Object* child)
 		return;
 
 	child->SetParent(this);
-	child->Retain();
 
 	m_Children.push_back(child);
 }
@@ -129,8 +124,7 @@ void Object::RemoveChild(Object* child)
 	auto iterator = std::find(std::begin(m_Children), std::end(m_Children), child);
 	if (iterator != m_Children.end())
 	{
-		child->SetParent(nullptr);
-		child->Release();
+		SAFE_DELETE(child);
 
 		m_Children.erase(iterator);
 	}

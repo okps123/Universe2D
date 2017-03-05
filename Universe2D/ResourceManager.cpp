@@ -21,9 +21,8 @@ Texture* ResourceManager::LoadTextureFromFile(const std::wstring& fileName)
         if (texture == nullptr)
             return nullptr;
 
-		// CacheMap에 등록하고 참조 카운터를 증가시킵니다
+		// CacheMap에 등록한다
 		m_TextureCacheMap[fileName] = texture;
-		texture->Retain();
     }
 
     return m_TextureCacheMap[fileName];

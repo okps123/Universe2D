@@ -78,12 +78,6 @@
     <ClInclude Include="Universe2D.h">
       <Filter>Framework\Header</Filter>
     </ClInclude>
-    <ClInclude Include="AutoReleasePool.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Reference.h">
-      <Filter>Framework\Node</Filter>
-    </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Framework\Physics</Filter>
     </ClInclude>
@@ -136,12 +130,6 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Framework\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="AutoReleasePool.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Reference.cpp">
-      <Filter>Framework\Node</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Framework\Physics</Filter>

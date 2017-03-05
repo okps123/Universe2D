@@ -9,8 +9,6 @@
 //#include "CollisionManager.h"
 #include "Console.h"
 
-#include "AutoReleasePool.h"
-
 Application::Application()
 {
 }
@@ -94,7 +92,7 @@ bool Application::Run()
             m_Director->Render();
             m_Renderer->End();
 
-			AutoReleasePool::GetInstance()->Clear();
+			
 
             m_PrevTime = m_NowTime;
         }

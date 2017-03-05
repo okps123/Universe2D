@@ -9,7 +9,6 @@ Texture* Texture::Create(const std::wstring& fileName)
 	auto texture = new (std::nothrow) Texture();
 	if (texture && texture->InitializeWithFile(fileName))
 	{
-		texture->AutoRelease();
 		return texture;
 	}
 
