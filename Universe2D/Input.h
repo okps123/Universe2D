@@ -8,13 +8,20 @@ enum KeyState
     KEY_NOTPRESSED = 0
 };
 
+enum MouseButton
+{
+	Left = VK_LBUTTON,
+	Middle = VK_MBUTTON,
+	Right = VK_RBUTTON
+};
+
 class Input : public Singleton<Input>
 {
 private:
     bool m_PrevKeyState[256];
     bool m_NowKeyState[256];
 
-    D3DXVECTOR2 m_MousePosition;
+    Vector2 m_MousePosition;
 
 public:
     Input();
@@ -26,14 +33,11 @@ public:
 
 public:
     KeyState GetKeyState(int key);
+	KeyState GetMouseButtonState(MouseButton button);
 
-	KeyState GetMouseLeftButtonState()
+	Vector2 GetMousePosition()
 	{
-		return GetKeyState(VK_LBUTTON);
-	}
-	KeyState GetMouseRightButtonState()
-	{
-		return GetKeyState(VK_RBUTTON);
+		return m_MousePosition;
 	}
 
 private:

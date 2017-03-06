@@ -52,6 +52,11 @@ KeyState Input::GetKeyState(int key)
     return KEY_NOTPRESSED;
 }
 
+KeyState Input::GetMouseButtonState(MouseButton button)
+{
+	return GetKeyState(button);
+}
+
 void Input::UpdateKeyState()
 {
     for (int i = 0; i < 256; i++)

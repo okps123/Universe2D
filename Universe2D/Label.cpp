@@ -1,7 +1,6 @@
 #include "Precompiled.h"
 #include "Label.h"
 
-#include "Application.h"
 #include "Renderer.h"
 
 Label* Label::Create(const std::wstring& fontFace, int fontSize)
@@ -40,6 +39,7 @@ bool Label::InitializeWithFont(const std::wstring& fontFace, int fontSize, D3DCO
 		fontSize, 0, FW_NORMAL, D3DX_DEFAULT, false, DEFAULT_CHARSET, OUT_TT_PRECIS,
 		ANTIALIASED_QUALITY, NULL, fontFace.c_str(), &m_Font);
 
+	// 폰트 생성에 실패
 	if FAILED(hr)
 		return false;
 
