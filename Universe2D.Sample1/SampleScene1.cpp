@@ -24,7 +24,6 @@ Scene* SampleScene1::Create()
 
 bool SampleScene1::Initialize()
 {
-	AddChild(Sprite::Create(L"Resources\\test.jpg"));
 
 	return true;
 }
@@ -36,6 +35,15 @@ void SampleScene1::Update(float deltaTime)
 	if (Input::GetInstance()->GetKeyState('2') == KeyState::KEY_PRESSED)
 	{
 		Director::GetInstance()->SetScene(SampleScene2::Create());
+	}
+
+	if (Input::GetInstance()->GetMouseLeftButtonState() == KEY_PRESSED)
+	{
+		auto sprite = Sprite::Create(L"Resources\\circle_100px.png");
+		sprite->SetPosition(Input::GetInstance()->GetMousePosition());
+		sprite->Resize(10, 10);
+
+		AddChild(sprite);
 	}
 
     // ¿Ãµø
