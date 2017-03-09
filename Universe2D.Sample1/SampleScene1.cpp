@@ -24,10 +24,7 @@ Scene* SampleScene1::Create()
 
 bool SampleScene1::Initialize()
 {
-	for (int i = 0; i < 1000; i++)
-	{
-		AddChild(Sprite::Create(L"Resources\\test.jpg"));
-	}
+	AddChild(Sprite::Create(L"Resources\\test.jpg"));
 
 	return true;
 }
