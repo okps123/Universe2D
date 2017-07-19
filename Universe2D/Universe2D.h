@@ -1,5 +1,8 @@
 #pragma once
 
+#define SAFE_DELETE(x) { if(x) { delete x; x = NULL; } }
+#define SAFE_RELEASE(x) { if(x) { x->Release(); x = NULL; } }
+
 #define WIN32_LEAN_AND_MEAN
 
 #include <Windows.h>
@@ -15,5 +18,20 @@
 #include "TypeDefine.h"
 #include "Singleton.h"
 
-#define SAFE_DELETE(x) { if(x) { delete x; x = NULL; } }
-#define SAFE_RELEASE(x) { if(x) { x->Release(); x = NULL; } }
+#include "Scene.h"
+#include "Director.h"
+
+#include "Renderer.h"
+#include "Application.h"
+
+#include "Input.h"
+
+#include "Texture.h"
+#include "ResourceManager.h"
+
+#include "Object.h"
+#include "Frame.h"
+#include "Sprite.h"
+#include "AnimationSprite.h"
+
+

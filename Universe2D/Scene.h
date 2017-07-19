@@ -7,7 +7,8 @@ public:
 	Scene();
     virtual ~Scene();
 
-	static Scene* Create();
+public:
+	CREATE_FUNC(Scene);
 
 public:
 	virtual bool Initialize() override;

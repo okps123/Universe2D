@@ -11,17 +11,6 @@ SampleScene1::~SampleScene1()
 {
 }
 
-Scene* SampleScene1::Create()
-{
-	auto scene = new (std::nothrow) SampleScene1();
-	if (scene && scene->Initialize())
-	{
-		return scene;
-	}
-
-	return nullptr;
-}
-
 bool SampleScene1::Initialize()
 {
 	return true;
@@ -65,21 +54,21 @@ void SampleScene1::Update(float deltaTime)
     // 확대 축소
     if (Input::GetInstance()->GetKeyState('R') == KeyState::KEY_PRESSED)
     {
-		TranslateScale(0.01f, 0.01f);
+		Scale(0.01f, 0.01f);
     }
     else if (Input::GetInstance()->GetKeyState('T') == KeyState::KEY_PRESSED)
     {
-		TranslateScale(-0.01f, -0.01f);
+		Scale(-0.01f, -0.01f);
     }
 
     // 회전
     if (Input::GetInstance()->GetKeyState('Q') == KeyState::KEY_PRESSED)
     {
-		TranslateRotate(0.05f);
+		Rotate(0.05f);
     }
     else if (Input::GetInstance()->GetKeyState('E') == KeyState::KEY_PRESSED)
     {
-		TranslateRotate(-0.05f);
+		Rotate(-0.05f);
     }
 }
 void SampleScene1::Render()

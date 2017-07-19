@@ -1,11 +1,6 @@
 #include "Precompiled.h"
 #include "Sprite.h"
 
-#include "Application.h"
-#include "ResourceManager.h"
-#include "Renderer.h"
-#include "Texture.h"
-
 Sprite::Sprite()
 	: m_ColorA(0)
 	, m_ColorR(0)
@@ -16,8 +11,6 @@ Sprite::Sprite()
 }
 Sprite::~Sprite()
 {
-	if (m_D3DSprite)
-		SAFE_RELEASE(m_D3DSprite);
 }
 
 Sprite* Sprite::Create(std::wstring fileName)
@@ -37,13 +30,11 @@ bool Sprite::InitializeWithFile(const std::wstring & fileName)
 {
 	m_Texture = ResourceManager::GetInstance()->LoadTextureFromFile(fileName);
 	if (!m_Texture)
+
 		return false;
 
 	auto textureSize = m_Texture->GetSize();
 	SetSize(textureSize);
-
-	if FAILED(D3DXCreateSprite(Renderer::GetInstance()->GetDevice(), &m_D3DSprite))
-		return false;
 
 	SetAnchorPoint({ 0.5f, 0.5f });
 
@@ -76,11 +67,12 @@ void Sprite::Render()
 
 	D3DXVECTOR3 center(m_AnchorPointInPoints.x, m_AnchorPointInPoints.y, 0.f);
 
-	m_D3DSprite->Begin(D3DXSPRITE_ALPHABLEND);
-	m_D3DSprite->SetTransform(&m_Matrix);
-	m_D3DSprite->Draw(
+	auto sprite = Renderer::GetInstance()->GetSprite();
+	sprite->Begin(D3DXSPRITE_ALPHABLEND);
+	sprite->SetTransform(&m_Matrix);
+	sprite->Draw(
 		m_Texture->GetD3DTexture(),
 		&srcRect, &center, NULL,
 		D3DCOLOR_ARGB(255 - m_ColorA, 255 - m_ColorR, 255 - m_ColorG, 255 - m_ColorB));
-	m_D3DSprite->End();
+	sprite->End();
 }

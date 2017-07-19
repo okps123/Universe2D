@@ -1,12 +1,6 @@
 #include "Precompiled.h"
 #include "Application.h"
 
-#include "Input.h"
-#include "Renderer.h"
-#include "Director.h"
-#include "Label.h"
-
-//#include "CollisionManager.h"
 #include "Console.h"
 
 Application::Application()

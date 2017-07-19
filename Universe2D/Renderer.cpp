@@ -23,19 +23,26 @@ bool Renderer::Initialize(HWND hWnd, int width, int height, bool fullScreen)
     pp.hDeviceWindow = hWnd;
 
     HRESULT hr;
+
     hr = m_lpDirect3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
         D3DCREATE_SOFTWARE_VERTEXPROCESSING, &pp, &m_lpDevice);
 
-    if FAILED(hr)
-        return false;
+	if FAILED(hr) {
+		return false;
+	}
 
     m_lpDevice->SetRenderState(D3DRS_MULTISAMPLEANTIALIAS, TRUE);
 	m_lpDevice->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, TRUE);
+
+	if FAILED(D3DXCreateSprite(m_lpDevice, &m_lpSprite)) {
+		return false;
+	}
 
     return true;
 }
 bool Renderer::Release()
 {
+	SAFE_RELEASE(m_lpSprite);
     SAFE_RELEASE(m_lpDevice);
     SAFE_RELEASE(m_lpDirect3D);
 

@@ -10,18 +10,6 @@ Scene::~Scene()
 {
 }
 
-Scene* Scene::Create()
-{
-	auto scene = new (std::nothrow) Scene();
-	if (scene && scene->Initialize())
-	{
-		return scene;
-	}
-
-	SAFE_DELETE(scene);
-	return nullptr;
-}
-
 bool Scene::Initialize()
 {
 	SetSize(Director::GetInstance()->GetWindowSize());

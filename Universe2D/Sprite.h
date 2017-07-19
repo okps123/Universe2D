@@ -1,17 +1,10 @@
 #pragma once
-#include "Object.h"
-
-class Renderer;
-class Texture;
 
 class Sprite : public Object
 {
 protected:
     Texture* m_Texture;
-
 	byte m_ColorA, m_ColorR, m_ColorG, m_ColorB;
-
-	LPD3DXSPRITE m_D3DSprite;
 
 public:
 	Sprite();

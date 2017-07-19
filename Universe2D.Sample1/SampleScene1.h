@@ -8,7 +8,8 @@ public:
     SampleScene1();
     ~SampleScene1();
 
-	static Scene* Create();
+public:
+	CREATE_FUNC(SampleScene1);
 
 public:
 	bool Initialize() override;
