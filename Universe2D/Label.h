@@ -1,5 +1,4 @@
 #pragma once
-#include "Object.h"
 
 class Label : public Object
 {

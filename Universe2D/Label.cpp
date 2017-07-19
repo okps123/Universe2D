@@ -1,8 +1,6 @@
 #include "Precompiled.h"
 #include "Label.h"
 
-#include "Renderer.h"
-
 Label* Label::Create(const std::wstring& fontFace, int fontSize)
 {
 	return Label::Create(fontFace, fontSize, D3DCOLOR_XRGB(0, 0, 0));

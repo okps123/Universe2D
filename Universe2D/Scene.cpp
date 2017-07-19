@@ -1,8 +1,6 @@
 #include "Precompiled.h"
 #include "Scene.h"
 
-#include "Director.h"
-
 Scene::Scene()
 {
 }
