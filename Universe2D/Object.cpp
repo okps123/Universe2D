@@ -46,9 +46,7 @@ void Object::Render() {
 		return;
 	}
 	
-	if (m_TransformUpdate) {
-		CalculateMatrix();
-	}
+	CalculateMatrix();
 
 	if (m_Parent) {
 		m_Matrix *= m_Parent->GetMatrix();

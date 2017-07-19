@@ -18,6 +18,9 @@
 #include "TypeDefine.h"
 #include "Singleton.h"
 
+#include "Object.h"
+
+#include "Camera.h"
 #include "Scene.h"
 #include "Director.h"
 
@@ -29,7 +32,6 @@
 #include "Texture.h"
 #include "ResourceManager.h"
 
-#include "Object.h"
 #include "Frame.h"
 #include "Sprite.h"
 #include "AnimationSprite.h"

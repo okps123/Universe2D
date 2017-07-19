@@ -1,5 +1,4 @@
 #pragma once
-#include "Object.h"
 
 class Scene;
 class Camera : public Object {
@@ -14,23 +13,18 @@ public:
 	static Camera* Create(Scene* scene);
 
 public:
-	virtual void Translate(float x, float y) override {
-		m_Position.x += x;
-		m_Position.y += y;
+	virtual bool InitializeWithScene(Scene* scene);
 
-		m_TransformUpdate = true;
+	virtual void Update(float deltaTime) override {
+		Object::Update(deltaTime);
+	}
+	virtual void Render() override {
+		Object::Render();
 	}
 
-	virtual void Scale(float sx, float sy) override {
-		m_Scale.x += sx;
-		m_Scale.y += sy;
-
-		m_TransformUpdate = true;
-	}
-
-	virtual void Rotate(float r) override {
-		m_Rotation += r;
-		m_TransformUpdate = true;
-	}
+public:
+	virtual void Translate(float x, float y) override;
+	virtual void Scale(float sx, float sy) override;
+	virtual void Rotate(float r) override;
 };
 
