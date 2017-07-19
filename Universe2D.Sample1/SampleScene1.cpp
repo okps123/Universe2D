@@ -37,7 +37,7 @@ void SampleScene1::Update(float deltaTime)
 		Director::GetInstance()->SetScene(SampleScene2::Create());
 	}
 
-	if (Input::GetInstance()->GetMouseLeftButtonState() == KEY_PRESSED)
+	if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left) == KEY_PRESSED)
 	{
 		auto sprite = Sprite::Create(L"Resources\\circle_100px.png");
 		sprite->SetPosition(Input::GetInstance()->GetMousePosition());
