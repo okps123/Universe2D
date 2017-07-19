@@ -1,6 +1,6 @@
 #pragma once
 
-/* 
+/*
 모든 오브젝트의 부모가 되는 클래스입니다
 
 간결하게 사용하기 위해 Transform 속성과 합쳐져 있습니다.
@@ -8,13 +8,12 @@
 */
 
 class Collider;
-class Object
-{
+class Object {
 protected:
 	typedef std::vector<Object*> ObjectList;
 
 	bool m_Visible;
-	bool m_TransformUpdated;
+	bool m_TransformUpdate;
 
 	Object* m_Parent;
 	ObjectList m_Children;
@@ -41,149 +40,143 @@ public:
 	virtual bool Initialize();
 
 public:
-	virtual void OnCollision(Collider* collider) {};
-
 	virtual void Update(float deltaTime);
 	virtual void Render();
+
+	virtual void OnCollision(Collider* collider) {};
 
 public:
 	void AddChild(Object* obj);
 	void RemoveChild(Object* obj);
 
-public:
-	void Translate(Vector2 v);
-	void Translate(float x, float y);
-
-	void TranslateScale(Vector2 sv);
-	void TranslateScale(float sx, float sy);
-
-	void TranslateRotate(float r);
-
 private:
-	// 실제 AnchorPoint의 위치를 계산하는 함수입니다
 	void CalculateAnchorPointInPoint();
+	void CalculateMatrix();
 
 public:
-	Object* GetParent() 
-	{
-		return m_Parent; 
+	Object* GetParent() {
+		return m_Parent;
 	}
-	void SetParent(Object* obj) 
-	{
+	void SetParent(Object* obj) {
 		m_Parent = obj;
 	}
 
-	virtual const Vector2& GetPosition() const
-	{
+	virtual const Vector2& GetPosition() const {
 		return m_Position;
 	}
-	virtual void SetPosition(const Vector2& position) 
-	{
-		m_Position = position;
+	virtual void SetPosition(const Vector2& position) {
+		m_Position.x = position.x;
+		m_Position.y = position.y;
 
-		m_TransformUpdated = false;
+		m_TransformUpdate = true;
 	}
-	virtual void SetPosition(float x, float y)
-	{
+	virtual void SetPosition(float x, float y) {
 		m_Position.x = x;
 		m_Position.y = y;
 
-		m_TransformUpdated = false;
+		m_TransformUpdate = true;
 	}
 
-	virtual const Vector2& GetSize() const
-	{
-		return m_Size; 
+	virtual const Vector2& GetSize() const {
+		return m_Size;
 	}
-	virtual void SetSize(const Vector2& size)
-	{
-		m_Size = size;
+	virtual void SetSize(const Vector2& size) {
+		m_Size.x = size.x;
+		m_Size.y = size.y;
 
-		m_TransformUpdated = false;
+		m_TransformUpdate = true;
 	}
-	virtual void SetSize(float sx, float sy)
-	{
+	virtual void SetSize(float sx, float sy) {
 		m_Size.x = sx;
 		m_Size.y = sy;
 
-		m_TransformUpdated = false;
+		m_TransformUpdate = true;
 	}
 
-	virtual const Vector2& GetScale() const 
-	{
-		return m_Scale; 
+	virtual const Vector2& GetScale() const {
+		return m_Scale;
 	}
-	virtual void SetScale(const Vector2& scale)
-	{
+	virtual void SetScale(const Vector2& scale) {
 		m_Scale = scale;
 
-		m_TransformUpdated = false;
+		m_TransformUpdate = true;
 	}
-	virtual void SetScale(float sx, float sy)
-	{
+	virtual void SetScale(float sx, float sy) {
 		m_Scale.x = sx;
 		m_Scale.y = sy;
 
-		m_TransformUpdated = false;
+		m_TransformUpdate = false;
 	}
 
-	virtual const Vector2& GetAnchorPoint() const
-	{
+	virtual const Vector2& GetAnchorPoint() const {
 		return m_AnchorPoint;
 	}
-	virtual void SetAnchorPoint(const Vector2& anchorPoint)
-	{
+	virtual void SetAnchorPoint(const Vector2& anchorPoint) {
 		m_AnchorPoint = anchorPoint;
-		
-		// 실제 위치를 계산하는 함수를 호출합니다
 		CalculateAnchorPointInPoint();
 
-		m_TransformUpdated = false;
+		m_TransformUpdate = true;
 	}
-	virtual void SetAnchorPoint(float ax, float ay)
-	{
+	virtual void SetAnchorPoint(float ax, float ay) {
 		m_AnchorPoint.x = ax;
 		m_AnchorPoint.y = ay;
 
-		// 실제 위치를 계산하는 함수를 호출합니다
 		CalculateAnchorPointInPoint();
 
-		m_TransformUpdated = false;
+		m_TransformUpdate = true;
 	}
 
-	virtual float GetRotation() const
-	{
-		return m_Rotation; 
+	virtual float GetRotation() const {
+		return m_Rotation;
 	}
-	virtual void SetRotation(float rotation) 
-	{
-		m_Rotation = rotation; 
-
-		m_TransformUpdated = false;
+	virtual void SetRotation(float rotation) {
+		m_Rotation = rotation;
+		m_TransformUpdate = true;
 	}
 
-	virtual bool GetVisible() const 
-	{
-		return m_Visible; 
+	virtual bool GetVisible() const {
+		return m_Visible;
 	}
-	virtual void SetVisible(bool visible)
-	{
-		m_Visible = visible; 
+	virtual void SetVisible(bool visible) {
+		m_Visible = visible;
+		m_TransformUpdate = true;
+	}
 
-		m_TransformUpdated = false;
-	}
-	
-	virtual const std::string& GetName() const
-	{
+	virtual const std::string& GetName() const {
 		return m_Name;
 	}
-	virtual void SetName(const std::string& name)
-	{
+	virtual void SetName(const std::string& name) {
 		m_Name = name;
 	}
 
-	virtual D3DXMATRIX GetMatrix() 
-	{
-		return m_Matrix; 
+	virtual D3DXMATRIX GetMatrix() {
+		return m_Matrix;
+	}
+
+
+public:
+	virtual void Translate(Vector2 v) {
+		Translate(v.x, v.y);
+	}
+	virtual void Translate(float x, float y) {
+		m_Position.x += x;
+		m_Position.y += y;
+
+		m_TransformUpdate = true;
+	}
+
+	virtual void Scale(Vector2 sv) {
+		Scale(sv.x, sv.y);
+	}
+	virtual void Scale(float sx, float sy) {
+		m_Scale.x += sx;
+		m_Scale.y += sy;
+
+		m_TransformUpdate = true;
+	}
+
+	virtual void Rotate(float r) {
+		m_Rotation += r;
+		m_TransformUpdate = true;
 	}
 };

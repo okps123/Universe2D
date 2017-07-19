@@ -24,7 +24,6 @@ Scene* SampleScene1::Create()
 
 bool SampleScene1::Initialize()
 {
-
 	return true;
 }
 
@@ -39,9 +38,8 @@ void SampleScene1::Update(float deltaTime)
 
 	if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left) == KEY_PRESSED)
 	{
-		auto sprite = Sprite::Create(L"Resources\\circle_100px.png");
+		auto sprite = Sprite::Create(L"Resources\\test.png");
 		sprite->SetPosition(Input::GetInstance()->GetMousePosition());
-		sprite->Resize(10, 10);
 
 		AddChild(sprite);
 	}
@@ -49,19 +47,19 @@ void SampleScene1::Update(float deltaTime)
     // 이동
 	if (Input::GetInstance()->GetKeyState('A') == KeyState::KEY_PRESSED)
     {
-		Translate(-5, 0);
+		Translate(5, 0);
     }
     else if (Input::GetInstance()->GetKeyState('D') == KeyState::KEY_PRESSED)
     {
-		Translate(5, 0);
+		Translate(-5, 0);
     }
     if (Input::GetInstance()->GetKeyState('W') == KeyState::KEY_PRESSED)
     {
-		Translate(0, -5);
+		Translate(0, 5);
     }
     else if (Input::GetInstance()->GetKeyState('S') == KeyState::KEY_PRESSED)
     {
-		Translate(0, 5);
+		Translate(0, -5);
     }
 
     // 확대 축소

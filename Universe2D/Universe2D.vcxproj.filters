@@ -93,6 +93,9 @@
     <ClInclude Include="Label.h">
       <Filter>Framework\Node\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -145,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="Label.cpp">
       <Filter>Framework\Node\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
