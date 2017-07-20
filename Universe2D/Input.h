@@ -2,10 +2,10 @@
 
 enum KeyState
 {
+	KEY_NOTPRESSED = 0,
     KEY_DOWN,
     KEY_PRESSED,
-    KEY_UP,
-    KEY_NOTPRESSED = 0
+    KEY_UP
 };
 
 enum MouseButton

@@ -32,6 +32,8 @@
 #include "Texture.h"
 #include "ResourceManager.h"
 
+#include "Label.h"
+
 #include "Frame.h"
 #include "Sprite.h"
 #include "AnimationSprite.h"

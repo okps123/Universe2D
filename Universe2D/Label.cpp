@@ -20,10 +20,9 @@ Label* Label::Create(const std::wstring& fontFace, int fontSize, D3DCOLOR color)
 Label::Label()
 	: m_Font(nullptr)
 	, m_Color(D3DCOLOR_XRGB(0,0,0))
-	, m_Text(nullptr)
-	, m_FontFace(nullptr)
-	, m_FontSize(0)
-{
+	, m_Text(L"")
+	, m_FontFace(L"")
+	, m_FontSize(0) {
 }
 
 Label::~Label()

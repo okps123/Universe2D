@@ -14,6 +14,7 @@ private:
 
 	bool m_IsObstacle;
 	Sprite* m_Sprite;
+	Label* m_Label;
 
 public:
 	Tile() : m_ParentTile(nullptr), m_X(0), m_Y(0), m_F(0), m_G(0), m_H(0), m_IsObstacle(false) {};
@@ -34,9 +35,12 @@ public:
 		SetX(x);
 		SetY(y);
 		SetObstacle(isObstacle);
-		SetSprite(sprite);
 
+		SetSprite(sprite);
 		GetSprite()->SetParent(this);
+
+		m_Label = Label::Create(L"궁서", 12, D3DCOLOR_XRGB(255, 0, 0));
+		m_Label->SetPosition(x * 64 + 5, y * 64 + 5);
 
 		return true;
 	}
@@ -47,6 +51,11 @@ public:
 		if (m_Sprite) {
 			m_Sprite->Update(deltaTime);
 		}
+
+		m_Label->SetText(L"G: " + std::to_wstring(GetG())
+			+ L"\nH: " + std::to_wstring(GetH())
+			+ L"\nF: " + std::to_wstring(GetF()));
+		m_Label->Update(deltaTime);
 	}
 
 	void Render() override {
@@ -55,6 +64,8 @@ public:
 		if (m_Sprite) {
 			m_Sprite->Render();
 		}
+
+		m_Label->Render();
 	}
 
 public:
@@ -88,8 +99,13 @@ public:
 	Tile*** tileMap;
 	int Width, Height;
 
+	Sprite* player;
+
+	std::vector<Tile*> movePointQueue;
+	Tile* movePoint;
+
 public:
-	Map() : Width(0), Height(0) {
+	Map() : Width(0), Height(0), movePoint(nullptr) {
 	}
 	~Map() {};
 
@@ -141,15 +157,9 @@ public:
 		tileMap[5][3] = block3;
 		AddChild(block3);
 
-		auto startTile = Tile::Create(0, 0, true, Sprite::Create(L"Resources\\player.png"));
-		startTile->SetPosition(32, 32);
-		AddChild(startTile);
-
-		auto endTile = Tile::Create(5, 5, true, Sprite::Create(L"Resources\\point.png"));
-		endTile->SetPosition(5 * 64 + 32, 5 * 64 + 32);
-		AddChild(endTile);
-
-		FindPath(0, 0, 5, 5);
+		player = Sprite::Create(L"Resources\\player.png");
+		player->SetPosition(32.f, 32.f);
+		AddChild(player);
 
 		return true;
 	}
@@ -158,13 +168,74 @@ public:
 	void Update(float deltaTime) override {
 		Object::Update(deltaTime);
 
-		if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left)) {
-			// 선택한 타일을 끝으로 길찾기 시작
+		if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left) == KeyState::KEY_DOWN) {
+			auto position = Input::GetInstance()->GetMousePosition();
+			if (position.x < 0 || position.y < 0)
+				return;
+
+			if (position.x > 64 * Width || position.y > 64 * Height)
+				return;
+
+			if (player->GetPosition().x < 0.f && player->GetPosition().y < 0.f)
+				return;
+
+			int px = player->GetPosition().x / 64;
+			int py = player->GetPosition().y / 64;
+			int tx = position.x / 64;
+			int ty = position.y / 64;
+
+			if (!movePointQueue.empty()) {
+				movePointQueue.clear();
+			}
+
+			for (auto tile : FindPath(px, py, tx, ty)) {
+				movePointQueue.push_back(tile);
+				printf("%d %d 이동 지점 추가됨\n", tile->GetX(), tile->GetY());
+			}
+		}
+
+		if (Input::GetInstance()->GetKeyState(VK_SPACE)) {
+		}
+
+		if (movePoint == nullptr && !movePointQueue.empty()) {
+			movePoint = movePointQueue.back();
+			movePointQueue.erase(std::find(movePointQueue.begin(), movePointQueue.end(), movePoint));
+			printf("%d %d로 이동해야함\n", movePoint->GetX(), movePoint->GetY());
+		}
+
+		if (movePoint != nullptr) {
+			// movePoint로 이동
+			auto targetPosition = movePoint->GetPosition();
+			Vector2 position = player->GetPosition();
+			bool completeX = false, completeY = false;
+
+			if (position.x < targetPosition.x) {
+				position.x += 1.f;
+			} else if(position.x > targetPosition.x) {
+				position.x -= 1.f;
+			} else {
+				completeX = true;
+			}
+
+			if (position.y < targetPosition.y) {
+				position.y += 1.f;
+			} else if (position.y > targetPosition.y) {
+				position.y -= 1.f;
+			} else {
+				completeY = true;
+			}
+
+			player->SetPosition(position);
+
+			if (completeX && completeY) {
+				// 도착
+				movePoint = nullptr;
+			}
 		}
 	}
 
 public:
-	void FindPath(int startX, int startY, int endX, int endY) {
+	std::vector<Tile*> FindPath(int startX, int startY, int endX, int endY) {
 		auto startTile = tileMap[startY][startX];
 		auto endTile = tileMap[endY][endX];
 
@@ -181,17 +252,18 @@ public:
 			}
 
 			closeList.push_back(tile);
-			printf("길 선택 (%d, %d)\n", tile->GetX(), tile->GetY());
-
-			auto sprite = Sprite::Create(L"Resources\\way.png");
-			sprite->SetPosition(tile->GetPosition());
-			AddChild(sprite);
-
 			if (tile->GetX() == endX && tile->GetY() == endY) {
 				// 최종 길 표시
-				printf("길 찾기 종료\n");
+				auto result = std::vector<Tile*>();
+				result.push_back(tile);
 
-				break;
+				auto prevTile = tile->GetParentTile();
+				while (prevTile->GetX() != startX || prevTile->GetY() != startY) {
+					result.push_back(prevTile);
+					prevTile = prevTile->GetParentTile();
+				}
+
+				return result;
 			}
 
 			auto neighbors = GetNeighbors(tile);
@@ -204,13 +276,13 @@ public:
 				int y = neighbor->GetY();
 				int g = 0;
 
-				if (x - tile->GetX() == 0 || y - tile->GetY()) {
+				if (x - tile->GetX() == 0 || y - tile->GetY() == 0) {
 					g = tile->GetG() + 10;
 				}
 
 				if (!IsContains(openList, neighbor) || g < neighbor->GetG()) {
 					neighbor->SetG(g);
-					neighbor->SetH(abs(x - endX) + abs(y - endY));
+					neighbor->SetH((abs(x - endX) + abs(y - endY)));
 					neighbor->SetF(neighbor->GetG() + neighbor->GetH());
 					neighbor->SetParentTile(tile);
 
