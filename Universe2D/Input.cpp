@@ -38,18 +38,18 @@ KeyState Input::GetKeyState(int key)
 
     if (prevState == false && nowState == true)
     {
-        return KEY_DOWN;
+        return KeyState::Down;
     }
     else if (prevState == true && nowState == true)
     {
-        return KEY_PRESSED;
+        return KeyState::Pressed;
     }
     else if (prevState == true && nowState == false)
     {
-        return KEY_UP;
+        return KeyState::Up;
     }
 
-    return KEY_NOTPRESSED;
+    return KeyState::None;
 }
 
 KeyState Input::GetMouseButtonState(MouseButton button)

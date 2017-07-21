@@ -1,10 +1,5 @@
 #pragma once
 
-template<class T, class K>
-bool IsContains(T& data, K& value) {
-	return std::find(data.begin(), data.end(), value) != data.end();
-}
-
 class Tile : public Object {
 private:
 	Tile* m_ParentTile;
@@ -168,7 +163,7 @@ public:
 	void Update(float deltaTime) override {
 		Object::Update(deltaTime);
 
-		if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left) == KeyState::KEY_DOWN) {
+		if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left) == KeyState::Down) {
 			auto position = Input::GetInstance()->GetMousePosition();
 			if (position.x < 0 || position.y < 0)
 				return;
@@ -192,9 +187,6 @@ public:
 				movePointQueue.push_back(tile);
 				printf("%d %d 이동 지점 추가됨\n", tile->GetX(), tile->GetY());
 			}
-		}
-
-		if (Input::GetInstance()->GetKeyState(VK_SPACE)) {
 		}
 
 		if (movePoint == nullptr && !movePointQueue.empty()) {

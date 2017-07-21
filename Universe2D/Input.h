@@ -1,11 +1,11 @@
 #pragma once
 
-enum KeyState
+enum class KeyState
 {
-	KEY_NOTPRESSED = 0,
-    KEY_DOWN,
-    KEY_PRESSED,
-    KEY_UP
+	None = 0,
+    Down,
+    Pressed,
+    Up
 };
 
 enum MouseButton
