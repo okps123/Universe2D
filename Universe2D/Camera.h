@@ -26,5 +26,9 @@ public:
 	virtual void Translate(float x, float y) override;
 	virtual void Scale(float sx, float sy) override;
 	virtual void Rotate(float r) override;
+
+public:
+	Vector2 ScreenToWorldPoint(Vector2 position);
+	Vector2 WorldToScreenPoint(Vector2 position);
 };
 

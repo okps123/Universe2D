@@ -33,3 +33,12 @@ void Camera::Scale(float sx, float sy) {
 void Camera::Rotate(float r) {
 	m_Scene->Rotate(-r);
 }
+
+Vector2 Camera::ScreenToWorldPoint(Vector2 position) {
+	position -= m_Scene->GetPosition();
+	return position;
+}
+
+Vector2 Camera::WorldToScreenPoint(Vector2 position) {
+	return Vector2();
+}

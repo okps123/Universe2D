@@ -11,6 +11,9 @@
     <ClCompile Include="SampleScene2.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="SampleScene3.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -31,6 +34,9 @@
       <Filter>Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="SampleScene2.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleScene3.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
