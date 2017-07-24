@@ -96,6 +96,9 @@
     <ClInclude Include="Camera.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="ObjecContainer.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -150,6 +153,9 @@
       <Filter>Framework\Node\UI</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjecContainer.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>

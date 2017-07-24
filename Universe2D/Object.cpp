@@ -19,6 +19,7 @@ Object::Object()
 	, m_Scale(1.f, 1.f)
 	, m_Size(0.0f, 0.0f)
 	, m_Rotation(0.f)
+	, m_ZOrder(0)
 	, m_Visible(true)
 	, m_TransformUpdate(true)
 	, m_Name("") {

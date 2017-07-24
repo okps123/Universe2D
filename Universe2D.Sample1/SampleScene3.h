@@ -75,6 +75,7 @@ public:
 					break;
 			}
 			m_Sprite->SetParent(this);
+			m_Sprite->SetAnchorPoint(0.5f, 1.0f);
 
 			m_StateUpdate = false;
 		}
@@ -134,15 +135,22 @@ public:
 
 class IsoTower : public Object {
 public:
-	IsoTower() {};
+	int Width;
+	int Height;
+
+private:
+	Sprite* sprite;
+
+public:
+	IsoTower() : Width(4), Height(4) {};
 	~IsoTower() {};
 
 	CREATE_FUNC(IsoTower);
 
 public:
 	bool Initialize() {
-		auto sprite = Sprite::Create(L"Resources\\isometric\\home.png");
-		sprite->SetAnchorPoint(0.5, 1.0);
+		sprite = Sprite::Create(L"Resources\\isometric\\home.png");
+		sprite->SetAnchorPoint(0.5f, 1.0f);
 		AddChild(sprite);
 
 		return true;
@@ -169,8 +177,8 @@ private:
 
 	bool m_IsCreateTower;
 	IsoTower* m_CreateTower;
-	std::vector<IsoTower*> m_Towers;
 
+	ObjecContainer* m_Towers;
 
 public:
 	SampleScene3();

@@ -27,9 +27,13 @@ bool SampleScene3::Initialize() {
 		m_TileMap[i] = new IsoTile*[MapWidth];
 		for (int j = 0; j < MapWidth; j++) {
 			auto tile = IsoTile::Create();
-			tile->SetPosition(screenHalfWidth, screenHalfHeight - (mapActualHeight / 2));
-			tile->SetAnchorPoint(0.5f, 1.0f);
-			tile->Translate(j * tileHalfWidth - i * tileHalfWidth, i * tileHalfHeight + j * tileHalfHeight);
+
+			tile->SetPosition(screenHalfWidth,
+				screenHalfHeight - (mapActualHeight / 2));
+
+			tile->Translate(j * tileHalfWidth - i * tileHalfWidth,
+				i * tileHalfHeight + j * tileHalfHeight);
+
 			tile->SetMapPosition(Vector2(j, i));
 
 			m_TileMap[i][j] = tile;
@@ -37,8 +41,10 @@ bool SampleScene3::Initialize() {
 		}
 	}
 
+	m_Towers = ObjecContainer::Create();
+	AddChild(m_Towers);
+
 	m_CreateTower = IsoTower::Create();
-	m_CreateTower->SetAnchorPoint(0.5f, 1.0f);
 	AddChild(m_CreateTower);
 
 	return true;
@@ -51,70 +57,28 @@ void SampleScene3::Update(float deltaTime) {
 
 	UpdateCamera();
 
-	if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left) == KeyState::Down) {
-		auto tile = GetTile(mousePosition);
-		if (!tile) {
-			return;
-		}
-
-		if (m_StartTile == nullptr) {
-			tile->SetState(TileState::Start);
-			m_StartTile = tile;
-		} else if (m_EndTile == nullptr) {
-			tile->SetState(TileState::End);
-			m_EndTile = tile;
-
-			// 탐색
-			for (auto tile : FindPath(m_StartTile, m_EndTile)) {
-				tile->SetState(TileState::Path);
-			}
-
-		} else {
-			m_StartTile->SetState(TileState::None);
-			m_EndTile->SetState(TileState::None);
-			m_StartTile = nullptr;
-			m_EndTile = nullptr;
-
-			// 길 초기화
-			for (int i = 0; i < MapHeight; i++) {
-				for (int j = 0; j < MapWidth; j++) {
-					auto tile = m_TileMap[i][j];
-					if (tile->GetState() == TileState::Path || tile->GetState() == TileState::Select) {
-						tile->SetState(TileState::None);
-					}
-				}
-			}
-
-			tile->SetState(TileState::Start);
-			m_StartTile = tile;
-		}
-	}
-
-	if (Input::GetInstance()->GetMouseButtonState(MouseButton::Right) == KeyState::Down) {
-		auto mousePosition = GetCamera()->ScreenToWorldPoint(Input::GetInstance()->GetMousePosition());
-		auto tile = GetTile(mousePosition);
-		if (!tile) {
-			return;
-		}
-
-		tile->SetState(TileState::Block);
-	}
-
 	// 입력
 	if (Input::GetInstance()->GetKeyState('1') == KeyState::Down) {
 		m_IsCreateTower = !m_IsCreateTower;
 		m_CreateTower->SetVisible(m_IsCreateTower);
 	}
-
 	// 건축 모드
 	if (m_IsCreateTower) {
 		auto tile = GetTile(mousePosition);
 		if (tile) {
 			m_CreateTower->SetPosition(tile->GetPosition());
-		}
 
-		if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left) == KeyState::Down) {
-			m_Towers.push_back(m_CreateTower);
+			// 건물 설치
+			if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left) == KeyState::Down) {
+				auto tower = IsoTower::Create();
+				tower->SetPosition(m_CreateTower->GetPosition());
+				tower->SetZOrder(tile->GetMapPosition().x + tile->GetMapPosition().y);
+
+				m_Towers->AddChild(tower);
+				m_Towers->SortZOrder();
+
+				m_CreateTower->SetVisible(m_IsCreateTower);
+			}
 		}
 	}
 }
@@ -147,10 +111,10 @@ IsoTile* SampleScene3::GetTile(const Vector2& position) {
 		for (int j = 0; j < MapWidth; j++) {
 			auto tile = m_TileMap[i][j];
 
-			auto p1 = tile->GetPosition() - Vector2(tileHalfSize.x, 0.f);
-			auto p2 = tile->GetPosition() - Vector2(0.f, tileHalfSize.y);
-			auto p3 = tile->GetPosition() + Vector2(tileHalfSize.x, 0.f);
-			auto p4 = tile->GetPosition() + Vector2(0.f, tileHalfSize.y);
+			auto p1 = tile->GetPosition() + Vector2(-tileHalfSize.x, -tileHalfSize.y); // 좌
+			auto p2 = tile->GetPosition() + Vector2(0.f, -IsoTile::Height); // 상
+			auto p3 = tile->GetPosition() + Vector2(tileHalfSize.x, -tileHalfSize.y); // 우
+			auto p4 = tile->GetPosition() + Vector2(0.f, .0f); // 하
 
 			float d1 = p1.y - (-m * p1.x);
 			float d2 = p2.y - (m * p2.x);

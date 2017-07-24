@@ -23,6 +23,8 @@ protected:
 	Vector2 m_Scale;
 	float m_Rotation;
 
+	int m_ZOrder;
+
 	Vector2 m_AnchorPoint;
 	Vector2 m_AnchorPointInPoints;
 
@@ -134,6 +136,14 @@ public:
 		m_TransformUpdate = true;
 	}
 
+	virtual int GetZOrder() {
+		return m_ZOrder;
+	}
+	virtual void SetZOrder(int z) {
+		m_ZOrder = z;
+		m_TransformUpdate = true;
+	}
+
 	virtual bool GetVisible() const {
 		return m_Visible;
 	}
@@ -177,6 +187,15 @@ public:
 
 	virtual void Rotate(float r) {
 		m_Rotation += r;
+		m_TransformUpdate = true;
+	}
+
+public:
+	void SortZOrder() {
+		std::sort(m_Children.begin(), m_Children.end(), [](Object* lhs, Object* rhs) {
+			return lhs->GetZOrder() < rhs->GetZOrder();
+		});
+
 		m_TransformUpdate = true;
 	}
 };

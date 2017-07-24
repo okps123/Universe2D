@@ -20,6 +20,7 @@
 #include "Singleton.h"
 
 #include "Object.h"
+#include "ObjecContainer.h"
 
 #include "Camera.h"
 #include "Scene.h"
@@ -38,5 +39,4 @@
 #include "Frame.h"
 #include "Sprite.h"
 #include "AnimationSprite.h"
-
 
