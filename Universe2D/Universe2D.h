@@ -14,6 +14,7 @@
 #include <vector>
 #include <queue>
 #include <unordered_map>
+#include <functional>
 
 #include "TypeDefine.h"
 #include "Singleton.h"

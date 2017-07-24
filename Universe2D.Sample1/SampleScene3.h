@@ -11,8 +11,8 @@ enum class TileState {
 
 class IsoTile : public Object {
 public:
-	static const int Width = 100;
-	static const int Height = 50;
+	static const int Width = 50;
+	static const int Height = 25;
 
 private:
 	IsoTile* m_ParentTile;
@@ -29,7 +29,15 @@ private:
 	int m_H;
 
 public:
-	IsoTile() : m_MapPosition(0.f, 0.f), m_State(TileState::None), m_StateUpdate(true), m_Sprite(nullptr) {};
+	IsoTile()
+		: m_ParentTile(nullptr)
+		, m_MapPosition(0.f, 0.f)
+		, m_State(TileState::None)
+		, m_StateUpdate(true)
+		, m_Sprite(nullptr)
+		, m_G(0)
+		, m_H(0) {
+	};
 	~IsoTile() {};
 
 public:
@@ -118,6 +126,31 @@ public:
 	void SetHCost(const int& h) {
 		m_H = h;
 	}
+
+	const int& GetCost() {
+		return GetGCost() + GetHCost();
+	}
+};
+
+class IsoTower : public Object {
+public:
+	IsoTower() {};
+	~IsoTower() {};
+
+	CREATE_FUNC(IsoTower);
+
+public:
+	bool Initialize() {
+		auto sprite = Sprite::Create(L"Resources\\isometric\\home.png");
+		sprite->SetAnchorPoint(0.5, 1.0);
+		AddChild(sprite);
+
+		return true;
+	}
+
+	void Update(float deltaTime) {
+		Object::Update(deltaTime);
+	}
 };
 
 class SampleScene3 : public Scene {
@@ -130,6 +163,14 @@ private:
 
 	IsoTile* m_StartTile;
 	IsoTile* m_EndTile;
+
+	std::vector<IsoTile*> m_OpenList;
+	std::vector<IsoTile*> m_CloseList;
+
+	bool m_IsCreateTower;
+	IsoTower* m_CreateTower;
+	std::vector<IsoTower*> m_Towers;
+
 
 public:
 	SampleScene3();
@@ -149,109 +190,117 @@ public:
 	IsoTile* GetTile(const Vector2& position);
 
 public:
-public:
 	std::vector<IsoTile*> FindPath(IsoTile* startTile, IsoTile* endTile) {
-		std::vector<IsoTile*> openList;
-		std::vector<IsoTile*> closeList;
+		m_OpenList.clear();
+		m_CloseList.clear();
 
-		openList.push_back(startTile);
+		m_OpenList.push_back(startTile);
 
-		while (openList.size() != 0) {
-			auto tile = GetPathTile(openList, closeList);
-			if (tile == nullptr) {
-				break;
+		int count = 0;
+
+		while (m_OpenList.size() != 0) {
+			auto nextTile = GetOptimumTile();
+			if (nextTile == nullptr) {
+				return std::vector<IsoTile*>();
 			}
 
-			closeList.push_back(tile);
-			//tile->SetState(TileState::Select);
+			m_CloseList.push_back(nextTile);
 
-			// 최종 타일에 도착했으므로 최종 루트를 목록으로 반환합니다
-			if (tile->GetMapPosition() == endTile->GetMapPosition()) {
-				auto result = std::vector<IsoTile*>();
-				//result.push_back(tile);
+			auto it = std::find(m_OpenList.begin(), m_OpenList.end(), nextTile);
+			m_OpenList.erase(it);
 
-				auto prevTile = tile->GetParentTile();
-				while (prevTile->GetMapPosition() != startTile->GetMapPosition()) {
-					result.push_back(prevTile);
-					prevTile = prevTile->GetParentTile();
+			// 목적지에 도착
+			if (nextTile->GetMapPosition() == endTile->GetMapPosition()) {
+				std::vector<IsoTile*> pathList;
+				auto currentTile = nextTile->GetParentTile();
+				while (currentTile->GetMapPosition() != startTile->GetMapPosition()) {
+					pathList.push_back(currentTile);
+					currentTile = currentTile->GetParentTile();
 				}
 
-				return result;
+				return pathList;
 			}
 
-			auto neighbors = GetNeighbors(tile);
-			for (auto neighbor : neighbors) {
-				if (IsContains(closeList, neighbor)) {
+			for (auto neighbor : GetNeighborTiles(nextTile)) {
+				if (IsCloseTile(neighbor))
 					continue;
+
+				neighbor->SetParentTile(nextTile);
+
+				int dx = neighbor->GetMapPosition().x - nextTile->GetMapPosition().x;
+				int dy = neighbor->GetMapPosition().y - nextTile->GetMapPosition().y;
+				if (dx == 0 || dy == 0) {
+					int gCost = neighbor->GetParentTile()->GetGCost() + 10;
+					neighbor->SetGCost(gCost);
 				}
 
-				int x = neighbor->GetMapPosition().x;
-				int y = neighbor->GetMapPosition().y;
-				int g = 0;
+				int hCost = abs(neighbor->GetMapPosition().x - endTile->GetMapPosition().x)
+					+ abs(neighbor->GetMapPosition().y - endTile->GetMapPosition().y);
+				neighbor->SetHCost(hCost * 10);
 
-				if (x - tile->GetMapPosition().x == 0 || y - tile->GetMapPosition().y == 0) {
-					g = tile->GetGCost() + 10;
-				}
-
-				if (!IsContains(openList, neighbor) || g < neighbor->GetGCost()) {
-					neighbor->SetParentTile(tile);
-					neighbor->SetGCost(g);
-					neighbor->SetHCost((abs(x - endTile->GetMapPosition().x) + abs(y - endTile->GetMapPosition().y)));
-
-					if (!IsContains(openList, neighbor)) {
-						openList.push_back(neighbor);
-					}
+				if (!IsOpenTile(neighbor)) {
+					m_OpenList.push_back(neighbor);
 				}
 			}
 		}
+
+		return std::vector<IsoTile*>();
 	}
 
-	// 주변 타일중 이동할 수 있는 타일을 가져옵니다
-	std::vector<IsoTile*> GetNeighbors(IsoTile* tile) {
-		std::vector<IsoTile*> neighbors;
+public:
+	IsoTile* GetOptimumTile() {
+		IsoTile* optimumTile = nullptr;
+		int optimumCost = 10000;
+		int optimumHCost = 10000;
+
+		for (auto openTile : m_OpenList) {
+			int cost = openTile->GetCost();
+			int hCost = openTile->GetHCost();
+
+			if (cost < optimumCost || hCost < optimumHCost) {
+				if (!IsCloseTile(openTile)) {
+					optimumTile = openTile;
+					optimumCost = cost;
+					optimumHCost = hCost;
+				}
+			}
+		}
+
+		return optimumTile;
+	}
+	std::vector<IsoTile*> GetNeighborTiles(IsoTile* tile) {
+		std::vector<IsoTile*> neighborsTiles;
 
 		int x = tile->GetMapPosition().x;
 		int y = tile->GetMapPosition().y;
 
-		if (IsExist(x, y - 1)) {
-			neighbors.push_back(m_TileMap[y - 1][x]);
+		// 좌
+		if (IsExistTile(x - 1, y)) {
+			neighborsTiles.push_back(m_TileMap[y][x - 1]);
 		}
-		if (IsExist(x, y + 1)) {
-			neighbors.push_back(m_TileMap[y + 1][x]);
+		// 상
+		if (IsExistTile(x, y - 1)) {
+			neighborsTiles.push_back(m_TileMap[y - 1][x]);
 		}
-		if (IsExist(x - 1, y)) {
-			neighbors.push_back(m_TileMap[y][x - 1]);
+		// 우
+		if (IsExistTile(x + 1, y)) {
+			neighborsTiles.push_back(m_TileMap[y][x + 1]);
 		}
-		if (IsExist(x + 1, y)) {
-			neighbors.push_back(m_TileMap[y][x + 1]);
-		}
-
-		return neighbors;
-	}
-	
-	// 이동할 수 있는 타일(openList)중 가장 적은 비용이 드는 타일을 가져옵니다
-	IsoTile* GetPathTile(std::vector<IsoTile*>& openList, std::vector<IsoTile*>& closeList) {
-		IsoTile* pathTile = nullptr;
-		int pathCost = 1024;
-
-		for (auto tile : openList) {
-			// 닫힌 목록에 있는 타일은 무시함
-			if (IsContains(closeList, tile)) {
-				continue;
-			}
-
-			auto cost = tile->GetGCost() + tile->GetHCost();
-			if (cost < pathCost) {
-				pathTile = tile;
-				pathCost = cost;
-			}
+		// 하
+		if (IsExistTile(x, y + 1)) {
+			neighborsTiles.push_back(m_TileMap[y + 1][x]);
 		}
 
-		return pathTile;
+		return neighborsTiles;
 	}
 
-	// 이동 가능 여부 검사 함수
-	bool IsExist(int x, int y) {
+	bool IsOpenTile(IsoTile* tile) {
+		return IsContains(m_OpenList, tile);
+	}
+	bool IsCloseTile(IsoTile* tile) {
+		return IsContains(m_CloseList, tile);
+	}
+	bool IsExistTile(int x, int y) {
 		if (x >= 0 && y >= 0 && x < MapWidth && y < MapHeight) {
 			if (m_TileMap[y][x]->GetState() != TileState::Block)
 				return true;

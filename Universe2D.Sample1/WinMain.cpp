@@ -1,7 +1,5 @@
 #include "Precompiled.h"
 
-#include "SampleScene1.h"
-#include "SampleScene2.h"
 #include "SampleScene3.h"
 
 INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT)

@@ -9,8 +9,8 @@ SampleScene3::~SampleScene3() {
 bool SampleScene3::Initialize() {
 	Scene::Initialize();
 
-	MapWidth = 50;
-	MapHeight = 50;
+	MapWidth = 40;
+	MapHeight = 40;
 
 	int tileHalfWidth = IsoTile::Width / 2;
 	int tileHalfHeight = IsoTile::Height / 2;
@@ -28,6 +28,7 @@ bool SampleScene3::Initialize() {
 		for (int j = 0; j < MapWidth; j++) {
 			auto tile = IsoTile::Create();
 			tile->SetPosition(screenHalfWidth, screenHalfHeight - (mapActualHeight / 2));
+			tile->SetAnchorPoint(0.5f, 1.0f);
 			tile->Translate(j * tileHalfWidth - i * tileHalfWidth, i * tileHalfHeight + j * tileHalfHeight);
 			tile->SetMapPosition(Vector2(j, i));
 
@@ -36,16 +37,21 @@ bool SampleScene3::Initialize() {
 		}
 	}
 
+	m_CreateTower = IsoTower::Create();
+	m_CreateTower->SetAnchorPoint(0.5f, 1.0f);
+	AddChild(m_CreateTower);
+
 	return true;
 }
 
 void SampleScene3::Update(float deltaTime) {
 	Scene::Update(deltaTime);
 
+	auto mousePosition = GetCamera()->ScreenToWorldPoint(Input::GetInstance()->GetMousePosition());
+
 	UpdateCamera();
 
 	if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left) == KeyState::Down) {
-		auto mousePosition = GetCamera()->ScreenToWorldPoint(Input::GetInstance()->GetMousePosition());
 		auto tile = GetTile(mousePosition);
 		if (!tile) {
 			return;
@@ -58,6 +64,7 @@ void SampleScene3::Update(float deltaTime) {
 			tile->SetState(TileState::End);
 			m_EndTile = tile;
 
+			// 탐색
 			for (auto tile : FindPath(m_StartTile, m_EndTile)) {
 				tile->SetState(TileState::Path);
 			}
@@ -92,6 +99,24 @@ void SampleScene3::Update(float deltaTime) {
 
 		tile->SetState(TileState::Block);
 	}
+
+	// 입력
+	if (Input::GetInstance()->GetKeyState('1') == KeyState::Down) {
+		m_IsCreateTower = !m_IsCreateTower;
+		m_CreateTower->SetVisible(m_IsCreateTower);
+	}
+
+	// 건축 모드
+	if (m_IsCreateTower) {
+		auto tile = GetTile(mousePosition);
+		if (tile) {
+			m_CreateTower->SetPosition(tile->GetPosition());
+		}
+
+		if (Input::GetInstance()->GetMouseButtonState(MouseButton::Left) == KeyState::Down) {
+			m_Towers.push_back(m_CreateTower);
+		}
+	}
 }
 
 void SampleScene3::UpdateCamera() {
@@ -111,13 +136,6 @@ void SampleScene3::UpdateCamera() {
 		GetCamera()->Scale(0.01f, 0.01f);
 	} else if (Input::GetInstance()->GetKeyState('T') == KeyState::Pressed) {
 		GetCamera()->Scale(-0.01f, -0.01f);
-	}
-
-	// 회전
-	if (Input::GetInstance()->GetKeyState('Q') == KeyState::Pressed) {
-		GetCamera()->Rotate(0.05f);
-	} else if (Input::GetInstance()->GetKeyState('E') == KeyState::Pressed) {
-		GetCamera()->Rotate(-0.05f);
 	}
 }
 
