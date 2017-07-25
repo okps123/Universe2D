@@ -99,6 +99,7 @@
     <ClInclude Include="ObjecContainer.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -158,5 +159,6 @@
     <ClCompile Include="ObjecContainer.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp" />
   </ItemGroup>
 </Project>

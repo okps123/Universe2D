@@ -8,6 +8,12 @@
     <ClCompile Include="SampleScene3.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -26,6 +32,12 @@
     </ClInclude>
     <ClInclude Include="SampleScene3.h">
       <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
