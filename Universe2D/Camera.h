@@ -5,6 +5,11 @@ class Camera : public Object {
 protected:
 	Scene* m_Scene;
 
+private:
+	Vector2 m_TargetPosition;
+	Vector2 m_TargetScale;
+	float	m_TargetRotation;
+
 public:
 	Camera();
 	virtual ~Camera();
@@ -15,12 +20,8 @@ public:
 public:
 	virtual bool InitializeWithScene(Scene* scene);
 
-	virtual void Update(float deltaTime) override {
-		Object::Update(deltaTime);
-	}
-	virtual void Render() override {
-		Object::Render();
-	}
+	virtual void Update(float deltaTime) override;
+	virtual void Render() override;
 
 public:
 	virtual void Translate(float x, float y) override;

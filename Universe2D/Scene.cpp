@@ -9,7 +9,6 @@ Scene::~Scene() {
 bool Scene::Initialize() {
 	SetSize(Director::GetInstance()->GetWindowSize());
 	SetCamera(Camera::Create(this));
-
 	return true;
 }
 

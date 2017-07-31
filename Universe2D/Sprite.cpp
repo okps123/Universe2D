@@ -55,6 +55,17 @@ void Sprite::Render()
 	if (!m_Visible)
 		return;
 
+	//auto scene = Director::GetInstance()->GetScene();
+	//Vector2 screenPosition = scene->GetCamera()->WorldToScreenPoint(m_Position);
+
+	//if (screenPosition.x < 0
+	//	|| screenPosition.y < 0
+	//	|| screenPosition.x > scene->GetSize().x
+	//	|| screenPosition.y > scene->GetSize().y) {
+	//	printf("%f %f skip render\n", screenPosition.x, screenPosition.y);
+	//	return;
+	//}
+
 	Object::Render();
 
 	// 텍스쳐에서 그려질 부분의 영역을 설정 할 수 있음

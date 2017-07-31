@@ -19,6 +19,9 @@ public:
 	CREATE_FUNC(Map);
 
 public:
+	void Update(float deltaTime) override;
+
+public:
 	void CreateMap(int width, int height);
 
 public:

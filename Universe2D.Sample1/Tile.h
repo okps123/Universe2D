@@ -11,8 +11,8 @@ enum class TileType {
 
 class Tile : public Object {
 public:
-	static const int Width = 50;
-	static const int Height = 29;
+	static const int Width = 256;
+	static const int Height = 299;
 	static const int HalfWidth = Width / 2;
 	static const int HalfHeight = Height / 2;
 
@@ -50,7 +50,7 @@ public:
 		if (m_TypeUpdate) {
 			switch (m_Type) {
 				case TileType::None:
-					m_Sprite = Sprite::Create(L"Resources\\isometric\\tile-a.png");
+					m_Sprite = Sprite::Create(L"Resources\\tile.png");
 					break;
 				case TileType::Block:
 					m_Sprite = Sprite::Create(L"Resources\\isometric\\tile_obst.png");

@@ -24,5 +24,6 @@ public:
 	}
 	void SetCamera(Camera* camera) {
 		m_Camera = camera;
+		AddChild(m_Camera);
 	}
 };

@@ -7,6 +7,23 @@ Map::Map() {
 Map::~Map() {
 }
 
+void Map::Update(float deltaTime)
+{
+	Object::Update(deltaTime);
+	static UINT count = 0;
+	count++;
+
+	srand(time(NULL));
+	for (int i = 0; i < m_Height; i++) {
+		for (int j = 0; j < m_Height; j++) {
+
+			auto tile = m_TileMap[i][j];
+			auto p = tile->GetPosition();
+			tile->SetPosition(p.x,p.y + sinf((((i + j) * 6) + count) / 15.f) * 5);
+		}
+	}
+}
+
 void Map::CreateMap(int width, int height) {
 	m_Width = width;
 	m_Height = height;
@@ -19,7 +36,7 @@ void Map::CreateMap(int width, int height) {
 
 			tile->SetPosition(0, 0);
 			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth,
-				i * Tile::HalfHeight + j * Tile::HalfHeight);
+				i * Tile::HalfHeight / 2 + j * Tile::HalfHeight / 2);
 
 			tile->SetMapPosition(Vector2(j, i));
 
@@ -159,16 +176,20 @@ Tile* Map::GetTileFromPosition(const Vector2 & position) {
 		for (int j = 0; j < m_Width; j++) {
 			auto tile = m_TileMap[i][j];
 
-			auto p = tile->GetPosition();
-			auto p1 = p + Vector2(-Tile::HalfWidth, -Tile::HalfHeight); // аб
-			auto p2 = p + Vector2(0.f, -Tile::Height); // ╩С
-			auto p3 = p + Vector2(Tile::HalfWidth, -Tile::HalfHeight); // ©Л
+			auto p = tile->GetPosition() + Vector2(0, -Tile::HalfHeight);
+			auto p1 = p + Vector2(-Tile::HalfWidth, -Tile::HalfHeight / 2); // аб
+			auto p2 = p + Vector2(0.f, -Tile::HalfHeight); // ╩С
+			auto p3 = p + Vector2(Tile::HalfWidth, -Tile::HalfHeight / 2); // ©Л
 			auto p4 = p + Vector2(0.f, .0f); // го
 
 			float d1 = p1.y - (-m * p1.x);
 			float d2 = p2.y - (m * p2.x);
 			float d3 = p3.y - (-m * p3.x);
 			float d4 = p4.y - (m * p4.x);
+
+			auto ps1 = Sprite::Create(L"Resources\\point.png");
+			ps1->SetPosition(p1);
+			AddChild(ps1);
 
 			float r1 = -m * position.x - position.y + d1;
 			float r2 = m * position.x - position.y + d2;

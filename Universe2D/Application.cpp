@@ -145,6 +145,8 @@ bool Application::_CreateWindow(wchar_t* title, int width, int height, bool full
     }
     else
     {
+		style = WS_POPUP;
+
         // 윈도우 모드일경우 윈도우 보더를 계산한 크기로 수정함
         RECT rect;
         SetRect(&rect, 0, 0, width, height);
