@@ -47,6 +47,7 @@ void Object::Render() {
 		return;
 	}
 	
+	SortZOrder();
 	CalculateMatrix();
 
 	if (m_Parent) {

@@ -22,19 +22,11 @@ public:
 	void SetRadius(float radius) { m_Radius = radius; }
 
 public:
-	bool IsCollideWith(Collider* other);
+	bool IsCollideWith(Collider* other) override;
+	bool IsCollideWith(const Vector2& point) override;
 
 private:
-	bool IsCollideWith(CircleCollider* other);
-	bool IsCollideWith(BoxCollider* other);
+	bool IsCollideWith(CircleCollider* other) override;
+	bool IsCollideWith(BoxCollider* other) override;
 
-public:
-	virtual void Update(float deltaTime) override
-	{
-		Object::Update(deltaTime);
-	}
-	virtual void Render() override
-	{
-		Object::Render();
-	}
 };

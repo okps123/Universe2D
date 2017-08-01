@@ -9,10 +9,12 @@ public:
 	~BoxCollider();
 
 public:
-	bool IsCollideWith(Collider* other);
+	bool IsCollideWith(Collider* other) override;
+	bool IsCollideWith(const Vector2& point) override;
 
 private:
-	bool IsCollideWith(CircleCollider* other);
-	bool IsCollideWith(BoxCollider* other);
+	virtual bool IsCollideWith(CircleCollider* other) override;
+	virtual bool IsCollideWith(BoxCollider* other) override;
+
 };
 

@@ -3,23 +3,16 @@
 
 #include "Object.h"
 
-CircleCollider::CircleCollider() : m_Radius(0.f)
-{
-}
-CircleCollider::~CircleCollider()
-{
-}
+CircleCollider::CircleCollider() : m_Radius(0.f) {}
+CircleCollider::~CircleCollider() {}
 
-CircleCollider* CircleCollider::Create(float radius)
-{
+CircleCollider* CircleCollider::Create(float radius) {
 	return CircleCollider::Create(radius, Vector2(0.f, 0.f));
 }
 
-CircleCollider* CircleCollider::Create(float radius, const Vector2& offset)
-{
+CircleCollider* CircleCollider::Create(float radius, const Vector2& offset) {
 	auto collider = new (std::nothrow) CircleCollider();
-	if (collider && collider->InitializeWithCircle(radius, offset))
-	{
+	if (collider && collider->InitializeWithCircle(radius, offset)) {
 		return collider;
 	}
 
@@ -27,21 +20,29 @@ CircleCollider* CircleCollider::Create(float radius, const Vector2& offset)
 	return nullptr;
 }
 
-bool CircleCollider::InitializeWithCircle(float radius, const Vector2& offset)
-{
+bool CircleCollider::InitializeWithCircle(float radius, const Vector2& offset) {
 	SetRadius(radius);
 	SetOffset(offset);
 
 	return true;
 }
 
-bool CircleCollider::IsCollideWith(Collider* other)
-{
+bool CircleCollider::IsCollideWith(Collider* other) {
 	return other->IsCollideWith(this);
 }
+bool CircleCollider::IsCollideWith(const Vector2& point) {
+	auto position = GetParent()->GetPosition();
 
-bool CircleCollider::IsCollideWith(CircleCollider* other)
-{
+	auto deltaPosition = (position + GetOffset()) - point;
+	auto distance = sqrt(pow(deltaPosition.x, 2) + pow(deltaPosition.y, 2));
+
+	if (distance > GetRadius())
+		return false;
+
+	return true;
+}
+
+bool CircleCollider::IsCollideWith(CircleCollider* other) {
 	auto deltaPos = (GetParent()->GetPosition() + GetOffset()) - other->GetParent()->GetPosition();
 	auto distance = sqrt(pow(deltaPos.x, 2) + pow(deltaPos.y, 2));
 
@@ -50,7 +51,6 @@ bool CircleCollider::IsCollideWith(CircleCollider* other)
 
 	return true;
 }
-bool CircleCollider::IsCollideWith(BoxCollider* other)
-{
+bool CircleCollider::IsCollideWith(BoxCollider* other) {
 	return false;
 }

@@ -195,7 +195,5 @@ public:
 		std::sort(m_Children.begin(), m_Children.end(), [](Object* lhs, Object* rhs) {
 			return lhs->GetZOrder() < rhs->GetZOrder();
 		});
-
-		m_TransformUpdate = true;
 	}
 };

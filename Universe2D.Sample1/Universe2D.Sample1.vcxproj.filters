@@ -14,6 +14,9 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="ItemCreateScene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -38,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemCreateScene.h">
+      <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -70,7 +70,6 @@ void SampleScene3::Update(float deltaTime) {
 }
 
 void SampleScene3::Render() {
-	SortZOrder();
 	Object::Render();
 }
 

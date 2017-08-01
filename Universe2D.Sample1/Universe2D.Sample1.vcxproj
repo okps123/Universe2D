@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ItemCreateScene.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -162,6 +163,7 @@
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ItemCreateScene.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="SampleScene3.h" />
