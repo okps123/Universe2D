@@ -6,7 +6,7 @@ private:
 	int m_Height;
 
 	Tile*** m_TileMap;
-	ObjecContainer* m_Towers;
+	Object* m_Towers;
 
 	std::vector<Tile*> m_OpenList;
 	std::vector<Tile*> m_CloseList;

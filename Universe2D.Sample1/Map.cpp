@@ -44,7 +44,7 @@ void Map::CreateMap(int width, int height) {
 		}
 	}
 
-	m_Towers = ObjecContainer::Create();
+	m_Towers = Object::Create();
 	AddChild(m_Towers);
 }
 
