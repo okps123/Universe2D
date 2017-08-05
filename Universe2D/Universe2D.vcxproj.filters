@@ -13,34 +13,16 @@
     <Filter Include="Framework\Node">
       <UniqueIdentifier>{c37082b0-58a0-4bbd-8cf7-6ecf20820298}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\Object">
-      <UniqueIdentifier>{ad6bc9f4-7f1f-477f-8130-04c999a8cdcb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Sprite">
-      <UniqueIdentifier>{ba2f4226-1a4c-4a82-bd7e-e38916f26b9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Scene">
-      <UniqueIdentifier>{e9650b04-d004-4d7c-bf27-94e9af9f3f84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\UI">
-      <UniqueIdentifier>{d374da4c-cf85-4c8d-83a6-d671d4b7d9db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Physics">
       <UniqueIdentifier>{28802472-fbce-46e5-9ed7-889e03f147d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\GUI">
+      <UniqueIdentifier>{4ccb2cd6-75dd-4d0f-96db-0e6d0c251711}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Precompiled.h">
       <Filter>Framework\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Framework\Node\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Framework\Node\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Framework\Node\Scene</Filter>
     </ClInclude>
     <ClInclude Include="TypeDefine.h">
       <Filter>Framework\Header</Filter>
@@ -81,31 +63,31 @@
     <ClInclude Include="BoxCollider.h">
       <Filter>Framework\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationSprite.h">
-      <Filter>Framework\Node\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="Label.h">
-      <Filter>Framework\Node\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="ObjecContainer.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Framework\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Framework\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSprite.h">
+      <Filter>Framework\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Framework\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Framework\Node\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
       <Filter>Framework\Header</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Framework\Node\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Framework\Node\Sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Framework\Node\Scene</Filter>
     </ClCompile>
     <ClCompile Include="TypeDefine.cpp">
       <Filter>Framework\Header</Filter>
@@ -137,17 +119,26 @@
     <ClCompile Include="BoxCollider.cpp">
       <Filter>Framework\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationSprite.cpp">
-      <Filter>Framework\Node\Sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="Label.cpp">
-      <Filter>Framework\Node\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="ObjecContainer.cpp">
       <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Framework\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Framework\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSprite.cpp">
+      <Filter>Framework\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Framework\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Framework\Node\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
