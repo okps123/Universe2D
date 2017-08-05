@@ -30,7 +30,6 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Object.h" />
-    <ClInclude Include="ObjecContainer.h" />
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -52,7 +51,6 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Object.cpp" />
-    <ClCompile Include="ObjecContainer.cpp" />
     <ClCompile Include="Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Precompiled.h</PrecompiledHeaderFile>

@@ -19,6 +19,15 @@
     <Filter Include="Framework\Node\GUI">
       <UniqueIdentifier>{4ccb2cd6-75dd-4d0f-96db-0e6d0c251711}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\IO">
+      <UniqueIdentifier>{a1fa9359-537d-400e-a1aa-549f03781570}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Debug">
+      <UniqueIdentifier>{c52dd55a-9683-4370-adb5-508cd9235c7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Graphics">
+      <UniqueIdentifier>{afcf3fc9-c8e4-4d84-ae87-f37edce1b9bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Precompiled.h">
@@ -27,16 +36,7 @@
     <ClInclude Include="TypeDefine.h">
       <Filter>Framework\Header</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Director.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Console.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Application.h">
@@ -47,9 +47,6 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Framework\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Universe2D.h">
       <Filter>Framework\Header</Filter>
@@ -62,12 +59,6 @@
     </ClInclude>
     <ClInclude Include="BoxCollider.h">
       <Filter>Framework\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjecContainer.h">
-      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Framework\Node</Filter>
@@ -84,6 +75,21 @@
     <ClInclude Include="Label.h">
       <Filter>Framework\Node\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Framework\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Framework\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Framework\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Framework\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Framework\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -91,12 +97,6 @@
     </ClCompile>
     <ClCompile Include="TypeDefine.cpp">
       <Filter>Framework\Header</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Director.cpp">
       <Filter>Framework</Filter>
@@ -119,12 +119,6 @@
     <ClCompile Include="BoxCollider.cpp">
       <Filter>Framework\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjecContainer.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Framework\Node</Filter>
     </ClCompile>
@@ -139,6 +133,15 @@
     </ClCompile>
     <ClCompile Include="Label.cpp">
       <Filter>Framework\Node\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Framework\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Framework\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Framework\Node</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
