@@ -1,5 +1,12 @@
 #pragma once
 
+/*
+	Label은 LPD3DXFONT를 통해 구현됬습니다
+
+	GUI 객체로 Sprite와 달리 Matrix의 영향을 받지 않습니다
+	SetPosition 함수를 통해 위치를 설정해야합니다
+*/
+
 class Label : public Object
 {
 private:

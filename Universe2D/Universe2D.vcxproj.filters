@@ -90,6 +90,9 @@
     <ClInclude Include="Singleton.h">
       <Filter>Framework\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Framework\Node\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Framework\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Framework\Node\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
