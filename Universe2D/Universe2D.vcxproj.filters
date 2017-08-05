@@ -93,6 +93,9 @@
     <ClInclude Include="Button.h">
       <Filter>Framework\Node\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationGroup.h">
+      <Filter>Framework\Node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Framework\Node\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationGroup.cpp">
+      <Filter>Framework\Node</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

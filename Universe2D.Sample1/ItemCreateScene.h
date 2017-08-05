@@ -6,6 +6,9 @@ public:
 	~ItemCreateScene();
 
 public:
+	CREATE_FUNC(ItemCreateScene);
+
+public:
 	bool Initialize() override;
 
 	void Update(float deltaTime) override;

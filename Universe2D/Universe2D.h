@@ -36,7 +36,7 @@
 
 #include "Label.h"
 
-#include "Frame.h"
 #include "Sprite.h"
+#include "AnimationGroup.h"
 #include "AnimationSprite.h"
 

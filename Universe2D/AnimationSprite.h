@@ -8,17 +8,36 @@ private:
 	typedef std::vector<Sprite*> SpriteList;
 
 	uint m_CurrentFrame;
-	uint m_FrameDelay;
+	uint m_Delay;
 	uint m_FrameCounter;
 
 	SpriteList m_SpriteList;
 
 public:
-	AnimationSprite(int frameDelay);
+	AnimationSprite();
 	~AnimationSprite();
+	
+public:
+	static AnimationSprite* Create(int delay) {
+		auto animationSprite = new (std::nothrow) AnimationSprite();
+		if (animationSprite && animationSprite->InitializeWithAnimation(delay)) {
+			return animationSprite;
+		}
 
-	int GetFrameDelay() { return m_FrameDelay; }
-	void SetFrameDelay(int frame) { m_FrameDelay = frame; }
+		SAFE_DELETE(animationSprite);
+		return nullptr;
+	}
+
+public:
+	bool InitializeWithAnimation(int delay);
+
+public:
+	const int GetDelay() const {
+		return m_Delay; 
+	}
+	void SetDelay(int frame) {
+		m_Delay = frame; 
+	}
 
 public:
 	void AddFrame(std::wstring fileName);

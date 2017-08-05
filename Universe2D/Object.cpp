@@ -23,6 +23,7 @@ Object::Object()
 	, m_Visible(true)
 	, m_TransformUpdate(true)
 	, m_Name("") {
+	D3DXMatrixIdentity(&m_Matrix);
 }
 Object::~Object() {
 	for each (auto child in m_Children)
