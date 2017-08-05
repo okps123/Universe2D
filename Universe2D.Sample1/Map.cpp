@@ -37,7 +37,6 @@ void Map::CreateMap(int width, int height) {
 			tile->SetPosition(0, 0);
 			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth,
 				i * Tile::HalfHeight / 2 + j * Tile::HalfHeight / 2);
-
 			tile->SetMapPosition(Vector2(j, i));
 
 			m_TileMap[i][j] = tile;

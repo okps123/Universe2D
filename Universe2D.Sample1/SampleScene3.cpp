@@ -25,7 +25,6 @@ void SampleScene3::Update(float deltaTime) {
 	static Tile* prevTile = nullptr;
 
 	Scene::Update(deltaTime);
-
 	
 	//if (Input::GetInstance()->GetKeyState('A') == KeyState::Pressed) {
 	//	player->Translate(-2, 0);

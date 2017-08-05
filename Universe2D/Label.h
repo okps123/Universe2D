@@ -30,6 +30,13 @@ public:
 		m_Text = text; 
 	}
 
+	const int GetFontSize() const {
+		return m_FontSize;
+	}
+	void SetFontSize(const int size) {
+		m_FontSize = size;
+	}
+
 	D3DCOLOR GetColor() const { return m_Color; }
 	void SetColor(D3DCOLOR color) { m_Color = color; }
 

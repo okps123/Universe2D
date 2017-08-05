@@ -30,6 +30,9 @@ private:
 	int m_G;
 	int m_H;
 
+private:
+	Label* label;
+
 public:
 	Tile();
 	~Tile();
@@ -40,6 +43,9 @@ public:
 public:
 	bool Initialize() override {
 		Object::Initialize();
+
+		label = Label::Create(L"±¼¸²", 12);
+		AddChild(label);
 
 		return true;
 	}

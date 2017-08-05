@@ -25,9 +25,6 @@
     <Filter Include="Framework\Node\UI">
       <UniqueIdentifier>{d374da4c-cf85-4c8d-83a6-d671d4b7d9db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\Frame">
-      <UniqueIdentifier>{61e22435-b7d8-4e53-967c-6d654921cc22}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Physics">
       <UniqueIdentifier>{28802472-fbce-46e5-9ed7-889e03f147d6}</UniqueIdentifier>
     </Filter>
@@ -44,9 +41,6 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Framework\Node\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Frame.h">
-      <Filter>Framework\Node\Frame</Filter>
     </ClInclude>
     <ClInclude Include="TypeDefine.h">
       <Filter>Framework\Header</Filter>
@@ -99,7 +93,6 @@
     <ClInclude Include="ObjecContainer.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -113,9 +106,6 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Framework\Node\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Frame.cpp">
-      <Filter>Framework\Node\Frame</Filter>
     </ClCompile>
     <ClCompile Include="TypeDefine.cpp">
       <Filter>Framework\Header</Filter>
@@ -159,6 +149,5 @@
     <ClCompile Include="ObjecContainer.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp" />
   </ItemGroup>
 </Project>
