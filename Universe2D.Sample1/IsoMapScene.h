@@ -1,7 +1,7 @@
 #pragma once
 
 class Map;
-class SampleScene3 : public Scene {
+class IsoMapScene : public Scene {
 private:
 	Map* m_Map;
 	Sprite* box;
@@ -9,11 +9,11 @@ private:
 	Sprite* player;
 
 public:
-	SampleScene3();
-	~SampleScene3();
+	IsoMapScene();
+	~IsoMapScene();
 
 public:
-	CREATE_FUNC(SampleScene3);
+	CREATE_FUNC(IsoMapScene);
 
 public:
 	bool Initialize() override;
