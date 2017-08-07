@@ -51,7 +51,7 @@ public:
 	void AddChild(Object* obj);
 	void RemoveChild(Object* obj);
 
-private:
+public:
 	void CalculateAnchorPointInPoint();
 	void CalculateMatrix();
 

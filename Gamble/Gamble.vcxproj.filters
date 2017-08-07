@@ -5,6 +5,9 @@
     <ClInclude Include="StageScene1.h">
       <Filter>Stage1</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp" />
@@ -12,10 +15,16 @@
     <ClCompile Include="StageScene1.cpp">
       <Filter>Stage1</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Stage1">
       <UniqueIdentifier>{b38d8c40-89e1-4375-a2df-6dca376506d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{c257ce86-78f6-46e8-b1de-8f8360168471}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
