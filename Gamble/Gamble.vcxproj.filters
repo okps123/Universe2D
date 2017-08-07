@@ -2,9 +2,20 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="Precompiled.h" />
+    <ClInclude Include="StageScene1.h">
+      <Filter>Stage1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp" />
     <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="StageScene1.cpp">
+      <Filter>Stage1</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Stage1">
+      <UniqueIdentifier>{b38d8c40-89e1-4375-a2df-6dca376506d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
