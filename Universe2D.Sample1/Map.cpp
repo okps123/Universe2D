@@ -2,26 +2,11 @@
 #include "Map.h"
 #include "Tile.h"
 
-Map::Map() {
-}
-Map::~Map() {
-}
+Map::Map() {}
+Map::~Map() {}
 
-void Map::Update(float deltaTime)
-{
+void Map::Update(float deltaTime) {
 	Object::Update(deltaTime);
-	static UINT count = 0;
-	count++;
-
-	srand(time(NULL));
-	for (int i = 0; i < m_Height; i++) {
-		for (int j = 0; j < m_Height; j++) {
-
-			auto tile = m_TileMap[i][j];
-			auto p = tile->GetPosition();
-			tile->SetPosition(p.x,p.y + sinf((((i + j) * 6) + count) / 15.f) * 5);
-		}
-	}
 }
 
 void Map::CreateMap(int width, int height) {
@@ -33,19 +18,23 @@ void Map::CreateMap(int width, int height) {
 		m_TileMap[i] = new Tile*[width];
 		for (int j = 0; j < width; j++) {
 			auto tile = Tile::Create();
-
-			tile->SetPosition(0, 0);
-			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth,
-				i * Tile::HalfHeight / 2 + j * Tile::HalfHeight / 2);
+			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth, i * Tile::HalfHeight / 2 + j * Tile::HalfHeight / 2);
 			tile->SetMapPosition(Vector2(j, i));
+			tile->SetZOrder(i + j);
 
 			m_TileMap[i][j] = tile;
 			AddChild(tile);
 		}
 	}
 
-	m_Towers = Object::Create();
-	AddChild(m_Towers);
+	m_MapObjects = Object::Create();
+	m_MapObjects->SetZOrder(1000);
+	AddChild(m_MapObjects);
+}
+
+void Map::AddMapObject(Object* object) {
+	object->SetZOrder(abs(object->GetPosition().x) + abs(object->GetPosition().y));
+	m_MapObjects->AddChild(object);
 }
 
 std::vector<Tile*> Map::FindPath(Tile* startTile, Tile* endTile) {
@@ -154,7 +143,6 @@ std::vector<Tile*> Map::GetNeighborTiles(Tile * tile) {
 bool Map::IsOpenTile(Tile * tile) {
 	return IsContains(m_OpenList, tile);
 }
-
 bool Map::IsCloseTile(Tile * tile) {
 	return IsContains(m_CloseList, tile);
 }

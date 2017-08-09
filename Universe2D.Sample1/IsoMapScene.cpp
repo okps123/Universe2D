@@ -23,6 +23,16 @@ bool IsoMapScene::Initialize() {
 
 void IsoMapScene::Update(float deltaTime) {
 	Scene::Update(deltaTime);
+
+	if (Input::GetInstance()->GetKeyState(VK_LBUTTON) == KeyState::Down) {
+		auto objectPosition = GetCamera()->ScreenToWorldPoint(Input::GetInstance()->GetMousePosition());
+		auto object = Sprite::Create(L"Resources\\oak.png");
+		object->SetAnchorPoint(0.5f, 1.0f);
+		object->SetPosition(objectPosition);
+
+		m_Map->AddMapObject(object);
+	}
+
 	UpdateCamera();
 }
 

@@ -6,7 +6,7 @@ private:
 	int m_Height;
 
 	Tile*** m_TileMap;
-	Object* m_Towers;
+	Object* m_MapObjects;
 
 	std::vector<Tile*> m_OpenList;
 	std::vector<Tile*> m_CloseList;
@@ -23,6 +23,9 @@ public:
 
 public:
 	void CreateMap(int width, int height);
+
+public:
+	void AddMapObject(Object* object);
 
 public:
 	std::vector<Tile*> FindPath(Tile* startTile, Tile* endTile);
