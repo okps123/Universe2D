@@ -16,7 +16,6 @@ bool Map::InitializeWithMap(int width, int height) {
 		m_TileMap[i] = new Tile*[width];
 		for (int j = 0; j < width; j++) {
 			auto tile = Tile::Create();
-			//tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth, i * Tile::HalfHeight / 2 + j * Tile::HalfHeight / 2);
 			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth, i * Tile::HalfHeight + j * Tile::HalfHeight);
 			tile->SetMapPosition(Vector2(j, i));
 			tile->SetZOrder(i + j);
@@ -53,7 +52,7 @@ void Map::Update(float deltaTime) {
 			auto pathList = FindPath(m_Player->GetPathTile(), tile);
 			m_Player->MoveTo(pathList);
 		} else {
-			printf("타일 몾찾음\n");
+			printf("타일 못찾음\n");
 		}
 	}
 }

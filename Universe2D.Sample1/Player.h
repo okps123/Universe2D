@@ -29,7 +29,6 @@ public:
 	
 public:
 	void Update(float deltaTime);
-
 	void UpdateMovement(float deltaTime);
 
 public:

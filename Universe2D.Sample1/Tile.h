@@ -11,19 +11,20 @@ enum class TileType {
 
 class Tile : public Object {
 public:
-	static const int Width = 50;
-	static const int Height = 29;
+	static const int Width = 128;
+	static const int Height = 78;
 	static const int HalfWidth = Width / 2;
 	static const int HalfHeight = Height / 2;
 
 private:
 	Tile* m_ParentTile;
-
 	Vector2 m_MapPosition;
 
+private:
 	TileType m_Type;
 	bool m_TypeUpdate;
 
+private:
 	Sprite* m_Sprite;
 
 private:
@@ -50,24 +51,9 @@ public:
 
 		if (m_TypeUpdate) {
 			switch (m_Type) {
-				case TileType::None:
-					m_Sprite = Sprite::Create(L"Resources\\isometric\\tile-g.png");
-					break;
-				case TileType::Block:
-					m_Sprite = Sprite::Create(L"Resources\\isometric\\tile_obst.png");
-					break;
-				case TileType::Select:
-					m_Sprite = Sprite::Create(L"Resources\\isometric\\tile-b.png");
-					break;
-				case TileType::Start:
-					m_Sprite = Sprite::Create(L"Resources\\isometric\\tile_start.png");
-					break;
-				case TileType::End:
-					m_Sprite = Sprite::Create(L"Resources\\isometric\\tile_end.png");
-					break;
-				case TileType::Path:
-					m_Sprite = Sprite::Create(L"Resources\\isometric\\tile_path.png");
-					break;
+			case TileType::None:
+				m_Sprite = Sprite::Create(L"Resources\\tile_0.png");
+				break;
 			}
 			m_Sprite->SetParent(this);
 			m_Sprite->SetAnchorPoint(0.5f, 1.0f);
@@ -94,6 +80,7 @@ public:
 		m_ParentTile = tile;
 	}
 
+public:
 	const Vector2& GetMapPosition() {
 		return m_MapPosition;
 	}
@@ -101,6 +88,7 @@ public:
 		m_MapPosition = position;
 	}
 
+public:
 	const TileType& GetState() {
 		return m_Type;
 	}
@@ -109,6 +97,7 @@ public:
 		m_TypeUpdate = true;
 	}
 
+public:
 	const int& GetGCost() {
 		return m_G;
 	}
