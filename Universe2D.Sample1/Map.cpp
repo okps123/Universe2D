@@ -9,7 +9,7 @@ void Map::Update(float deltaTime) {
 	Object::Update(deltaTime);
 }
 
-void Map::CreateMap(int width, int height) {
+bool Map::InitializeWithMap(int width, int height) {
 	m_Width = width;
 	m_Height = height;
 
@@ -27,14 +27,19 @@ void Map::CreateMap(int width, int height) {
 		}
 	}
 
-	m_MapObjects = Object::Create();
-	m_MapObjects->SetZOrder(1000);
-	AddChild(m_MapObjects);
+	m_Objects = Object::Create();
+	m_Objects->SetZOrder(1000);
+
+	AddChild(m_Objects);
+
+	return true;
 }
 
 void Map::AddMapObject(Object* object) {
-	object->SetZOrder(abs(object->GetPosition().x) + abs(object->GetPosition().y));
-	m_MapObjects->AddChild(object);
+	int order = abs(object->GetPosition().x) + abs(object->GetPosition().y);
+	object->SetZOrder(order);
+
+	m_Objects->AddChild(object);
 }
 
 std::vector<Tile*> Map::FindPath(Tile* startTile, Tile* endTile) {
@@ -92,6 +97,49 @@ std::vector<Tile*> Map::FindPath(Tile* startTile, Tile* endTile) {
 	}
 
 	return std::vector<Tile*>();
+}
+
+Tile* Map::GetTile(int x, int y) {
+	if (IsExistTile(x, y)) {
+		return m_TileMap[y][x];
+	}
+
+	return nullptr;
+}
+Tile* Map::GetTile(const Vector2 & position) {
+	static float m = 0.5f;
+
+	for (int i = 0; i < m_Height; i++) {
+		for (int j = 0; j < m_Width; j++) {
+			auto tile = m_TileMap[i][j];
+
+			auto p = tile->GetPosition() + Vector2(0, -Tile::HalfHeight);
+			auto p1 = p + Vector2(-Tile::HalfWidth, -Tile::HalfHeight / 2); // аб
+			auto p2 = p + Vector2(0.f, -Tile::HalfHeight); // ╩С
+			auto p3 = p + Vector2(Tile::HalfWidth, -Tile::HalfHeight / 2); // ©Л
+			auto p4 = p + Vector2(0.f, .0f); // го
+
+			float d1 = p1.y - (-m * p1.x);
+			float d2 = p2.y - (m * p2.x);
+			float d3 = p3.y - (-m * p3.x);
+			float d4 = p4.y - (m * p4.x);
+
+			//auto ps1 = Sprite::Create(L"Resources\\point.png");
+			//ps1->SetPosition(p1);
+			//AddChild(ps1);
+
+			float r1 = -m * position.x - position.y + d1;
+			float r2 = m * position.x - position.y + d2;
+			float r3 = -m * position.x - position.y + d3;
+			float r4 = m * position.x - position.y + d4;
+
+			if (r1 <= 0.f && r2 <= 0.f && r3 >= 0.f && r4 >= 0.f) {
+				return tile;
+			}
+		}
+	}
+
+	return nullptr;
 }
 
 Tile* Map::GetNextTile() {
@@ -154,40 +202,4 @@ bool Map::IsExistTile(int x, int y) {
 	}
 
 	return false;
-}
-
-Tile* Map::GetTileFromPosition(const Vector2 & position) {
-	static float m = 0.5f;
-
-	for (int i = 0; i < m_Height; i++) {
-		for (int j = 0; j < m_Width; j++) {
-			auto tile = m_TileMap[i][j];
-
-			auto p = tile->GetPosition() + Vector2(0, -Tile::HalfHeight);
-			auto p1 = p + Vector2(-Tile::HalfWidth, -Tile::HalfHeight / 2); // аб
-			auto p2 = p + Vector2(0.f, -Tile::HalfHeight); // ╩С
-			auto p3 = p + Vector2(Tile::HalfWidth, -Tile::HalfHeight / 2); // ©Л
-			auto p4 = p + Vector2(0.f, .0f); // го
-
-			float d1 = p1.y - (-m * p1.x);
-			float d2 = p2.y - (m * p2.x);
-			float d3 = p3.y - (-m * p3.x);
-			float d4 = p4.y - (m * p4.x);
-
-			auto ps1 = Sprite::Create(L"Resources\\point.png");
-			ps1->SetPosition(p1);
-			AddChild(ps1);
-
-			float r1 = -m * position.x - position.y + d1;
-			float r2 = m * position.x - position.y + d2;
-			float r3 = -m * position.x - position.y + d3;
-			float r4 = m * position.x - position.y + d4;
-
-			if (r1 <= 0.f && r2 <= 0.f && r3 >= 0.f && r4 >= 0.f) {
-				return tile;
-			}
-		}
-	}
-
-	return nullptr;
 }

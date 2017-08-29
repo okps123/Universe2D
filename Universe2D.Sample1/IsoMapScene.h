@@ -1,12 +1,12 @@
 #pragma once
 
 class Map;
+class Player;
+
 class IsoMapScene : public Scene {
 private:
 	Map* m_Map;
-	Sprite* box;
-
-	Sprite* player;
+	Player* m_Player;
 
 public:
 	IsoMapScene();
@@ -17,10 +17,12 @@ public:
 
 public:
 	bool Initialize() override;
-	void Update(float deltaTime) override;
-	void Render() override;
 
 public:
+	void Update(float deltaTime) override;
 	void UpdateCamera();
+
+public:
+	void Render() override;
 };
 

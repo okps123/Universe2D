@@ -5,9 +5,11 @@ private:
 	int m_Width;
 	int m_Height;
 
+private:
 	Tile*** m_TileMap;
-	Object* m_MapObjects;
+	Object* m_Objects;
 
+private:
 	std::vector<Tile*> m_OpenList;
 	std::vector<Tile*> m_CloseList;
 
@@ -16,32 +18,39 @@ public:
 	~Map();
 
 public:
-	CREATE_FUNC(Map);
+	static Map* Create(int width, int height) {
+		auto map = new (std::nothrow) Map();
+		if (map && map->InitializeWithMap(width, height)) {
+			return map;
+		}
+
+		return nullptr;
+	}
+
+public:
+	bool InitializeWithMap(int width, int height);
 
 public:
 	void Update(float deltaTime) override;
 
 public:
-	void CreateMap(int width, int height);
+	void AddMapObject(Object* object);
 
 public:
-	void AddMapObject(Object* object);
+	Tile* GetTile(int x, int y);
+	Tile* GetTile(const Vector2& position);
 
 public:
 	std::vector<Tile*> FindPath(Tile* startTile, Tile* endTile);
 
-public:
+private:
 	Tile* GetNextTile();
 	std::vector<Tile*> GetNeighborTiles(Tile* tile);
 
-public:
+private:
 	bool IsOpenTile(Tile* tile);
 	bool IsCloseTile(Tile* tile);
 
 	bool IsExistTile(int x, int y);
-
-public:
-	Tile* GetTileFromPosition(const Vector2& position);
-
 };
 

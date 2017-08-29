@@ -21,7 +21,9 @@ private:
     bool m_PrevKeyState[256];
     bool m_NowKeyState[256];
 
+private:
     Vector2 m_MousePosition;
+	bool m_MouseHandled;
 
 public:
     Input();
@@ -33,11 +35,19 @@ public:
 
 public:
     KeyState GetKeyState(int key);
-	KeyState GetMouseButtonState(MouseButton button);
 
+public:
+	KeyState GetMouseButtonState(MouseButton button);
 	Vector2 GetMousePosition()
 	{
 		return m_MousePosition;
+	}
+
+	bool GetMouseHandled() {
+		return m_MouseHandled;
+	}
+	void SetMouseHandled(bool handled) {
+		m_MouseHandled = handled;
 	}
 
 private:
