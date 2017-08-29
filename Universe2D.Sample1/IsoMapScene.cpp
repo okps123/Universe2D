@@ -17,13 +17,6 @@ bool IsoMapScene::Initialize() {
 	m_Map = Map::Create(10, 10);
 	AddChild(m_Map);
 
-	auto tile = m_Map->GetTile(5, 5);
-
-	m_Player = Player::Create();
-	m_Player->SetPosition(tile->GetPosition());
-
-	m_Map->AddMapObject(m_Player);
-
 	// 카메라 이동
 	GetCamera()->Translate(-640, 0);
 
@@ -32,15 +25,6 @@ bool IsoMapScene::Initialize() {
 
 void IsoMapScene::Update(float deltaTime) {
 	Scene::Update(deltaTime);
-
-	//if (Input::GetInstance()->GetKeyState(VK_LBUTTON) == KeyState::Down) {
-	//	auto objectPosition = GetCamera()->ScreenToWorldPoint(Input::GetInstance()->GetMousePosition());
-	//	auto object = Sprite::Create(L"Resources\\oak.png");
-	//	object->SetAnchorPoint(0.5f, 1.0f);
-	//	object->SetPosition(objectPosition);
-
-	//	m_Map->AddMapObject(object);
-	//}
 
 	UpdateCamera();
 }

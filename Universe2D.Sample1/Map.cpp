@@ -2,12 +2,10 @@
 #include "Map.h"
 #include "Tile.h"
 
+#include "Player.h"
+
 Map::Map() {}
 Map::~Map() {}
-
-void Map::Update(float deltaTime) {
-	Object::Update(deltaTime);
-}
 
 bool Map::InitializeWithMap(int width, int height) {
 	m_Width = width;
@@ -18,7 +16,8 @@ bool Map::InitializeWithMap(int width, int height) {
 		m_TileMap[i] = new Tile*[width];
 		for (int j = 0; j < width; j++) {
 			auto tile = Tile::Create();
-			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth, i * Tile::HalfHeight / 2 + j * Tile::HalfHeight / 2);
+			//tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth, i * Tile::HalfHeight / 2 + j * Tile::HalfHeight / 2);
+			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth, i * Tile::HalfHeight + j * Tile::HalfHeight);
 			tile->SetMapPosition(Vector2(j, i));
 			tile->SetZOrder(i + j);
 
@@ -29,13 +28,45 @@ bool Map::InitializeWithMap(int width, int height) {
 
 	m_Objects = Object::Create();
 	m_Objects->SetZOrder(1000);
-
 	AddChild(m_Objects);
+
+	m_Player = Player::Create();
+	m_Player->SetPosition(m_TileMap[m_Width / 2][m_Height / 2]->GetPosition());
+
+	AddObject(m_Player);
 
 	return true;
 }
 
-void Map::AddMapObject(Object* object) {
+void Map::Update(float deltaTime) {
+	Object::Update(deltaTime);
+
+	UpdatePlayer();
+
+	auto input = Input::GetInstance();
+	auto camera = Director::GetInstance()->GetScene()->GetCamera();
+	auto position = camera->ScreenToWorldPoint(Input::GetInstance()->GetMousePosition());
+
+	if (Input::GetInstance()->GetKeyState(VK_LBUTTON) == KeyState::Down) {
+		auto tile = GetTile(position);
+		if (tile) {
+			auto pathList = FindPath(m_Player->GetPathTile(), tile);
+			m_Player->MoveTo(pathList);
+		} else {
+			printf("타일 몾찾음\n");
+		}
+	}
+}
+
+void Map::UpdatePlayer() {
+	auto tile = GetTile(m_Player->GetPosition());
+	if (tile) {
+		m_Player->SetPathTile(tile);
+	}
+}
+
+
+void Map::AddObject(Object* object) {
 	int order = abs(object->GetPosition().x) + abs(object->GetPosition().y);
 	object->SetZOrder(order);
 
@@ -57,18 +88,24 @@ std::vector<Tile*> Map::FindPath(Tile* startTile, Tile* endTile) {
 			return std::vector<Tile*>();
 
 		m_CloseList.push_back(nextTile);
-		nextTile->SetState(TileType::Start);
+
+		nextTile->SetState(TileType::End);
+
 		auto it = std::find(m_OpenList.begin(), m_OpenList.end(), nextTile);
 		m_OpenList.erase(it);
 
-		// 목적지에 도착
 		if (nextTile->GetMapPosition() == endTile->GetMapPosition()) {
 			std::vector<Tile*> pathList;
+
+			pathList.push_back(endTile);
+
 			auto currentTile = nextTile->GetParentTile();
 			while (currentTile->GetMapPosition() != startTile->GetMapPosition()) {
 				pathList.push_back(currentTile);
 				currentTile = currentTile->GetParentTile();
 			}
+
+			std::reverse(pathList.begin(), pathList.end());
 
 			return pathList;
 		}
@@ -123,10 +160,6 @@ Tile* Map::GetTile(const Vector2 & position) {
 			float d2 = p2.y - (m * p2.x);
 			float d3 = p3.y - (-m * p3.x);
 			float d4 = p4.y - (m * p4.x);
-
-			//auto ps1 = Sprite::Create(L"Resources\\point.png");
-			//ps1->SetPosition(p1);
-			//AddChild(ps1);
 
 			float r1 = -m * position.x - position.y + d1;
 			float r2 = m * position.x - position.y + d2;

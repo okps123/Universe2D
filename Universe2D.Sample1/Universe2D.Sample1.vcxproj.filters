@@ -17,7 +17,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Game\Survival\Unit</Filter>
     </ClCompile>
-    <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="Unit.cpp">
+      <Filter>Game\Survival\Unit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -52,6 +54,8 @@
     <ClInclude Include="Player.h">
       <Filter>Game\Survival\Unit</Filter>
     </ClInclude>
-    <ClInclude Include="Unit.h" />
+    <ClInclude Include="Unit.h">
+      <Filter>Game\Survival\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

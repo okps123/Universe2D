@@ -1,5 +1,6 @@
 #pragma once
 class Tile;
+class Player;
 class Map : public Object {
 private:
 	int m_Width;
@@ -12,6 +13,9 @@ private:
 private:
 	std::vector<Tile*> m_OpenList;
 	std::vector<Tile*> m_CloseList;
+
+private:
+	Player* m_Player;
 
 public:
 	Map();
@@ -33,8 +37,10 @@ public:
 public:
 	void Update(float deltaTime) override;
 
+	void UpdatePlayer();
+
 public:
-	void AddMapObject(Object* object);
+	void AddObject(Object* object);
 
 public:
 	Tile* GetTile(int x, int y);
@@ -53,4 +59,3 @@ private:
 
 	bool IsExistTile(int x, int y);
 };
-

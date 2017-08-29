@@ -4,7 +4,13 @@ public:
 	int HP;
 
 public:
-	Unit() {};
+	float MoveSpeed;
+
+public:
+	Unit() 
+		: HP(1)
+		, MoveSpeed(1.f) {
+	};
 	virtual ~Unit() {};
 };
 

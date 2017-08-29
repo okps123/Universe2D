@@ -4,6 +4,8 @@
 #include "Application.h"
 
 Input::Input()
+	: m_MousePosition(0.f, 0.f)
+	, m_MouseHandled(false)
 {
     ZeroMemory(m_PrevKeyState, sizeof(m_PrevKeyState));
     ZeroMemory(m_NowKeyState, sizeof(m_NowKeyState));
