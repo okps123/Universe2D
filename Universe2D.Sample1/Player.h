@@ -2,6 +2,8 @@
 #include "Unit.h"
 
 class Tile;
+class Inventory;
+
 class Player : public Unit {
 private:
 	Tile* m_PathTile;
@@ -14,12 +16,17 @@ private:
 private:
 	Sprite* m_Sprite;
 
+private:
+	Inventory* m_Inventory;
+
 public:
 	Player() 
 		: m_PathTile(nullptr)
 		, m_PathIndex(0)
 		, m_TargetPathTile(nullptr) {};
-	~Player() {};
+	~Player() {
+		delete m_Inventory;
+	};
 
 public:
 	CREATE_FUNC(Player);

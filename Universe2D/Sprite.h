@@ -5,6 +5,9 @@ protected:
 	Texture* m_Texture;
 	byte m_ColorA, m_ColorR, m_ColorG, m_ColorB;
 
+protected:
+	RECT m_SourceRect;
+
 public:
 	Sprite();
 	~Sprite();

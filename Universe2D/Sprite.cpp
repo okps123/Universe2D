@@ -33,8 +33,10 @@ bool Sprite::InitializeWithFile(const std::wstring & fileName)
 
 		return false;
 
-	auto textureSize = m_Texture->GetSize();
-	SetSize(textureSize);
+	auto size = m_Texture->GetSize();
+	SetRect(&m_SourceRect, 0, 0, size.x, size.y);
+	SetSize(size);
+	
 
 	SetAnchorPoint({ 0.5f, 0.5f });
 
@@ -55,35 +57,19 @@ void Sprite::Render()
 	if (!m_Visible)
 		return;
 
-	//auto scene = Director::GetInstance()->GetScene();
-	//Vector2 screenPosition = scene->GetCamera()->WorldToScreenPoint(m_Position);
-
-	//if (screenPosition.x < 0
-	//	|| screenPosition.y < 0
-	//	|| screenPosition.x > scene->GetSize().x
-	//	|| screenPosition.y > scene->GetSize().y) {
-	//	printf("%f %f skip render\n", screenPosition.x, screenPosition.y);
-	//	return;
-	//}
-
 	Object::Render();
 
-	// 텍스쳐에서 그려질 부분의 영역을 설정 할 수 있음
-	RECT srcRect;
-	SetRect(&srcRect,
-		0,
-		0,
-		static_cast<int>(m_Size.x),
-		static_cast<int>(m_Size.y));
-
-	D3DXVECTOR3 center(m_AnchorPointInPoints.x, m_AnchorPointInPoints.y, 0.f);
+	D3DXVECTOR3 center;
+	center.x = m_AnchorPointInPoints.x;
+	center.y = m_AnchorPointInPoints.y;
+	center.z = 0.f;
 
 	auto sprite = Renderer::GetInstance()->GetSprite();
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 	sprite->SetTransform(&m_Matrix);
 	sprite->Draw(
 		m_Texture->GetD3DTexture(),
-		&srcRect, &center, NULL,
+		&m_SourceRect, &center, NULL,
 		D3DCOLOR_ARGB(255 - m_ColorA, 255 - m_ColorR, 255 - m_ColorG, 255 - m_ColorB));
 	sprite->End();
 }

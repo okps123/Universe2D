@@ -3,12 +3,16 @@
 
 #include "Tile.h"
 
+#include "Inventory.h"
+
 bool Player::Initialize() {
 	MoveSpeed = 2.f;
 
 	m_Sprite = Sprite::Create(L"Resources\\player.png");
 	m_Sprite->SetAnchorPoint(0.5f, 0.5f);
 	AddChild(m_Sprite);
+
+	m_Inventory = new Inventory();
 
 	return true;
 }
