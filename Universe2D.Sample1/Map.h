@@ -7,7 +7,8 @@ private:
 	int m_Height;
 
 private:
-	Tile*** m_TileMap;
+	Sprite* m_Map;
+	Tile*** m_Tiles;
 	Object* m_Objects;
 
 private:

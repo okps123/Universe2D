@@ -11,16 +11,19 @@ bool Map::InitializeWithMap(int width, int height) {
 	m_Width = width;
 	m_Height = height;
 
-	m_TileMap = new Tile**[height];
+	m_Map = Sprite::Create(L"Resources\\map.png");
+	AddChild(m_Map);
+
+	m_Tiles = new Tile**[height];
 	for (int i = 0; i < height; i++) {
-		m_TileMap[i] = new Tile*[width];
+		m_Tiles[i] = new Tile*[width];
 		for (int j = 0; j < width; j++) {
 			auto tile = Tile::Create();
 			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth, i * Tile::HalfHeight + j * Tile::HalfHeight);
 			tile->SetMapPosition(Vector2(j, i));
 			tile->SetZOrder(i + j);
 
-			m_TileMap[i][j] = tile;
+			m_Tiles[i][j] = tile;
 			AddChild(tile);
 		}
 	}
@@ -30,7 +33,7 @@ bool Map::InitializeWithMap(int width, int height) {
 	AddChild(m_Objects);
 
 	m_Player = Player::Create();
-	m_Player->SetPosition(m_TileMap[m_Width / 2][m_Height / 2]->GetPosition());
+	m_Player->SetPosition(m_Tiles[m_Width / 2][m_Height / 2]->GetPosition());
 
 	AddObject(m_Player);
 
@@ -88,8 +91,6 @@ std::vector<Tile*> Map::FindPath(Tile* startTile, Tile* endTile) {
 
 		m_CloseList.push_back(nextTile);
 
-		nextTile->SetState(TileType::End);
-
 		auto it = std::find(m_OpenList.begin(), m_OpenList.end(), nextTile);
 		m_OpenList.erase(it);
 
@@ -137,7 +138,7 @@ std::vector<Tile*> Map::FindPath(Tile* startTile, Tile* endTile) {
 
 Tile* Map::GetTile(int x, int y) {
 	if (IsExistTile(x, y)) {
-		return m_TileMap[y][x];
+		return m_Tiles[y][x];
 	}
 
 	return nullptr;
@@ -147,13 +148,13 @@ Tile* Map::GetTile(const Vector2 & position) {
 
 	for (int i = 0; i < m_Height; i++) {
 		for (int j = 0; j < m_Width; j++) {
-			auto tile = m_TileMap[i][j];
+			auto tile = m_Tiles[i][j];
 
 			auto p = tile->GetPosition() + Vector2(0, -Tile::HalfHeight);
 			auto p1 = p + Vector2(-Tile::HalfWidth, -Tile::HalfHeight / 2); // аб
 			auto p2 = p + Vector2(0.f, -Tile::HalfHeight); // ╩С
 			auto p3 = p + Vector2(Tile::HalfWidth, -Tile::HalfHeight / 2); // ©Л
-			auto p4 = p + Vector2(0.f, .0f); // го
+			auto p4 = p + Vector2(0.f, 0.0f); // го
 
 			float d1 = p1.y - (-m * p1.x);
 			float d2 = p2.y - (m * p2.x);
@@ -202,19 +203,19 @@ std::vector<Tile*> Map::GetNeighborTiles(Tile * tile) {
 
 	// аб
 	if (IsExistTile(x - 1, y)) {
-		tiles.push_back(m_TileMap[y][x - 1]);
+		tiles.push_back(m_Tiles[y][x - 1]);
 	}
 	// ╩С
 	if (IsExistTile(x, y - 1)) {
-		tiles.push_back(m_TileMap[y - 1][x]);
+		tiles.push_back(m_Tiles[y - 1][x]);
 	}
 	// ©Л
 	if (IsExistTile(x + 1, y)) {
-		tiles.push_back(m_TileMap[y][x + 1]);
+		tiles.push_back(m_Tiles[y][x + 1]);
 	}
 	// го
 	if (IsExistTile(x, y + 1)) {
-		tiles.push_back(m_TileMap[y + 1][x]);
+		tiles.push_back(m_Tiles[y + 1][x]);
 	}
 
 	return tiles;
@@ -229,7 +230,7 @@ bool Map::IsCloseTile(Tile * tile) {
 
 bool Map::IsExistTile(int x, int y) {
 	if (x >= 0 && y >= 0 && x < m_Width && y < m_Height) {
-		if (m_TileMap[y][x]->GetState() != TileType::Block)
+		if (m_Tiles[y][x]->GetMoveable())
 			return true;
 	}
 

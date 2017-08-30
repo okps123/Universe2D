@@ -1,14 +1,5 @@
 #pragma once
 
-enum class TileType {
-	None = 0,
-	Block,
-	Select,
-	Start,
-	End,
-	Path
-};
-
 class Tile : public Object {
 public:
 	static const int Width = 128;
@@ -21,19 +12,20 @@ private:
 	Vector2 m_MapPosition;
 
 private:
-	TileType m_Type;
-	bool m_TypeUpdate;
-
-private:
-	Sprite* m_Sprite;
+	bool m_Moveable;
 
 private:
 	int m_G;
 	int m_H;
 
 public:
-	Tile();
-	~Tile();
+	Tile()
+		: m_ParentTile(nullptr)
+		, m_MapPosition(0.f, 0.f)
+		, m_Moveable(true)
+		, m_G(0)
+		, m_H(0) {};
+	~Tile() {};
 
 public:
 	CREATE_FUNC(Tile);
@@ -48,30 +40,11 @@ public:
 public:
 	void Update(float deltaTime) override {
 		Object::Update(deltaTime);
-
-		if (m_TypeUpdate) {
-			switch (m_Type) {
-			case TileType::None:
-				m_Sprite = Sprite::Create(L"Resources\\tile_0.png");
-				break;
-			}
-			m_Sprite->SetParent(this);
-			m_Sprite->SetAnchorPoint(0.5f, 1.0f);
-
-			m_TypeUpdate = false;
-		}
-
-		if (m_Sprite) {
-			m_Sprite->Update(deltaTime);
-		}
 	}
 	void Render() override {
 		Object::Render();
-
-		if (m_Sprite) {
-			m_Sprite->Render();
-		}
 	}
+
 public:
 	Tile* GetParentTile() {
 		return m_ParentTile;
@@ -88,13 +61,11 @@ public:
 		m_MapPosition = position;
 	}
 
-public:
-	const TileType& GetState() {
-		return m_Type;
+	bool GetMoveable() {
+		return m_Moveable;
 	}
-	void SetState(const TileType& state) {
-		m_Type = state;
-		m_TypeUpdate = true;
+	void SetMoveable(bool isMoveable) {
+		m_Moveable = isMoveable;
 	}
 
 public:

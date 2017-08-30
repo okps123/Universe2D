@@ -20,6 +20,12 @@
     <ClCompile Include="Unit.cpp">
       <Filter>Game\Survival\Unit</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Game\Survival\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Game\Survival\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -36,6 +42,9 @@
     </Filter>
     <Filter Include="Game\Survival\Unit">
       <UniqueIdentifier>{949e1111-87c4-4266-aec9-e4cf2fced973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Survival\Item">
+      <UniqueIdentifier>{99122ef9-1026-4c57-bd19-cba1b7cc808d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +65,12 @@
     </ClInclude>
     <ClInclude Include="Unit.h">
       <Filter>Game\Survival\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Game\Survival\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Game\Survival\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
