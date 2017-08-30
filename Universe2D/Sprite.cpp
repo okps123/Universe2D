@@ -6,18 +6,12 @@ Sprite::Sprite()
 	, m_ColorR(0)
 	, m_ColorG(0)
 	, m_ColorB(0)
-	, m_Texture(nullptr)
-{
-}
-Sprite::~Sprite()
-{
-}
+	, m_Texture(nullptr) {}
+Sprite::~Sprite() {}
 
-Sprite* Sprite::Create(std::wstring fileName)
-{
+Sprite* Sprite::Create(std::wstring fileName) {
 	auto sprite = new (std::nothrow) Sprite();
-	if (sprite && sprite->InitializeWithFile(fileName))
-	{
+	if (sprite && sprite->InitializeWithFile(fileName)) {
 		return sprite;
 	}
 
@@ -26,25 +20,21 @@ Sprite* Sprite::Create(std::wstring fileName)
 	return nullptr;
 }
 
-bool Sprite::InitializeWithFile(const std::wstring & fileName)
-{
+bool Sprite::InitializeWithFile(const std::wstring & fileName) {
 	m_Texture = ResourceManager::GetInstance()->LoadTextureFromFile(fileName);
 	if (!m_Texture)
-
 		return false;
 
 	auto size = m_Texture->GetSize();
 	SetRect(&m_SourceRect, 0, 0, size.x, size.y);
 	SetSize(size);
-	
 
 	SetAnchorPoint({ 0.5f, 0.5f });
 
 	return true;
 }
 
-void Sprite::Resize(float width, float height)
-{
+void Sprite::Resize(float width, float height) {
 	// width, height를 통해 scale을 계산합니다
 	float scaleX = width / m_Size.x;
 	float scaleY = height / m_Size.y;
@@ -52,8 +42,7 @@ void Sprite::Resize(float width, float height)
 	SetScale(scaleX, scaleY);
 }
 
-void Sprite::Render()
-{
+void Sprite::Render() {
 	if (!m_Visible)
 		return;
 
