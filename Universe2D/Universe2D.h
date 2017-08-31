@@ -42,3 +42,6 @@
 
 #include "ProgressBar.h"
 
+#include "Collider.h"
+#include "CircleCollider.h"
+#include "BoxCollider.h"

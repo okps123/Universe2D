@@ -167,6 +167,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="IsoMapScene.cpp" />
+    <ClCompile Include="SideMenu.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="WinMain.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="IsoMapScene.h" />
+    <ClInclude Include="SideMenu.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Unit.h" />
   </ItemGroup>

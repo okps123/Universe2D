@@ -20,6 +20,8 @@ public:
 public:
 	bool Initialize() override;
 
+	void InitializeUI();
+
 public:
 	void Update(float deltaTime) override;
 	void UpdateCamera();

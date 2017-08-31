@@ -25,7 +25,6 @@ public:
 		, m_PathIndex(0)
 		, m_TargetPathTile(nullptr) {};
 	~Player() {
-		delete m_Inventory;
 	};
 
 public:

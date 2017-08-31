@@ -6,30 +6,15 @@
 
 #include "Player.h"
 
-IsoMapScene::IsoMapScene() {
-}
-IsoMapScene::~IsoMapScene() {
-}
+#include "SideMenu.h"
+
+IsoMapScene::IsoMapScene() {}
+IsoMapScene::~IsoMapScene() {}
 
 bool IsoMapScene::Initialize() {
 	Scene::Initialize();
 
-	// UI 설정
-	m_UI = Object::Create();
-	m_UI->SetZOrder(1000);
-	AddChild(m_UI);
-	m_UI->SetParent(nullptr);
-
-	auto p = ProgressBar::Create(L"Resources\\ui_water_background.png", L"Resources\\ui_water_foreground.png");
-	p->SetPosition(10, 10);
-	p->SetValue(50);
-
-	auto p_label = Sprite::Create(L"Resources\\ui_water_label.png");
-	p_label->SetAnchorPoint(0.f, 0.f);
-	p_label->SetPosition(10, 6);
-	p->AddChild(p_label);
-
-	m_UI->AddChild(p);
+	InitializeUI();
 
 	m_Map = Map::Create(64, 64);
 	AddChild(m_Map);
@@ -38,6 +23,32 @@ bool IsoMapScene::Initialize() {
 	GetCamera()->Translate(-640, 0);
 
 	return true;
+}
+
+void IsoMapScene::InitializeUI() {
+	m_UI = Object::Create();
+	m_UI->SetZOrder(1000);
+	AddChild(m_UI);
+
+	m_UI->SetParent(nullptr);
+
+	// 수분 게이지
+	auto p_water = ProgressBar::Create(L"Resources\\ui_water_background.png", L"Resources\\ui_water_foreground.png");
+	p_water->SetPosition(10, 10);
+	p_water->SetValue(100);
+
+	auto p_water_label = Sprite::Create(L"Resources\\ui_water_label.png");
+	p_water_label->SetAnchorPoint(0.f, 0.f);
+	p_water_label->SetPosition(10, 6);
+
+	p_water->AddChild(p_water_label);
+
+	m_UI->AddChild(p_water);
+
+	//// 도구 상자
+	auto sideMenu = SideMenu::Create();
+	sideMenu->SetPosition(GetSize().x - 60, 100);
+	m_UI->AddChild(sideMenu);
 }
 
 void IsoMapScene::Update(float deltaTime) {

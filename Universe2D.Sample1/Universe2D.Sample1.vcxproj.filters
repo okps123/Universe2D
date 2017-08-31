@@ -26,6 +26,9 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>Game\Survival\Item</Filter>
     </ClCompile>
+    <ClCompile Include="SideMenu.cpp">
+      <Filter>Game\Survival\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -45,6 +48,9 @@
     </Filter>
     <Filter Include="Game\Survival\Item">
       <UniqueIdentifier>{99122ef9-1026-4c57-bd19-cba1b7cc808d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Survival\UI">
+      <UniqueIdentifier>{1620d8f5-e78e-4bb3-8c97-c725acb89b71}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="Inventory.h">
       <Filter>Game\Survival\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="SideMenu.h">
+      <Filter>Game\Survival\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
