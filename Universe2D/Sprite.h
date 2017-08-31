@@ -24,6 +24,9 @@ public:
 	Texture* GetTexture() { return m_Texture; }
 	void SetTexture(Texture* texture) { m_Texture = texture; }
 
+	const RECT& GetSourceRect() { return m_SourceRect; }
+	void SetSourceRect(RECT sourceRect) { m_SourceRect = sourceRect; }
+
 public:
     void Resize(float width, float height);
 

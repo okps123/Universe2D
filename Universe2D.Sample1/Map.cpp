@@ -25,7 +25,6 @@ bool Map::InitializeWithMap(int width, int height) {
 			tile->SetZOrder(i + j);
 
 			m_Tiles[i][j] = tile;
-			AddChild(tile);
 		}
 	}
 
@@ -55,8 +54,6 @@ void Map::Update(float deltaTime) {
 		if (tile && m_Player->GetPathTile()) {
 			auto pathList = FindPath(m_Player->GetPathTile(), tile);
 			m_Player->MoveTo(pathList);
-		} else {
-			printf("타일 못찾음\n");
 		}
 
 		if (tile) {

@@ -96,6 +96,7 @@
     <ClInclude Include="AnimationGroup.h">
       <Filter>Framework\Node</Filter>
     </ClInclude>
+    <ClInclude Include="ProgressBar.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Precompiled.cpp">
@@ -155,5 +156,6 @@
     <ClCompile Include="AnimationGroup.cpp">
       <Filter>Framework\Node</Filter>
     </ClCompile>
+    <ClCompile Include="ProgressBar.cpp" />
   </ItemGroup>
 </Project>
