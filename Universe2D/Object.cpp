@@ -75,7 +75,6 @@ void Object::AddChild(Object* child) {
 		return;
 
 	child->SetParent(this);
-
 	m_Children.push_back(child);
 }
 void Object::RemoveChild(Object* child) {

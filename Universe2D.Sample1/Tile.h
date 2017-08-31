@@ -38,14 +38,6 @@ public:
 	}
 
 public:
-	void Update(float deltaTime) override {
-		Object::Update(deltaTime);
-	}
-	void Render() override {
-		Object::Render();
-	}
-
-public:
 	Tile* GetParentTile() {
 		return m_ParentTile;
 	}
@@ -83,8 +75,28 @@ public:
 		m_H = h;
 	}
 
+public:
 	int GetCost() {
 		return GetGCost() + GetHCost();
+	}
+
+public:
+	static bool IsCollide(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4, Vector2 p) {
+		float d1 = p1.y - (-0.5f * p1.x);
+		float d2 = p2.y - (0.5f * p2.x);
+		float d3 = p3.y - (-0.5f * p3.x);
+		float d4 = p4.y - (0.5f * p4.x);
+
+		float r1 = -0.5f * p.x - p.y + d1;
+		float r2 = 0.5f * p.x - p.y + d2;
+		float r3 = -0.5f * p.x - p.y + d3;
+		float r4 = 0.5f * p.x - p.y + d4;
+
+		if (r1 <= 0.f && r2 <= 0.f && r3 >= 0.f && r4 >= 0.f) {
+			return true;
+		}
+
+		return false;
 	}
 };
 

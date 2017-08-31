@@ -14,7 +14,7 @@ IsoMapScene::~IsoMapScene() {
 bool IsoMapScene::Initialize() {
 	Scene::Initialize();
 
-	m_Map = Map::Create(10, 10);
+	m_Map = Map::Create(64, 64);
 	AddChild(m_Map);
 
 	// 카메라 이동

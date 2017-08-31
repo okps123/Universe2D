@@ -19,6 +19,7 @@ bool Map::InitializeWithMap(int width, int height) {
 		m_Tiles[i] = new Tile*[width];
 		for (int j = 0; j < width; j++) {
 			auto tile = Tile::Create();
+			tile->SetPosition(Vector2(0, -m_Map->GetSize().y / 2));
 			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth, i * Tile::HalfHeight + j * Tile::HalfHeight);
 			tile->SetMapPosition(Vector2(j, i));
 			tile->SetZOrder(i + j);
@@ -51,11 +52,17 @@ void Map::Update(float deltaTime) {
 
 	if (Input::GetInstance()->GetKeyState(VK_LBUTTON) == KeyState::Down) {
 		auto tile = GetTile(position);
-		if (tile) {
+		if (tile && m_Player->GetPathTile()) {
 			auto pathList = FindPath(m_Player->GetPathTile(), tile);
 			m_Player->MoveTo(pathList);
 		} else {
 			printf("타일 못찾음\n");
+		}
+
+		if (tile) {
+			auto s1 = Sprite::Create(L"Resources\\tile_select.png");
+			s1->SetPosition(tile->GetPosition());
+			AddChild(s1);
 		}
 	}
 }
@@ -143,34 +150,62 @@ Tile* Map::GetTile(int x, int y) {
 
 	return nullptr;
 }
-Tile* Map::GetTile(const Vector2 & position) {
-	static float m = 0.5f;
-
+Tile* Map::GetTile(const Vector2& position) {
 	for (int i = 0; i < m_Height; i++) {
 		for (int j = 0; j < m_Width; j++) {
 			auto tile = m_Tiles[i][j];
 
-			auto p = tile->GetPosition() + Vector2(0, -Tile::HalfHeight);
-			auto p1 = p + Vector2(-Tile::HalfWidth, -Tile::HalfHeight / 2); // 좌
+			auto p = tile->GetPosition();
+
+			auto p1 = p + Vector2(-Tile::HalfWidth, 0.f); // 좌
 			auto p2 = p + Vector2(0.f, -Tile::HalfHeight); // 상
-			auto p3 = p + Vector2(Tile::HalfWidth, -Tile::HalfHeight / 2); // 우
-			auto p4 = p + Vector2(0.f, 0.0f); // 하
+			auto p3 = p + Vector2(Tile::HalfWidth, 0); // 우
+			auto p4 = p + Vector2(0.f, Tile::HalfHeight); // 하
 
-			float d1 = p1.y - (-m * p1.x);
-			float d2 = p2.y - (m * p2.x);
-			float d3 = p3.y - (-m * p3.x);
-			float d4 = p4.y - (m * p4.x);
-
-			float r1 = -m * position.x - position.y + d1;
-			float r2 = m * position.x - position.y + d2;
-			float r3 = -m * position.x - position.y + d3;
-			float r4 = m * position.x - position.y + d4;
-
-			if (r1 <= 0.f && r2 <= 0.f && r3 >= 0.f && r4 >= 0.f) {
+			if (Tile::IsCollide(p1, p2, p3, p4, position)) {
 				return tile;
 			}
 		}
 	}
+
+	//int startX = 0;
+	//int startY = 0;
+	//int incrementX = m_Width / 2;
+	//int incrementY = m_Height / 2;
+
+	//for (int n = 0; n < 10; n++) {
+	//	for (int i = 0; i < 2; i++) {
+	//		for (int j = 0; j < 2; j++) {
+	//			int iX = incrementX * j;
+	//			int iY = incrementY * i;
+
+	//			auto p1 = m_Tiles[startY + incrementY * (i + 1) - 1][startX + iX]->GetPosition()
+	//				+ Vector2(-Tile::HalfWidth, 0.f);		// 좌
+
+	//			auto p2 = m_Tiles[startY + iY][startX + iX]->GetPosition()
+	//				+ Vector2(0.f, -Tile::HalfHeight);		// 상
+
+	//			auto p3 = m_Tiles[startY + iY][startX + incrementX * (j + 1) - 1]->GetPosition()
+	//				+ Vector2(Tile::HalfWidth, 0.f);		// 우
+
+	//			auto p4 = m_Tiles[startY + incrementY * (i + 1) - 1][startX + incrementX * (j + 1) - 1]->GetPosition()
+	//				+ Vector2(0.f, Tile::HalfHeight);		// 하
+
+	//			if (Tile::IsCollide(p1, p2, p3, p4, position)) {
+	//				incrementX /= 2;
+	//				incrementY /= 2;
+	//				startX += iX;
+	//				startY += iY;
+
+	//				if (incrementX == 0 && incrementY == 0) {
+	//					return m_Tiles[startY][startX];
+	//				}
+
+	//				break;
+	//			}
+	//		}
+	//	}
+	//}
 
 	return nullptr;
 }
