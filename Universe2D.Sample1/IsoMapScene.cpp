@@ -14,6 +14,23 @@ IsoMapScene::~IsoMapScene() {
 bool IsoMapScene::Initialize() {
 	Scene::Initialize();
 
+	// UI ¼³Á¤
+	m_UI = Object::Create();
+	m_UI->SetZOrder(1000);
+	AddChild(m_UI);
+	m_UI->SetParent(nullptr);
+
+	auto p = ProgressBar::Create(L"Resources\\ui_water_background.png", L"Resources\\ui_water_foreground.png");
+	p->SetPosition(10, 10);
+	p->SetValue(50);
+
+	auto p_label = Sprite::Create(L"Resources\\ui_water_label.png");
+	p_label->SetAnchorPoint(0.f, 0.f);
+	p_label->SetPosition(10, 6);
+	p->AddChild(p_label);
+
+	m_UI->AddChild(p);
+
 	m_Map = Map::Create(64, 64);
 	AddChild(m_Map);
 

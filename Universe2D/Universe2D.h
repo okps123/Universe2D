@@ -40,3 +40,5 @@
 #include "AnimationGroup.h"
 #include "AnimationSprite.h"
 
+#include "ProgressBar.h"
+

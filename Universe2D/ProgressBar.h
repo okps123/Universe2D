@@ -1,8 +1,8 @@
 #pragma once
 class ProgressBar : public Object {
 private:
-	int m_MaximizeValue;
-	int m_Value;
+	float m_MaximizeValue;
+	float m_Value;
 
 private:
 	Sprite* m_Background;
@@ -30,21 +30,28 @@ public:
 public:
 	bool InitializeWithSprite(const std::wstring& background, const std::wstring& foreground) {
 		m_Background = Sprite::Create(background);
+		m_Background->SetAnchorPoint(0.f, 0.f);
+
 		m_Foreground = Sprite::Create(foreground);
+		m_Foreground->SetAnchorPoint(0.f, 0.f);
+
+		AddChild(m_Background);
+		AddChild(m_Foreground);
 
 		return true;
 	}
 
+public:
 	void Update(float deltaTime) {
 		Object::Update(deltaTime);
 
-		RECT rect = m_Foreground->GetSourceRect();
-
-		int increment = (rect.right - rect.left) / m_MaximizeValue;
-		int value = increment * m_Value;
-
-		rect.right = rect.left + value;
+		auto rect = m_Foreground->GetSourceRect();
+		rect.right = m_Foreground->GetSize().x / m_MaximizeValue * m_Value;
 
 		m_Foreground->SetSourceRect(rect);
 	}
+
+public:
+	int GetValue() { return m_Value; }
+	void SetValue(int value) { m_Value = value; }
 };

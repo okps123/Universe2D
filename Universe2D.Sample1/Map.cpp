@@ -11,15 +11,15 @@ bool Map::InitializeWithMap(int width, int height) {
 	m_Width = width;
 	m_Height = height;
 
-	m_Map = Sprite::Create(L"Resources\\map.png");
-	AddChild(m_Map);
+	//m_Map = Sprite::Create(L"Resources\\map.png");
+	//AddChild(m_Map);
 
 	m_Tiles = new Tile**[height];
 	for (int i = 0; i < height; i++) {
 		m_Tiles[i] = new Tile*[width];
 		for (int j = 0; j < width; j++) {
 			auto tile = Tile::Create();
-			tile->SetPosition(Vector2(0, -m_Map->GetSize().y / 2));
+			//tile->SetPosition(Vector2(0, -m_Map->GetSize().y / 2));
 			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth, i * Tile::HalfHeight + j * Tile::HalfHeight);
 			tile->SetMapPosition(Vector2(j, i));
 			tile->SetZOrder(i + j);

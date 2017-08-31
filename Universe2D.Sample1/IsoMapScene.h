@@ -8,6 +8,8 @@ private:
 	Map* m_Map;
 	Player* m_Player;
 
+	Object* m_UI;
+
 public:
 	IsoMapScene();
 	~IsoMapScene();
