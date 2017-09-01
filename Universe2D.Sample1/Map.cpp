@@ -6,6 +6,8 @@
 
 #include "ItemView.h"
 
+#include "GameManager.h"
+
 Map::Map() {}
 Map::~Map() {}
 
@@ -13,15 +15,15 @@ bool Map::InitializeWithMap(int width, int height) {
 	m_Width = width;
 	m_Height = height;
 
-	//m_Map = Sprite::Create(L"Resources\\map.png");
-	//AddChild(m_Map);
+	m_Map = Sprite::Create(L"Resources\\map.png");
+	AddChild(m_Map);
 
 	m_Tiles = new Tile**[height];
 	for (int i = 0; i < height; i++) {
 		m_Tiles[i] = new Tile*[width];
 		for (int j = 0; j < width; j++) {
 			auto tile = Tile::Create();
-			//tile->SetPosition(Vector2(0, -m_Map->GetSize().y / 2));
+			tile->SetPosition(Vector2(0, -m_Map->GetSize().y / 2));
 			tile->Translate(j * Tile::HalfWidth - i * Tile::HalfWidth, i * Tile::HalfHeight + j * Tile::HalfHeight);
 			tile->SetMapPosition(Vector2(j, i));
 			tile->SetZOrder(i + j);
@@ -36,9 +38,12 @@ bool Map::InitializeWithMap(int width, int height) {
 
 	// 플레이어 생성
 	m_Player = Player::Create();
+	m_Player->SetZOrder(1);
 	m_Player->SetPosition(m_Tiles[m_Width / 2][m_Height / 2]->GetPosition());
 
 	AddObject(m_Player);
+
+	GameManager::GetInstance()->Player = m_Player;
 
 	// 도구 아이템 생성
 	auto item = new ItemView();
@@ -53,6 +58,9 @@ void Map::Update(float deltaTime) {
 	Object::Update(deltaTime);
 
 	UpdatePlayer();
+
+	if (Input::GetInstance()->GetMouseHandled())
+		return;
 
 	auto input = Input::GetInstance();
 	auto camera = Director::GetInstance()->GetScene()->GetCamera();

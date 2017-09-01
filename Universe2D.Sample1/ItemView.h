@@ -4,6 +4,9 @@
 #include "Item.h"
 #include "Inventory.h"
 
+#include "GameManager.h"
+#include "Player.h"
+
 class ItemView : public Item {
 public:
 	Sprite* ItemImage;
@@ -43,7 +46,9 @@ public:
 		auto camera = Director::GetInstance()->GetScene()->GetCamera();
 		auto position = camera->ScreenToWorldPoint(Input::GetInstance()->GetMousePosition());
 
-		if (m_Collider->IsCollideWith(position)) {
+		auto player = GameManager::GetInstance()->Player;
+		
+		if (m_Collider->IsCollideWith(position) && m_Collider->IsCollideWith(player->GetPosition())) {
 			Inventory::GetInstance()->AddItem(ID, 1);
 			SetVisible(false);
 		}

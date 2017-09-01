@@ -6,7 +6,6 @@ class Player;
 class IsoMapScene : public Scene {
 private:
 	Map* m_Map;
-	Player* m_Player;
 
 	Object* m_UI;
 
@@ -20,6 +19,7 @@ public:
 public:
 	bool Initialize() override;
 
+public:
 	void InitializeUI();
 
 public:

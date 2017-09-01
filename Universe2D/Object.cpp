@@ -40,8 +40,13 @@ void Object::Update(float deltaTime) {
 	if (!m_Visible)
 		return;
 
-	for each (const auto& child in m_Children)
+	/*for each (const auto& child in m_Children)
 		child->Update(deltaTime);
+*/
+	for (int i = m_Children.size() - 1; i >= 0; --i) {
+		m_Children[i]->Update(deltaTime);
+		printf("%d\n", i);
+	}
 }
 void Object::Render() {
 	if (!m_Visible) {

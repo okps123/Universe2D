@@ -47,6 +47,9 @@ public:
 	void Update(float deltaTime) {
 		Object::Update(deltaTime);
 
+		if (Input::GetInstance()->GetMouseHandled())
+			return;
+
 		//// 아이템을 가지고있다면 아이콘 활성화
 		if (Inventory::GetInstance()->ContainsItem(ItemID, 1)) {
 			m_ItemImage->SetVisible(true);
@@ -60,6 +63,8 @@ public:
 		auto p = Input::GetInstance()->GetMousePosition();
 		if (m_Collider->IsCollideWith(p)) {
 			// 아이템 가져오기
+			printf("핸들 true\n");
+			Input::GetInstance()->SetMouseHandled(true);
 		}
 	}
 };

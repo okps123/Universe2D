@@ -45,7 +45,7 @@ void IsoMapScene::InitializeUI() {
 
 	m_UI->AddChild(p_water);
 
-	//// 도구 상자
+	// 도구 상자
 	auto slotBox = Object::Create();
 	slotBox->SetAnchorPoint(.0f, .0f);
 	slotBox->SetPosition(382.5f, 650);
