@@ -16,11 +16,6 @@ bool BoxCollider::IsCollideWith(BoxCollider* other) {
 }
 
 bool BoxCollider::IsCollideWith(const Vector2& point) {
-	if (point.x < m_Position.x || point.y < m_Position.y)
-		return false;
-
-	if (point.x > m_Position.x + m_Size.x || point.y > m_Position.y + m_Size.y)
-		return false;
-
-	return true;
+	Vector3 position = *(Vector3*)&m_Matrix._41;
+	return BoxCollider::IsCollide(position.x, position.y, m_Size.x, m_Size.y, point);
 }

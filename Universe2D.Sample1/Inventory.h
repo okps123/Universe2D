@@ -1,7 +1,7 @@
 #pragma once
 #include "Item.h"
 
-class Inventory {
+class Inventory : public Singleton<Inventory> {
 private:
 	std::unordered_map<ItemID::Enum, int> m_Items;
 

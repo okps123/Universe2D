@@ -30,7 +30,6 @@ private:
 	virtual bool IsCollideWith(CircleCollider* other) override;
 	virtual bool IsCollideWith(BoxCollider* other) override;
 
-
 public:
 	static bool IsCollide(float x, float y, float width, float height, const Vector2& p) {
 		if (p.x < x || p.y < y)
