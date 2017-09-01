@@ -31,13 +31,16 @@ namespace ItemID {
 	};
 }
 
-class Item {
+class Item : public Object {
 public:
 	ItemID::Enum ID;
 
 public:
 	std::string Name;
 	std::string Description;
+
+public:
+	Sprite* Icon;
 
 public:
 	Item()

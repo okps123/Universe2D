@@ -14,4 +14,9 @@ public:
 	void RemoveItem(ItemID::Enum id, int amount);
 
 	bool ContainsItem(ItemID::Enum id, int amount);
+
+public:
+	int GetAmount(ItemID::Enum id) {
+		return m_Items[id];
+	}
 };

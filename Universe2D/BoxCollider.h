@@ -9,12 +9,10 @@ public:
 	~BoxCollider();
 
 public:
-	static BoxCollider* Create(float x, float y, float width, float height) {
+	static BoxCollider* Create(float width, float height) {
 		auto p = new (std::nothrow) BoxCollider();
 		if (p) {
-			p->SetPosition(x, y);
 			p->SetSize(width, height);
-
 			return p;
 		}
 

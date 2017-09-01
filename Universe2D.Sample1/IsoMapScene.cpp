@@ -6,7 +6,7 @@
 
 #include "Player.h"
 
-#include "SideMenu.h"
+#include "ItemSlot.h"
 
 IsoMapScene::IsoMapScene() {}
 IsoMapScene::~IsoMapScene() {}
@@ -46,9 +46,19 @@ void IsoMapScene::InitializeUI() {
 	m_UI->AddChild(p_water);
 
 	//// 도구 상자
-	auto sideMenu = SideMenu::Create();
-	sideMenu->SetPosition(GetSize().x - 60, 100);
-	m_UI->AddChild(sideMenu);
+	auto slotBox = Object::Create();
+	slotBox->SetAnchorPoint(.0f, .0f);
+	slotBox->SetPosition(382.5f, 650);
+
+	for (int i = 0; i < 8; i++) {
+		auto slot = new ItemSlot();
+		slot->Initialize(static_cast<ItemID::Enum>(i + 1));
+		slot->SetPosition(65 * i, 0);
+
+		slotBox->AddChild(slot);
+	}
+
+	m_UI->AddChild(slotBox);
 }
 
 void IsoMapScene::Update(float deltaTime) {

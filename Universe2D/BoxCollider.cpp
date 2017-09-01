@@ -16,6 +16,10 @@ bool BoxCollider::IsCollideWith(BoxCollider* other) {
 }
 
 bool BoxCollider::IsCollideWith(const Vector2& point) {
-	Vector3 position = *(Vector3*)&m_Matrix._41;
-	return BoxCollider::IsCollide(position.x, position.y, m_Size.x, m_Size.y, point);
+	auto position = GetParent()->GetPosition();
+	return BoxCollider::IsCollide(position.x + m_Offset.x, position.y + m_Offset.y, m_Size.x, m_Size.y, point);
 }
+
+
+
+

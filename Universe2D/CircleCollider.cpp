@@ -33,9 +33,7 @@ bool CircleCollider::IsCollideWith(Collider* other) {
 bool CircleCollider::IsCollideWith(const Vector2& point) {
 	auto position = GetParent()->GetPosition();
 
-	auto deltaPosition = (position + GetOffset()) - point;
-	auto distance = sqrt(pow(deltaPosition.x, 2) + pow(deltaPosition.y, 2));
-
+	auto distance = sqrt(pow(position.x - point.x, 2) + pow(position.y - point.y, 2));
 	if (distance > GetRadius())
 		return false;
 

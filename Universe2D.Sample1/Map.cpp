@@ -4,6 +4,8 @@
 
 #include "Player.h"
 
+#include "ItemView.h"
+
 Map::Map() {}
 Map::~Map() {}
 
@@ -32,10 +34,17 @@ bool Map::InitializeWithMap(int width, int height) {
 	m_Objects->SetZOrder(1000);
 	AddChild(m_Objects);
 
+	// 플레이어 생성
 	m_Player = Player::Create();
 	m_Player->SetPosition(m_Tiles[m_Width / 2][m_Height / 2]->GetPosition());
 
 	AddObject(m_Player);
+
+	// 도구 아이템 생성
+	auto item = new ItemView();
+	item->Initialize(m_Tiles[m_Width / 2 - 5][m_Height / 2], ItemID::숟가락);
+
+	AddObject(item);
 
 	return true;
 }
@@ -49,7 +58,7 @@ void Map::Update(float deltaTime) {
 	auto camera = Director::GetInstance()->GetScene()->GetCamera();
 	auto position = camera->ScreenToWorldPoint(Input::GetInstance()->GetMousePosition());
 
-	if (Input::GetInstance()->GetKeyState(VK_LBUTTON) == KeyState::Down) {
+	if (input->GetKeyState(VK_LBUTTON) == KeyState::Down) {
 		auto tile = GetTile(position);
 		if (tile && m_Player->GetPathTile()) {
 			auto pathList = FindPath(m_Player->GetPathTile(), tile);

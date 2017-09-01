@@ -29,6 +29,10 @@
     <ClCompile Include="SideMenu.cpp">
       <Filter>Game\Survival\UI</Filter>
     </ClCompile>
+    <ClCompile Include="ItemBox.cpp" />
+    <ClCompile Include="ItemSlot.cpp" />
+    <ClCompile Include="ItemView.cpp" />
+    <ClCompile Include="GameManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -81,5 +85,9 @@
     <ClInclude Include="SideMenu.h">
       <Filter>Game\Survival\UI</Filter>
     </ClInclude>
+    <ClInclude Include="ItemBox.h" />
+    <ClInclude Include="ItemSlot.h" />
+    <ClInclude Include="ItemView.h" />
+    <ClInclude Include="GameManager.h" />
   </ItemGroup>
 </Project>

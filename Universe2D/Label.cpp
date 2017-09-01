@@ -42,6 +42,7 @@ bool Label::InitializeWithFont(const std::wstring& fontFace, int fontSize, D3DCO
 
 	m_FontFace = fontFace;
 	m_FontSize = fontSize;
+	m_Color = fontColor;
 
 	return true;
 }
@@ -55,7 +56,7 @@ void Label::Render()
 
     m_Font->DrawTextW(NULL, m_Text.c_str(), m_Text.size(), &rect, DT_CALCRECT, m_Color);
 
-	Vector2 position = GetPosition();
+	Vector3 position = *(Vector3*)&m_Matrix._41;
 
     RECT wrapRect;
     SetRect(&wrapRect,

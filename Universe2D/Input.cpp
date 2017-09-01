@@ -69,6 +69,8 @@ void Input::UpdateKeyState()
 }
 void Input::UpdateMouseState()
 {
+	m_MouseHandled = false;
+
     // 마우스의 위치를 가져옴
     POINT position;
     GetCursorPos(&position);
